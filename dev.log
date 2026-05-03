@@ -1,0 +1,254 @@
+
+> floristeria@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.23:3000
+- Environments: .env
+✓ Ready in 1322ms
+- Experiments (use with caution):
+  · serverActions
+
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__13ldxwf._.js:312:157
+
+  309 };
+  310 async function getFeaturedProducts() {
+  311     try {
+→ 312         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__13ldxwf._.js:328:158
+
+  325 }
+  326 async function getOccasions() {
+  327     try {
+→ 328         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+
+ GET / 200 in 1669ms (next.js: 350ms, application-code: 1319ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__13ldxwf._.js:312:157
+
+  309 };
+  310 async function getFeaturedProducts() {
+  311     try {
+→ 312         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__13ldxwf._.js:328:158
+
+  325 }
+  326 async function getOccasions() {
+  327     try {
+→ 328         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+
+ GET / 200 in 230ms (next.js: 11ms, application-code: 219ms)
+ GET /api/auth/session 200 in 1475ms (next.js: 1438ms, application-code: 38ms)
+ GET /api/auth/session 200 in 27ms (next.js: 15ms, application-code: 12ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+
+  175 const perPage = 12;
+  176 try {
+  177     const [products, total] = await Promise.all([
+→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+
+  181     skip: (page - 1) * perPage,
+  182     take: perPage
+  183 }),
+→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+
+  202 }
+  203 async function getOccasions() {
+  204     try {
+→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+
+ GET /tienda 200 in 322ms (next.js: 83ms, application-code: 239ms)
+ GET /api/auth/session 200 in 31ms (next.js: 18ms, application-code: 13ms)
+ GET /api/auth/session 200 in 11ms (next.js: 4ms, application-code: 7ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+
+  175 const perPage = 12;
+  176 try {
+  177     const [products, total] = await Promise.all([
+→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+
+  181     skip: (page - 1) * perPage,
+  182     take: perPage
+  183 }),
+→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+
+  202 }
+  203 async function getOccasions() {
+  204     try {
+→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+
+ GET /tienda 200 in 191ms (next.js: 8ms, application-code: 183ms)
+ GET /api/auth/session 200 in 37ms (next.js: 22ms, application-code: 15ms)
+ GET /api/auth/session 200 in 21ms (next.js: 7ms, application-code: 14ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+
+  175 const perPage = 12;
+  176 try {
+  177     const [products, total] = await Promise.all([
+→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+
+  181     skip: (page - 1) * perPage,
+  182     take: perPage
+  183 }),
+→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+
+  202 }
+  203 async function getOccasions() {
+  204     try {
+→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+
+ GET /tienda?ocasion=amor 200 in 60ms (next.js: 7ms, application-code: 53ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+
+  175 const perPage = 12;
+  176 try {
+  177     const [products, total] = await Promise.all([
+→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+
+  181     skip: (page - 1) * perPage,
+  182     take: perPage
+  183 }),
+→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+
+  202 }
+  203 async function getOccasions() {
+  204     try {
+→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+
+ GET /tienda?ocasion=cumpleanos 200 in 57ms (next.js: 4ms, application-code: 53ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+
+  175 const perPage = 12;
+  176 try {
+  177     const [products, total] = await Promise.all([
+→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+
+  181     skip: (page - 1) * perPage,
+  182     take: perPage
+  183 }),
+→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+
+  202 }
+  203 async function getOccasions() {
+  204     try {
+→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+
+ GET /tienda?ocasion=aniversario 200 in 66ms (next.js: 6ms, application-code: 61ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+
+  175 const perPage = 12;
+  176 try {
+  177     const [products, total] = await Promise.all([
+→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+
+  181     skip: (page - 1) * perPage,
+  182     take: perPage
+  183 }),
+→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+
+  202 }
+  203 async function getOccasions() {
+  204     try {
+→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+
+ GET /tienda?ocasion=nacimiento 200 in 49ms (next.js: 5ms, application-code: 44ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+
+  175 const perPage = 12;
+  176 try {
+  177     const [products, total] = await Promise.all([
+→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+
+  181     skip: (page - 1) * perPage,
+  182     take: perPage
+  183 }),
+→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
+
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
+C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+
+  202 }
+  203 async function getOccasions() {
+  204     try {
+→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+
+ GET /tienda?ocasion=empresarial 200 in 53ms (next.js: 6ms, application-code: 48ms)

@@ -1,0 +1,269 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  CLIENT
+  ADMIN
+  SELLER
+  FLORIST
+  DELIVERY
+}
+
+enum OrderStatus {
+  RECEIVED
+  PROCESSING
+  READY
+  IN_ROUTE
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  WOMPI
+  PSE
+  BANK_TRANSFER
+  CASH_ON_DELIVERY
+  POS_CASH
+  POS_CARD
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String?
+  name          String
+  phone         String?
+  role          Role      @default(CLIENT)
+  emailVerified DateTime?
+  image         String?
+  active        Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts       Account[]
+  sessions       Session[]
+  addresses      Address[]
+  orders         Order[]              @relation("CustomerOrders")
+  floristOrders  Order[]              @relation("FloristOrders")
+  deliveryOrders Order[]              @relation("DeliveryOrders")
+  sellerOrders   Order[]              @relation("SellerOrders")
+  favorites      Favorite[]
+  statusChanges  OrderStatusHistory[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Address {
+  id           String   @id @default(cuid())
+  userId       String
+  label        String   @default("Casa")
+  street       String
+  neighborhood String?
+  city         String   @default("Medellín")
+  department   String   @default("Antioquia")
+  reference    String?
+  isDefault    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders Order[]
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  description String?
+  image       String?
+  active      Boolean   @default(true)
+  sortOrder   Int       @default(0)
+  products    Product[]
+}
+
+model Occasion {
+  id          String           @id @default(cuid())
+  slug        String           @unique
+  name        String
+  description String?
+  image       String?
+  icon        String?
+  active      Boolean          @default(true)
+  sortOrder   Int              @default(0)
+  products    ProductOccasion[]
+}
+
+model Product {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  name           String
+  tagline        String?
+  description    String   @db.Text
+  basePrice      Decimal  @db.Decimal(10, 2)
+  categoryId     String?
+  images         String[]
+  specifications Json?
+  sizes          Json?
+  tags           String[]
+  featured       Boolean  @default(false)
+  active         Boolean  @default(true)
+  stock          Int      @default(99)
+  salesCount     Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  category   Category?        @relation(fields: [categoryId], references: [id])
+  occasions  ProductOccasion[]
+  orderItems OrderItem[]
+  favorites  Favorite[]
+}
+
+model ProductOccasion {
+  productId  String
+  occasionId String
+
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  occasion Occasion @relation(fields: [occasionId], references: [id], onDelete: Cascade)
+
+  @@id([productId, occasionId])
+}
+
+model Order {
+  id             String        @id @default(cuid())
+  orderNumber    String        @unique
+  userId         String?
+  status         OrderStatus   @default(RECEIVED)
+  paymentMethod  PaymentMethod @default(CASH_ON_DELIVERY)
+  paymentStatus  PaymentStatus @default(PENDING)
+
+  recipientName  String
+  recipientPhone String
+  deliveryDate   DateTime?
+  deliveryTime   String?
+  cardMessage    String?       @db.Text
+  deliveryNotes  String?       @db.Text
+
+  addressId       String?
+  deliveryAddress String?
+  neighborhood    String?
+  city            String        @default("Medellín")
+
+  subtotal     Decimal @db.Decimal(10, 2)
+  shippingCost Decimal @db.Decimal(10, 2) @default(0)
+  discount     Decimal @db.Decimal(10, 2) @default(0)
+  total        Decimal @db.Decimal(10, 2)
+
+  couponCode   String?
+  internalNote String? @db.Text
+
+  assignedFloristId  String?
+  assignedDeliveryId String?
+  sellerId           String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customer  User?                @relation("CustomerOrders", fields: [userId], references: [id])
+  address   Address?             @relation(fields: [addressId], references: [id])
+  florist   User?                @relation("FloristOrders", fields: [assignedFloristId], references: [id])
+  delivery  User?                @relation("DeliveryOrders", fields: [assignedDeliveryId], references: [id])
+  seller    User?                @relation("SellerOrders", fields: [sellerId], references: [id])
+  items     OrderItem[]
+  statusHistory OrderStatusHistory[]
+}
+
+model OrderItem {
+  id           String  @id @default(cuid())
+  orderId      String
+  productId    String
+  productName  String
+  productImage String?
+  size         String?
+  quantity     Int
+  unitPrice    Decimal @db.Decimal(10, 2)
+  subtotal     Decimal @db.Decimal(10, 2)
+  dedication   String? @db.Text
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model OrderStatusHistory {
+  id        String      @id @default(cuid())
+  orderId   String
+  status    OrderStatus
+  note      String?     @db.Text
+  changedBy String?
+  timestamp DateTime    @default(now())
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user  User? @relation(fields: [changedBy], references: [id])
+}
+
+model Favorite {
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([userId, productId])
+}
+
+model Coupon {
+  id             String    @id @default(cuid())
+  code           String    @unique
+  discountType   String
+  discountValue  Decimal   @db.Decimal(10, 2)
+  minOrderAmount Decimal?  @db.Decimal(10, 2)
+  maxUses        Int?
+  usedCount      Int       @default(0)
+  active         Boolean   @default(true)
+  expiresAt      DateTime?
+  createdAt      DateTime  @default(now())
+}

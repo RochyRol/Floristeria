@@ -1,36 +1,160 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Floristería Deco Imperio — Plataforma E-commerce
 
-## Getting Started
+Plataforma e-commerce completa para **Floristería Deco Imperio**, ubicada en Bello, Niquía (Antioquia, Colombia). Construida con Next.js 14+, Prisma, PostgreSQL y diseño editorial artesanal.
 
-First, run the development server:
+---
 
+## Tecnologías
+
+| Capa | Tecnología |
+|------|------------|
+| Frontend | Next.js 14 (App Router) + TypeScript |
+| Estilos | Tailwind CSS 4 con paleta personalizada |
+| Animaciones | Framer Motion |
+| Backend | Next.js API Routes |
+| ORM | Prisma 7 |
+| Base de datos | PostgreSQL 16 |
+| Auth | NextAuth.js v5 (credentials + roles) |
+| Estado carrito | Zustand (persistido en localStorage) |
+| Formularios | React Hook Form + Zod |
+| Notificaciones | Sonner |
+| Tipografías | Playfair Display + Inter (Google Fonts) |
+
+---
+
+## Instalación rápida
+
+### 1. Requisitos previos
+- Node.js 20+
+- Docker Desktop (para PostgreSQL)
+
+### 2. Instalar y configurar
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Levantar la base de datos
+```bash
+docker-compose up -d
+```
+PostgreSQL en `localhost:5432` · pgAdmin en `http://localhost:5050`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Crear tablas y datos demo
+```bash
+npm run db:push    # Aplica el schema
+npm run seed       # 24+ productos, ocasiones, categorías y usuarios
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 5. Iniciar
+```bash
+npm run dev
+```
 
-## Learn More
+Disponible en **http://localhost:3000**
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Credenciales demo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Usuario | Email | Contraseña | Rol |
+|---------|-------|------------|-----|
+| Administrador | admin@decoimperio.com | admin123 | ADMIN |
+| Vendedor | vendedor@decoimperio.com | vendedor123 | SELLER |
+| Florista | florista@decoimperio.com | florista123 | FLORIST |
+| Cliente | cliente@test.com | cliente123 | CLIENT |
 
-## Deploy on Vercel
+Panel admin: **http://localhost:3000/admin**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Estructura del proyecto
+
+```
+src/
+├── app/
+│   ├── (public)/          # Sitio público
+│   │   ├── page.tsx       # Home editorial
+│   │   ├── tienda/        # Catálogo con filtros
+│   │   ├── producto/[slug]/ # Detalle de producto
+│   │   ├── carrito/       # Carrito
+│   │   ├── checkout/      # Pago (4 pasos)
+│   │   ├── mi-cuenta/     # Panel del cliente
+│   │   ├── login/
+│   │   ├── registro/
+│   │   ├── nosotros/
+│   │   └── contacto/
+│   ├── admin/             # Panel administrativo
+│   │   ├── page.tsx       # Dashboard + KPIs
+│   │   ├── pedidos/       # Gestión y avance de estados
+│   │   ├── productos/     # CRUD de productos
+│   │   ├── clientes/
+│   │   ├── reportes/
+│   │   └── pos/           # Punto de venta en mostrador
+│   └── api/               # API Routes
+├── components/
+│   ├── ui/                # Button, Input, Card, Badge
+│   ├── layout/            # Navbar, Footer, WhatsApp flotante
+│   ├── home/              # Hero, Ocasiones, BestSellers, Proceso, Testimonios, Mapa
+│   ├── shop/              # Catálogo y detalle de producto
+│   ├── cart/              # Drawer + página de carrito
+│   ├── checkout/          # Flujo de compra
+│   ├── account/           # Panel del cliente con timeline de estados
+│   ├── auth/              # Login y registro
+│   └── admin/             # Dashboard, pedidos, sidebar
+├── lib/
+│   ├── auth.ts            # NextAuth con roles
+│   ├── prisma.ts          # Cliente singleton
+│   └── utils.ts           # formatCOP, slugify, WhatsApp URL, etc.
+├── store/
+│   └── cart.ts            # Zustand store (persiste en localStorage)
+└── types/
+    └── next-auth.d.ts     # Tipos extendidos
+prisma/
+├── schema.prisma          # Modelos completos
+└── seed.ts                # 24+ productos + usuarios demo
+```
+
+---
+
+## Variables de entorno
+
+Ver `.env.example` para el listado completo.
+
+```env
+DATABASE_URL="postgresql://decoimperio:decoimperio_secret@localhost:5432/decoimperio_db"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="openssl rand -base64 32"
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=""   # Opcional
+```
+
+---
+
+## Comandos
+
+```bash
+npm run dev          # Servidor de desarrollo
+npm run build        # Build de producción
+npm run seed         # Cargar datos demo
+npm run db:push      # Aplicar schema
+npm run db:migrate   # Crear migración
+npm run db:studio    # GUI de la base de datos
+docker-compose up -d # Levantar PostgreSQL + pgAdmin
+```
+
+---
+
+## Flujo de un pedido
+
+```
+RECEIVED → PROCESSING → READY → IN_ROUTE → DELIVERED
+  (Admin)    (Florista)  (Admin)  (Repartidor) (Repartidor)
+```
+
+El cliente ve el estado en tiempo real en `/mi-cuenta`.
+
+---
+
+## Negocio
+
+**Floristería Deco Imperio** · Av 33 No. 54-52, Medellín · +57 321 503 9845
