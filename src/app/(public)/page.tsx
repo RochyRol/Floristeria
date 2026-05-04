@@ -1,8 +1,11 @@
 import { Metadata } from "next";
 import { HeroSection } from "@/components/home/hero-section";
+import { MarqueeSection } from "@/components/home/marquee-section";
 import { OccasionsGrid } from "@/components/home/occasions-grid";
 import { BestSellers } from "@/components/home/best-sellers";
 import { ProcessSection } from "@/components/home/process-section";
+import { QuoteSection } from "@/components/home/quote-section";
+import { PressSection } from "@/components/home/press-section";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { MapSection } from "@/components/home/map-section";
 import { prisma } from "@/lib/prisma";
@@ -40,15 +43,17 @@ export default async function HomePage() {
     getOccasions(),
   ]);
 
-  // Serialize Decimal to number for client components
   const featuredProducts = JSON.parse(JSON.stringify(rawProducts));
 
   return (
     <>
       <HeroSection />
+      <MarqueeSection />
       <OccasionsGrid occasions={occasions} />
       <BestSellers products={featuredProducts} />
       <ProcessSection />
+      <QuoteSection />
+      <PressSection />
       <TestimonialsSection />
       <MapSection />
     </>

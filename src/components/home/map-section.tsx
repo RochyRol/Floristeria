@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { getWhatsAppUrl } from "@/lib/utils";
 
 export function MapSection() {
@@ -11,71 +10,120 @@ export function MapSection() {
     : `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322094!2d-75.56899492365!3d6.350874893636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4427f1a4f9c8ff%3A0x0!2sAv+33+%2354-52%2C+Medell%C3%ADn!5e0!3m2!1ses!2sco!4v1700000000000!5m2!1ses!2sco`;
 
   return (
-    <section className="py-24 lg:py-32 bg-cream-dark/40">
-      <div className="max-w-8xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Info */}
+    <section style={{ background: "#120e0c", borderTop: "1px solid rgba(247,241,234,0.06)" }}>
+      <div
+        className="max-w-8xl mx-auto"
+        style={{ padding: "clamp(64px, 8vw, 120px) clamp(24px, 3vw, 48px)" }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* Info column */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-8"
           >
+            {/* Heading */}
             <div>
-              <p className="text-xs uppercase tracking-widest font-sans font-medium text-gold mb-3">
+              <p
+                className="uppercase mb-4"
+                style={{
+                  fontSize: 11,
+                  letterSpacing: "0.22em",
+                  color: "#c9a27a",
+                  fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                }}
+              >
                 Encuéntranos
               </p>
-              <h2 className="font-serif text-display-sm text-forest leading-tight">
-                Visita nuestra
-                <br />
-                floristería
+              <h2
+                style={{
+                  fontFamily: "var(--font-italiana), 'Italiana', serif",
+                  fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                  color: "#f7f1ea",
+                  lineHeight: 1.15,
+                  letterSpacing: "0.02em",
+                }}
+              >
+                Visita nuestra floristería
               </h2>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <InfoRow
-                icon={<LocationIcon />}
-                label="Dirección"
-                value="Av 33 No. 54 - 52, Medellín — Antioquia"
-              />
-              <InfoRow
-                icon={<PhoneIcon />}
-                label="Teléfonos"
-                value="321-503-9845 / 596 5550"
-              />
+            {/* Info rows */}
+            <div className="flex flex-col gap-5">
+              <InfoRow icon={<LocationIcon />} label="Dirección" value="Av 33 No. 54 - 52, Medellín — Antioquia" />
+              <InfoRow icon={<PhoneIcon />} label="Teléfonos" value="321-503-9845 / 596 5550" />
               <InfoRow
                 icon={<ClockIcon />}
                 label="Horario"
                 value={
                   <>
-                    <span className="block">Lun – Sáb: 8:30am – 8:00pm</span>
-                    <span className="block">Dom: 11:00am – 7:00pm</span>
+                    <span className="block">Lun – Sáb: 8:30 am – 8:00 pm</span>
+                    <span className="block">Dom: 11:00 am – 7:00 pm</span>
                   </>
                 }
               />
-              <InfoRow
-                icon={<MapPinIcon />}
-                label="Zona de cobertura"
-                value="Bello, Niquía, Copacabana, Medellín Norte"
-              />
+              <InfoRow icon={<MapPinIcon />} label="Zona de cobertura" value="Bello, Niquía, Copacabana, Medellín Norte" />
             </div>
 
+            {/* CTAs */}
             <div className="flex flex-wrap gap-3 pt-2">
               <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                <Button variant="primary" size="md">
+                <button
+                  style={{
+                    background: "#c9a27a",
+                    color: "#0a0807",
+                    border: "none",
+                    padding: "12px 24px",
+                    fontSize: 11,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                    fontWeight: 500,
+                    cursor: "pointer",
+                    transition: "background 0.25s",
+                  }}
+                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "#d4b896")}
+                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "#c9a27a")}
+                >
                   Escríbenos por WhatsApp
-                </Button>
+                </button>
               </a>
               <Link href="/contacto">
-                <Button variant="outline" size="md">
+                <button
+                  style={{
+                    background: "transparent",
+                    color: "#bfb5ab",
+                    border: "1px solid rgba(247,241,234,0.2)",
+                    padding: "12px 24px",
+                    fontSize: 11,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                    fontWeight: 500,
+                    cursor: "pointer",
+                    transition: "color 0.25s, border-color 0.25s",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.color = "#f7f1ea";
+                    el.style.borderColor = "rgba(247,241,234,0.5)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.color = "#bfb5ab";
+                    el.style.borderColor = "rgba(247,241,234,0.2)";
+                  }}
+                >
                   Formulario de contacto
-                </Button>
+                </button>
               </Link>
             </div>
           </motion.div>
 
-          {/* Map */}
+          {/* Map column */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -83,22 +131,29 @@ export function MapSection() {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             className="relative"
           >
-            <div className="rounded-sm overflow-hidden border border-forest/10 shadow-card aspect-[4/3]">
+            <div
+              className="overflow-hidden aspect-[4/3]"
+              style={{ border: "1px solid rgba(247,241,234,0.1)" }}
+            >
               <iframe
                 src={mapUrl}
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                style={{ border: 0, display: "block" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Ubicación Floristería Deco Imperio"
-                className="grayscale contrast-110"
+                className="saturate-[0.6] brightness-[0.85] contrast-[1.1]"
               />
             </div>
-            {/* Decorative corner */}
-            <div className="absolute -bottom-3 -right-3 w-24 h-24 border border-gold/20 rounded-sm -z-10" />
+            {/* Amber accent corner */}
+            <div
+              className="absolute -bottom-3 -right-3 w-20 h-20 -z-10"
+              style={{ border: "1px solid rgba(201,162,122,0.25)" }}
+            />
           </motion.div>
+
         </div>
       </div>
     </section>
@@ -116,14 +171,33 @@ function InfoRow({
 }) {
   return (
     <div className="flex gap-4">
-      <div className="w-8 h-8 flex items-center justify-center shrink-0 text-terracotta mt-0.5">
+      <div
+        className="flex items-center justify-center shrink-0 mt-0.5"
+        style={{ width: 32, height: 32, color: "#c9a27a" }}
+      >
         {icon}
       </div>
       <div>
-        <p className="text-[10px] uppercase tracking-brand font-sans font-medium text-forest/40 mb-0.5">
+        <p
+          className="uppercase mb-0.5"
+          style={{
+            fontSize: 9,
+            letterSpacing: "0.2em",
+            color: "#8a7f76",
+            fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+          }}
+        >
           {label}
         </p>
-        <div className="text-sm font-sans text-forest/80">{value}</div>
+        <div
+          style={{
+            fontSize: 13,
+            color: "#bfb5ab",
+            fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+          }}
+        >
+          {value}
+        </div>
       </div>
     </div>
   );

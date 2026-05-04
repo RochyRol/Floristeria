@@ -9,11 +9,10 @@ import { useCartStore } from "@/store/cart";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/tienda", label: "Tienda" },
-  { href: "/tienda?ocasion=amor", label: "Amor" },
-  { href: "/tienda?ocasion=cumpleanos", label: "Cumpleaños" },
-  { href: "/tienda?ocasion=empresarial", label: "Empresarial" },
-  { href: "/nosotros", label: "Nosotros" },
+  { href: "/tienda", label: "Colecciones" },
+  { href: "/nosotros", label: "Atelier" },
+  { href: "/tienda?ocasion=empresarial", label: "Eventos" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 export function Navbar() {
@@ -27,202 +26,227 @@ export function Navbar() {
   const isHome = pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const fn = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   return (
     <>
-      <header
+      <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-400",
           scrolled || !isHome
-            ? "bg-cream/95 backdrop-blur-sm border-b border-forest/8 shadow-fine"
-            : "bg-transparent"
+            ? "border-b px-12 py-3.5"
+            : "px-12 py-5"
         )}
+        style={{
+          background: scrolled || !isHome ? "rgba(10,8,7,0.92)" : "transparent",
+          backdropFilter: scrolled || !isHome ? "blur(16px)" : "none",
+          borderColor: "rgba(247,241,234,0.14)",
+          paddingLeft: "clamp(24px, 3vw, 48px)",
+          paddingRight: "clamp(24px, 3vw, 48px)",
+        }}
       >
-        <nav className="max-w-8xl mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <Link href="/" className="flex flex-col leading-none group">
-              <span
-                className={cn(
-                  "font-serif text-xl lg:text-2xl tracking-tight transition-colors",
-                  scrolled || !isHome ? "text-forest" : "text-cream"
-                )}
+        {/* Brand */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div
+            className="flex items-center justify-center"
+            style={{
+              width: 34,
+              height: 34,
+              border: "1px solid #f7f1ea",
+              borderRadius: "50%",
+              fontFamily: "var(--font-italiana), 'Italiana', serif",
+              fontSize: 15,
+              color: "#f7f1ea",
+              flexShrink: 0,
+              transition: "border-color 0.3s",
+            }}
+          >
+            D
+          </div>
+          <span
+            style={{
+              fontFamily: "var(--font-italiana), 'Italiana', serif",
+              fontSize: 20,
+              letterSpacing: "0.28em",
+              color: "#f7f1ea",
+            }}
+          >
+            DECO·IMPERIO
+          </span>
+        </Link>
+
+        {/* Nav links — desktop */}
+        <ul className="hidden lg:flex items-center gap-9" style={{ listStyle: "none" }}>
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="relative"
+                style={{
+                  fontSize: 12,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: pathname === link.href ? "#f7f1ea" : "#bfb5ab",
+                  transition: "color 0.25s",
+                  fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f7f1ea")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = pathname === link.href ? "#f7f1ea" : "#bfb5ab")}
               >
-                Deco Imperio
-              </span>
-              <span
-                className={cn(
-                  "text-[10px] uppercase tracking-widest font-sans transition-colors",
-                  scrolled || !isHome ? "text-gold" : "text-cream/70"
+                {link.label}
+                {pathname === link.href && (
+                  <span
+                    className="absolute left-0 right-0"
+                    style={{ bottom: -6, height: 1, background: "#f7f1ea" }}
+                  />
                 )}
-              >
-                Floristería
-              </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Actions */}
+        <div className="flex items-center gap-4">
+          <div
+            className="hidden lg:flex items-center gap-4"
+            style={{
+              fontSize: 12,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "#bfb5ab",
+              fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+            }}
+          >
+            <Link
+              href={session ? "/mi-cuenta" : "/login"}
+              className="hidden lg:block"
+              style={{ color: "#bfb5ab", transition: "color 0.25s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#f7f1ea")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#bfb5ab")}
+            >
+              <UserIcon />
             </Link>
 
-            {/* Nav links — desktop */}
-            <ul className="hidden lg:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "text-xs uppercase tracking-brand font-sans font-medium transition-colors duration-200",
-                      scrolled || !isHome
-                        ? "text-forest/70 hover:text-forest"
-                        : "text-cream/80 hover:text-cream",
-                      pathname === link.href && (scrolled || !isHome)
-                        ? "text-terracotta"
-                        : pathname === link.href
-                        ? "text-cream"
-                        : ""
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {/* Actions */}
-            <div className="flex items-center gap-3">
-              {/* Search */}
-              <Link
-                href="/tienda"
-                aria-label="Buscar"
-                className={cn(
-                  "hidden lg:flex w-9 h-9 items-center justify-center rounded-sm transition-colors",
-                  scrolled || !isHome
-                    ? "text-forest/60 hover:text-forest hover:bg-forest/5"
-                    : "text-cream/70 hover:text-cream"
-                )}
-              >
-                <SearchIcon />
-              </Link>
-
-              {/* Cuenta */}
-              <Link
-                href={session ? "/mi-cuenta" : "/login"}
-                aria-label="Mi cuenta"
-                className={cn(
-                  "hidden lg:flex w-9 h-9 items-center justify-center rounded-sm transition-colors",
-                  scrolled || !isHome
-                    ? "text-forest/60 hover:text-forest hover:bg-forest/5"
-                    : "text-cream/70 hover:text-cream"
-                )}
-              >
-                <UserIcon />
-              </Link>
-
-              {/* Carrito */}
-              <button
-                onClick={() => setCartOpen(true)}
-                aria-label={`Carrito (${itemCount} items)`}
-                className={cn(
-                  "relative flex w-9 h-9 items-center justify-center rounded-sm transition-colors",
-                  scrolled || !isHome
-                    ? "text-forest/60 hover:text-forest hover:bg-forest/5"
-                    : "text-cream/70 hover:text-cream"
-                )}
-              >
-                <CartIcon />
-                {itemCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-terracotta text-cream text-[10px] font-bold rounded-full flex items-center justify-center">
-                    {itemCount > 9 ? "9+" : itemCount}
-                  </span>
-                )}
-              </button>
-
-              {/* Admin link */}
-              {session?.user?.role && ["ADMIN", "SELLER"].includes(session.user.role) && (
-                <Link
-                  href="/admin"
-                  className={cn(
-                    "hidden lg:inline-flex text-xs uppercase tracking-brand font-sans font-medium px-3 py-1.5 rounded-sm border transition-colors",
-                    scrolled || !isHome
-                      ? "border-forest/20 text-forest/70 hover:border-forest/50 hover:text-forest"
-                      : "border-cream/30 text-cream/70 hover:border-cream/60 hover:text-cream"
-                  )}
+            <button
+              onClick={() => setCartOpen(true)}
+              className="flex items-center gap-2 relative"
+              style={{ background: "none", border: "none", color: "#bfb5ab", cursor: "pointer", transition: "color 0.25s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#f7f1ea")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#bfb5ab")}
+              aria-label={`Cesta (${itemCount})`}
+            >
+              <BagIcon />
+              <span>Cesta</span>
+              {itemCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  style={{
+                    display: "grid",
+                    placeItems: "center",
+                    width: 18,
+                    height: 18,
+                    borderRadius: "50%",
+                    background: "#c9a27a",
+                    color: "#0a0807",
+                    fontSize: 10,
+                    fontWeight: 600,
+                    letterSpacing: 0,
+                    fontFamily: "var(--font-manrope), sans-serif",
+                  }}
                 >
-                  Admin
-                </Link>
+                  {itemCount > 9 ? "9+" : itemCount}
+                </motion.span>
               )}
+            </button>
 
-              {/* Hamburger — mobile */}
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                aria-label="Menú"
-                className={cn(
-                  "lg:hidden flex flex-col gap-1.5 p-2 transition-colors",
-                  scrolled || !isHome ? "text-forest" : "text-cream"
-                )}
+            {session?.user?.role && ["ADMIN", "SELLER"].includes(session.user.role) && (
+              <Link
+                href="/admin"
+                style={{
+                  fontSize: 10,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  border: "1px solid rgba(247,241,234,0.2)",
+                  padding: "6px 12px",
+                  color: "#bfb5ab",
+                  transition: "all 0.25s",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#f7f1ea"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(247,241,234,0.5)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#bfb5ab"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(247,241,234,0.2)"; }}
               >
-                <span
-                  className={cn(
-                    "block w-5 h-0.5 bg-current transition-transform duration-300",
-                    menuOpen && "rotate-45 translate-y-2"
-                  )}
-                />
-                <span
-                  className={cn(
-                    "block w-5 h-0.5 bg-current transition-opacity duration-300",
-                    menuOpen && "opacity-0"
-                  )}
-                />
-                <span
-                  className={cn(
-                    "block w-5 h-0.5 bg-current transition-transform duration-300",
-                    menuOpen && "-rotate-45 -translate-y-2"
-                  )}
-                />
-              </button>
-            </div>
+                Admin
+              </Link>
+            )}
           </div>
-        </nav>
-      </header>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="lg:hidden flex flex-col gap-[5px] p-2"
+            aria-label="Menú"
+            style={{ background: "none", border: "none", cursor: "pointer", color: "#f7f1ea" }}
+          >
+            <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 7 : 0 }} transition={{ duration: 0.25 }} className="block" style={{ width: 20, height: 1, background: "currentColor" }} />
+            <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} transition={{ duration: 0.2 }} className="block" style={{ width: 20, height: 1, background: "currentColor" }} />
+            <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -7 : 0 }} transition={{ duration: 0.25 }} className="block" style={{ width: 20, height: 1, background: "currentColor" }} />
+          </button>
+        </div>
+      </nav>
 
       {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 top-16 z-40 bg-cream lg:hidden overflow-y-auto"
+            initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+            animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
+            exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
+            className="fixed inset-0 z-40 lg:hidden overflow-y-auto flex flex-col"
+            style={{ background: "#0a0807", top: 0 }}
           >
-            <div className="flex flex-col px-6 py-8 gap-6">
-              {navLinks.map((link) => (
-                <Link
+            <div className="flex items-center justify-between px-6 py-5" style={{ borderBottom: "1px solid rgba(247,241,234,0.14)" }}>
+              <Link href="/" style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 20, letterSpacing: "0.28em", color: "#f7f1ea" }}>
+                DECO·IMPERIO
+              </Link>
+              <button onClick={() => setMenuOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#f7f1ea", fontSize: 24 }}>×</button>
+            </div>
+            <div className="flex flex-col px-6 py-8 gap-0 flex-1">
+              {navLinks.map((link, i) => (
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  className="text-2xl font-serif text-forest border-b border-forest/10 pb-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.07 + 0.1 }}
                 >
-                  {link.label}
-                </Link>
+                  <Link
+                    href={link.href}
+                    className="flex items-center justify-between py-5"
+                    style={{ borderBottom: "1px solid rgba(247,241,234,0.1)" }}
+                  >
+                    <span style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 32, color: "#f7f1ea" }}>
+                      {link.label}
+                    </span>
+                    <ArrowRightIcon />
+                  </Link>
+                </motion.div>
               ))}
-              <div className="flex flex-col gap-3 pt-4">
-                <Link
-                  href={session ? "/mi-cuenta" : "/login"}
-                  className="text-sm font-sans uppercase tracking-brand text-forest/60"
-                >
-                  {session ? "Mi cuenta" : "Iniciar sesión"}
-                </Link>
-                <Link
-                  href="/contacto"
-                  className="text-sm font-sans uppercase tracking-brand text-forest/60"
-                >
-                  Contacto
-                </Link>
-              </div>
+            </div>
+            <div className="px-6 pb-8 flex gap-6" style={{ borderTop: "1px solid rgba(247,241,234,0.1)", paddingTop: 24 }}>
+              <Link href={session ? "/mi-cuenta" : "/login"} style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)", transition: "color 0.25s" }}>
+                {session ? "Mi cuenta" : "Iniciar sesión"}
+              </Link>
+              <button
+                onClick={() => { setMenuOpen(false); setCartOpen(true); }}
+                style={{ background: "none", border: "none", cursor: "pointer", fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)" }}
+              >
+                Cesta {itemCount > 0 ? `(${itemCount})` : ""}
+              </button>
             </div>
           </motion.div>
         )}
@@ -231,30 +255,26 @@ export function Navbar() {
   );
 }
 
-function SearchIcon() {
+function BagIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.35-4.35" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M5 8h14l-1.2 12a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z" />
+      <path d="M9 8V6a3 3 0 0 1 6 0v2" />
     </svg>
   );
 }
-
 function UserIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
       <circle cx="12" cy="7" r="4" />
     </svg>
   );
 }
-
-function CartIcon() {
+function ArrowRightIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-      <line x1="3" y1="6" x2="21" y2="6" />
-      <path d="M16 10a4 4 0 0 1-8 0" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: "#c9a27a" }}>
+      <path d="M5 12h14M13 6l6 6-6 6" />
     </svg>
   );
 }

@@ -2,143 +2,259 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { getWhatsAppUrl } from "@/lib/utils";
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-};
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-end overflow-hidden bg-forest">
+    <section className="relative min-h-screen w-full overflow-hidden bg-noir flex items-end">
       {/* Background image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=1800&q=85&fit=crop')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=2000&q=85&auto=format&fit=crop')",
+          filter: "brightness(0.78) saturate(1.05)",
         }}
       >
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-forest/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest/30 to-transparent" />
+        {/* Multi-layer dark overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(120% 80% at 50% 110%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 45%, transparent 75%),
+              linear-gradient(180deg, rgba(10,8,7,0.4) 0%, rgba(10,8,7,0) 22%, rgba(10,8,7,0) 60%, rgba(10,8,7,0.85) 100%)
+            `,
+          }}
+        />
       </div>
 
-      {/* Grain overlay */}
+      {/* Decorative frame */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-8xl mx-auto px-6 lg:px-12 pb-20 lg:pb-28 pt-32">
-        <div className="max-w-2xl">
-          {/* Pre-title */}
-          <motion.p
-            {...fadeUp}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xs uppercase tracking-widest font-sans font-medium text-gold mb-5"
-          >
-            Bello — Niquía, Antioquia
-          </motion.p>
-
-          {/* Main headline */}
-          <motion.h1
-            {...fadeUp}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-serif text-display-xl text-cream leading-[1.05] mb-6"
-          >
-            Flores que
-            <br />
-            <em className="not-italic text-terracotta-light">cuentan historias.</em>
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            {...fadeUp}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="font-sans text-base lg:text-lg text-cream/70 leading-relaxed mb-10 max-w-xl"
-          >
-            Arreglos hechos a mano en Medellín. Cada pétalo elegido con cuidado
-            para el momento que lo merece.
-          </motion.p>
-
-          {/* CTAs */}
+        className="absolute z-20 pointer-events-none"
+        style={{ inset: "24px", border: "1px solid rgba(247,241,234,0.18)" }}
+      >
+        {/* Corner marks */}
+        {[
+          { pos: { top: -1, left: -1 }, borders: { borderRight: "none", borderBottom: "none" } },
+          { pos: { top: -1, right: -1 }, borders: { borderLeft: "none", borderBottom: "none" } },
+          { pos: { bottom: -1, left: -1 }, borders: { borderRight: "none", borderTop: "none" } },
+          { pos: { bottom: -1, right: -1 }, borders: { borderLeft: "none", borderTop: "none" } },
+        ].map((corner, i) => (
           <motion.div
-            {...fadeUp}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="flex flex-wrap gap-3"
+            key={i}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1 + i * 0.1, duration: 0.5 }}
+            className="absolute"
+            style={{
+              width: 18,
+              height: 18,
+              border: "1px solid #f7f1ea",
+              ...corner.pos,
+              ...corner.borders,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Year badge */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+        className="absolute z-30"
+        style={{
+          top: 64,
+          right: 84,
+          border: "1px solid #f7f1ea",
+          borderRadius: 999,
+          padding: "6px 18px",
+          fontFamily: "var(--font-italiana), 'Italiana', serif",
+          fontSize: 14,
+          letterSpacing: "0.12em",
+          color: "#f7f1ea",
+        }}
+      >
+        Est. 1962
+      </motion.div>
+
+      {/* Side text — left (rotated) */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        className="absolute z-30 hidden lg:block"
+        style={{
+          top: "50%",
+          left: 60,
+          transform: "translateY(-50%) rotate(-90deg)",
+          transformOrigin: "left top",
+          fontSize: 10,
+          letterSpacing: "0.4em",
+          color: "#bfb5ab",
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+          fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+        }}
+      >
+        Atelier · Bello, Niquía · Est. 1962
+      </motion.div>
+
+      {/* Side text — right (rotated) */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        className="absolute z-30 hidden lg:block"
+        style={{
+          top: "50%",
+          right: 42,
+          transform: "translateY(-50%) rotate(90deg)",
+          transformOrigin: "right top",
+          fontSize: 10,
+          letterSpacing: "0.4em",
+          color: "#bfb5ab",
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+          fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+        }}
+      >
+        N° 001 — Colección Primavera
+      </motion.div>
+
+      {/* Main content — centered */}
+      <div
+        className="relative z-10 w-full flex flex-col justify-end items-center text-center"
+        style={{ minHeight: "100vh", padding: "0 48px 96px", maxWidth: "1440px", margin: "0 auto" }}
+      >
+        {/* Flourish */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="flourish mb-6"
+          style={{ fontSize: 11, letterSpacing: "0.32em" }}
+        >
+          — Floristería de autor —
+        </motion.div>
+
+        {/* Main headline */}
+        <div className="overflow-hidden mb-2">
+          <motion.h1
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ delay: 0.1, duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+            style={{
+              fontFamily: "var(--font-italiana), 'Italiana', serif",
+              fontWeight: 400,
+              fontSize: "clamp(72px, 12vw, 176px)",
+              lineHeight: 0.92,
+              letterSpacing: "0.04em",
+              color: "#f7f1ea",
+              textShadow: "0 4px 40px rgba(0,0,0,0.6)",
+              display: "block",
+            }}
           >
-            <Link href="/tienda">
-              <Button
-                size="lg"
-                className="bg-cream text-forest border-cream hover:bg-cream/90 hover:border-cream/90"
-              >
-                Explorar tienda
-              </Button>
-            </Link>
-            <a href={getWhatsAppUrl("Hola, quiero pedir un arreglo floral personalizado.")} target="_blank" rel="noopener noreferrer">
-              <Button
-                variant="whatsapp"
-                size="lg"
-                icon={<WhatsAppIcon />}
-              >
-                Pedido express
-              </Button>
-            </a>
-          </motion.div>
+            Floristería
+          </motion.h1>
+        </div>
+        <div className="overflow-hidden mb-8">
+          <motion.h1
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ delay: 0.22, duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+            style={{
+              fontFamily: "var(--font-italiana), 'Italiana', serif",
+              fontWeight: 400,
+              fontSize: "clamp(72px, 12vw, 176px)",
+              lineHeight: 0.92,
+              letterSpacing: "0.04em",
+              color: "#f7f1ea",
+              textShadow: "0 4px 40px rgba(0,0,0,0.6)",
+              display: "block",
+            }}
+          >
+            Deco·Imperio
+          </motion.h1>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="hidden lg:flex absolute right-12 bottom-10 flex-col items-center gap-2"
+        {/* Lede */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.7 }}
+          style={{
+            maxWidth: 560,
+            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+            fontStyle: "italic",
+            fontSize: 18,
+            color: "#bfb5ab",
+            lineHeight: 1.6,
+            margin: "0 auto",
+          }}
         >
-          <span className="text-[10px] uppercase tracking-widest font-sans text-cream/30 writing-mode-vertical">
-            Desliza
-          </span>
-          <div className="w-px h-16 bg-gradient-to-b from-cream/30 to-transparent" />
+          Composiciones florales únicas, hechas a mano en Bello, Niquía.
+          Cada arreglo es una pieza irrepetible — efímera, como toda belleza verdadera.
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.65, duration: 0.6 }}
+          className="flex gap-4 items-center justify-center flex-wrap mt-10"
+        >
+          <Link href="/tienda" className="btn-luxury primary">
+            <span>Ver Colecciones</span>
+          </Link>
+          <a
+            href={getWhatsAppUrl("Hola, quiero hacer un pedido a medida.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-luxury"
+          >
+            <span>Pedido a Medida</span>
+            <ArrowIcon />
+          </a>
         </motion.div>
       </div>
 
-      {/* Stats bar */}
+      {/* Scroll cue — centered bottom */}
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.6 }}
-        className="absolute right-0 bottom-0 left-0 lg:left-auto lg:right-12 z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+        className="absolute bottom-9 left-1/2 z-30 flex flex-col items-center gap-2.5"
+        style={{ transform: "translateX(-50%)" }}
       >
-        <div className="lg:inline-flex bg-cream/95 backdrop-blur-sm border border-forest/8 rounded-t-sm">
-          <div className="flex divide-x divide-forest/10">
-            {[
-              { value: "15+", label: "años de experiencia" },
-              { value: "3.000+", label: "arreglos al año" },
-              { value: "4.9★", label: "calificación" },
-            ].map((stat) => (
-              <div key={stat.label} className="px-6 py-4 text-center">
-                <p className="font-serif text-xl text-forest">{stat.value}</p>
-                <p className="text-[10px] uppercase tracking-brand font-sans text-forest/50 mt-0.5">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
+        <span
+          style={{
+            fontSize: 10,
+            letterSpacing: "0.4em",
+            textTransform: "uppercase",
+            color: "#bfb5ab",
+            fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+          }}
+        >
+          Descubrir
+        </span>
+        <div className="relative overflow-hidden" style={{ width: 1, height: 36 }}>
+          <div className="absolute inset-0" style={{ background: "#bfb5ab" }} />
+          <motion.div
+            animate={{ top: ["-50%", "100%"] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-0 right-0"
+            style={{ height: "50%", background: "#f7f1ea" }}
+          />
         </div>
       </motion.div>
     </section>
   );
 }
 
-function WhatsAppIcon() {
+function ArrowIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M5 12h14M13 6l6 6-6 6" />
     </svg>
   );
 }

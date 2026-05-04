@@ -51,9 +51,9 @@ export function BestSellers({ products }: BestSellersProps) {
   const items = products.length > 0 ? products : fallbackProducts;
 
   return (
-    <section className="py-24 lg:py-32 bg-cream relative overflow-hidden">
+    <section className="py-24 lg:py-32 relative overflow-hidden" style={{ background: "#120e0c" }}>
       {/* Subtle decorative line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16" style={{ background: "linear-gradient(to bottom, transparent, rgba(201,162,122,0.4), transparent)" }} />
 
       <div className="max-w-8xl mx-auto px-6 lg:px-12">
         {/* Editorial header */}
@@ -66,18 +66,21 @@ export function BestSellers({ products }: BestSellersProps) {
         >
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-px bg-gold" />
-              <span className="text-[10px] uppercase tracking-[0.22em] font-sans font-medium text-gold">
+              <span className="w-8 h-px" style={{ background: "#c9a27a" }} />
+              <span className="text-[10px] uppercase tracking-[0.22em] font-sans font-medium" style={{ color: "#c9a27a" }}>
                 Los más queridos
               </span>
             </div>
-            <h2 className="font-serif text-4xl lg:text-6xl text-forest leading-tight">
-              Favoritos de la <span className="italic text-terracotta">temporada</span>
+            <h2 className="font-serif text-4xl lg:text-6xl leading-tight" style={{ color: "#f7f1ea" }}>
+              Favoritos de la <span className="italic" style={{ color: "#c9a27a" }}>temporada</span>
             </h2>
           </div>
           <Link
             href="/tienda"
-            className="hidden sm:inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-sans font-medium text-forest hover:text-terracotta transition-colors group pb-2"
+            className="hidden sm:inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-sans font-medium transition-colors group pb-2"
+            style={{ color: "#bfb5ab" }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#f7f1ea")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#bfb5ab")}
           >
             Ver toda la colección
             <svg
@@ -105,7 +108,8 @@ export function BestSellers({ products }: BestSellersProps) {
         <div className="sm:hidden flex justify-center mt-10">
           <Link
             href="/tienda"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-sans font-medium text-forest hover:text-terracotta transition-colors border-b border-forest/20 hover:border-terracotta pb-1"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-sans font-medium transition-colors pb-1"
+            style={{ color: "#bfb5ab", borderBottom: "1px solid rgba(247,241,234,0.2)" }}
           >
             Ver toda la colección
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

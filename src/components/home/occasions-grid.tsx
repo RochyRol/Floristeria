@@ -44,13 +44,91 @@ function getImage(slug: string): string {
   return IMAGE_MAP[slug.toLowerCase()] || FALLBACK_IMG;
 }
 
+interface CardSlotProps {
+  occasion: Occasion;
+  delay: number;
+  className?: string;
+  isHero?: boolean;
+  style?: React.CSSProperties;
+}
+
+function CardSlot({ occasion, delay, className = "", isHero = false, style }: CardSlotProps) {
+  const imageUrl = getImage(occasion.slug);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className={`relative overflow-hidden ${className}`}
+      style={{ background: "#1a1411", borderRadius: "1px", ...style }}
+    >
+      <Link href={`/tienda?ocasion=${occasion.slug}`} className="absolute inset-0 group">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.07]"
+          style={{ backgroundImage: `url('${imageUrl}')` }}
+        />
+        {/* Gradient */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,8,7,0.88) 0%, rgba(10,8,7,0.25) 50%, rgba(10,8,7,0.08) 100%)" }} />
+        {/* Inner border */}
+        <div className="absolute inset-0" style={{ boxShadow: "inset 0 0 0 1px rgba(247,241,234,0.08)" }} />
+        {/* Content */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-7">
+          <span
+            className="inline-block uppercase mb-2"
+            style={{ fontSize: 9, letterSpacing: "0.22em", color: "rgba(247,241,234,0.55)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
+          >
+            Colección
+          </span>
+          <h3
+            style={{
+              fontFamily: "var(--font-italiana), 'Italiana', serif",
+              fontSize: isHero ? "clamp(1.6rem, 3vw, 2.8rem)" : "clamp(1.2rem, 2vw, 1.8rem)",
+              color: "#f7f1ea",
+              lineHeight: 1.1,
+              letterSpacing: "0.02em",
+            }}
+          >
+            {occasion.name}
+          </h3>
+          {occasion.description && (
+            <p
+              className="mt-2 max-w-xs leading-relaxed"
+              style={{ fontSize: 13, color: "rgba(247,241,234,0.65)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
+            >
+              {occasion.description}
+            </p>
+          )}
+          <span
+            className="inline-flex items-center gap-2 mt-4 pb-1 transition-all"
+            style={{
+              fontSize: 10,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "#c9a27a",
+              borderBottom: "1px solid rgba(201,162,122,0.4)",
+              fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+            }}
+          >
+            Ver arreglos
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:translate-x-1 transition-transform duration-300">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </span>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
 export function OccasionsGrid({ occasions }: OccasionsGridProps) {
   const items = occasions.length > 0 ? occasions : fallbackOccasions;
 
   return (
-    <section className="py-24 lg:py-36 bg-cream relative overflow-hidden">
+    <section className="py-24 lg:py-36 relative overflow-hidden" style={{ background: "#0a0807" }}>
       {/* Subtle decorative top accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20" style={{ background: "linear-gradient(to bottom, transparent, rgba(201,162,122,0.4), transparent)" }} />
 
       <div className="max-w-8xl mx-auto px-6 lg:px-12">
         {/* Section header */}
@@ -62,90 +140,58 @@ export function OccasionsGrid({ occasions }: OccasionsGridProps) {
           className="flex flex-col items-center text-center mb-16 lg:mb-20"
         >
           <div className="flex items-center gap-3 mb-4">
-            <span className="w-8 h-px bg-gold" />
-            <span className="text-[10px] uppercase tracking-[0.22em] font-sans font-medium text-gold">
+            <span className="w-8 h-px" style={{ background: "#c9a27a" }} />
+            <span className="text-[10px] uppercase tracking-[0.22em] font-sans font-medium" style={{ color: "#c9a27a" }}>
               Cada momento importa
             </span>
-            <span className="w-8 h-px bg-gold" />
+            <span className="w-8 h-px" style={{ background: "#c9a27a" }} />
           </div>
-          <h2 className="font-serif text-4xl lg:text-6xl text-forest leading-tight max-w-2xl">
-            ¿Cuál es la <span className="italic text-terracotta">ocasión</span>?
+          <h2 className="font-serif text-4xl lg:text-6xl leading-tight max-w-2xl" style={{ color: "#f7f1ea" }}>
+            ¿Cuál es la <span className="italic" style={{ color: "#c9a27a" }}>ocasión</span>?
           </h2>
-          <p className="mt-5 max-w-md text-base font-sans text-forest/60 leading-relaxed">
+          <p className="mt-5 max-w-md text-base font-sans leading-relaxed" style={{ color: "#8a7f76" }}>
             Cada momento merece su propio arreglo. Encuentra el ideal para celebrar.
           </p>
         </motion.div>
 
-        {/* Asymmetric editorial grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        {/* ── Desktop: flex layout (no row-span) ── */}
+        <div className="hidden lg:flex lg:flex-col lg:gap-6">
+          {/* Row 1: hero (2/3) + side stack (1/3) */}
+          <div className="flex gap-6" style={{ height: "clamp(320px, 30vw, 480px)" }}>
+            <CardSlot occasion={items[0]} delay={0} className="flex-[2]" isHero />
+            <div className="flex-1 flex flex-col gap-6">
+              {items.slice(1, 3).map((occasion, j) => (
+                <CardSlot key={occasion.id} occasion={occasion} delay={(j + 1) * 0.08} className="flex-1" />
+              ))}
+            </div>
+          </div>
+          {/* Row 2: 3 small cards */}
+          <div className="grid grid-cols-3 gap-6">
+            {items.slice(3, 6).map((occasion, j) => (
+              <CardSlot
+                key={occasion.id}
+                occasion={occasion}
+                delay={(j + 3) * 0.08}
+                className=""
+                style={{ aspectRatio: "4/5" }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── Mobile: simple 2-col grid ── */}
+        <div className="lg:hidden grid grid-cols-2 gap-4">
           {items.slice(0, 6).map((occasion, i) => {
             const isHero = i === 0;
-            const imageUrl = getImage(occasion.slug);
-
             return (
-              <motion.div
+              <CardSlot
                 key={occasion.id}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.7,
-                  delay: Math.min(i * 0.08, 0.4),
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-                className={isHero ? "col-span-2 lg:col-span-2 lg:row-span-2" : ""}
-              >
-                <Link
-                  href={`/tienda?ocasion=${occasion.slug}`}
-                  className="group relative block overflow-hidden bg-cream-dark"
-                  style={{ aspectRatio: isHero ? "16/9" : "4/5", borderRadius: "1px" }}
-                >
-                  {/* Image */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.07]"
-                    style={{ backgroundImage: `url('${imageUrl}')` }}
-                  />
-
-                  {/* Editorial gradient — darker for legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest/85 via-forest/30 to-forest/10" />
-
-                  {/* Soft inner border */}
-                  <div className="absolute inset-0 ring-1 ring-inset ring-cream/10" />
-
-                  {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-                    <span className="inline-block text-[9px] uppercase tracking-[0.22em] font-sans font-medium text-cream/70 mb-2">
-                      Colección
-                    </span>
-                    <h3
-                      className={`font-serif text-cream leading-[1.1] ${
-                        isHero ? "text-3xl lg:text-5xl" : "text-2xl lg:text-3xl"
-                      }`}
-                    >
-                      {occasion.name}
-                    </h3>
-                    {occasion.description && (
-                      <p className="mt-2 text-sm font-sans text-cream/75 max-w-xs leading-relaxed">
-                        {occasion.description}
-                      </p>
-                    )}
-                    <span className="inline-flex items-center gap-2 mt-5 text-[10px] uppercase tracking-[0.18em] font-sans font-medium text-cream border-b border-cream/30 group-hover:border-cream pb-1 transition-all">
-                      Ver arreglos
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        className="group-hover:translate-x-1 transition-transform duration-300"
-                      >
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </div>
-                </Link>
-              </motion.div>
+                occasion={occasion}
+                delay={Math.min(i * 0.08, 0.4)}
+                isHero={isHero}
+                className={isHero ? "col-span-2" : ""}
+                style={{ aspectRatio: isHero ? "16/9" : "4/5" }}
+              />
             );
           })}
         </div>

@@ -117,10 +117,10 @@ export function ProductCard({
       <Link href={`/producto/${product.slug}`} className="block">
         {/* Image frame */}
         <div
-          className={`relative overflow-hidden bg-cream-darker ${
+          className={`relative overflow-hidden ${
             isFeature ? "aspect-[4/5]" : isCompact ? "aspect-square" : "aspect-[4/5]"
           }`}
-          style={{ borderRadius: "1px" }}
+          style={{ borderRadius: "1px", background: "#1a1411" }}
         >
           {/* The image */}
           <Image
@@ -138,13 +138,13 @@ export function ProductCard({
           />
 
           {/* Overlay gradient on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-forest/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: "linear-gradient(to top, rgba(10,8,7,0.4), transparent)" }} />
 
           {/* Top-left: featured badge */}
           {product.featured && (
             <div className="absolute top-3 left-3 z-10">
-              <span className="inline-flex items-center gap-1.5 bg-cream/95 backdrop-blur-sm text-forest text-[9px] uppercase tracking-[0.18em] font-sans font-medium px-2.5 py-1 rounded-[1px]">
-                <span className="w-1 h-1 bg-gold rounded-full" />
+              <span className="inline-flex items-center gap-1.5 text-[9px] uppercase tracking-[0.18em] font-sans font-medium px-2.5 py-1" style={{ background: "rgba(10,8,7,0.75)", color: "#c9a27a", backdropFilter: "blur(4px)" }}>
+                <span className="w-1 h-1 rounded-full" style={{ background: "#c9a27a" }} />
                 Destacado
               </span>
             </div>
@@ -154,14 +154,15 @@ export function ProductCard({
           <button
             onClick={toggleFavorite}
             aria-label="Agregar a favoritos"
-            className="absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center bg-cream/85 backdrop-blur-sm rounded-full opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-cream"
+            className="absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+            style={{ background: "rgba(10,8,7,0.7)", backdropFilter: "blur(4px)" }}
           >
             <svg
               width="16"
               height="16"
               viewBox="0 0 24 24"
-              fill={favorite ? "#C97B63" : "none"}
-              stroke={favorite ? "#C97B63" : "#1F3A2E"}
+              fill={favorite ? "#c9a27a" : "none"}
+              stroke={favorite ? "#c9a27a" : "#f7f1ea"}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -175,7 +176,8 @@ export function ProductCard({
           <button
             onClick={handleAddToCart}
             aria-label="Agregar al carrito"
-            className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1.5 bg-forest text-cream text-[10px] uppercase tracking-[0.14em] font-sans font-medium px-3.5 py-2 rounded-[1px] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:bg-forest-light shadow-lg"
+            className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.14em] font-sans font-medium px-3.5 py-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] shadow-lg"
+            style={{ background: "#c9a27a", color: "#0a0807" }}
           >
             <svg
               width="13"
@@ -196,27 +198,26 @@ export function ProductCard({
 
         {/* Text content */}
         <div className={`pt-4 ${isFeature ? "lg:pt-6" : ""}`}>
-          {/* Tagline as small editorial label above name */}
           {product.tagline && (
-            <p className="text-[10px] uppercase tracking-[0.18em] font-sans text-gold/80 mb-1.5 line-clamp-1">
+            <p className="text-[10px] uppercase tracking-[0.18em] font-sans mb-1.5 line-clamp-1" style={{ color: "#8a7f76" }}>
               {product.tagline}
             </p>
           )}
 
           <h3
-            className={`font-serif text-forest group-hover:text-terracotta transition-colors duration-300 line-clamp-1 ${
+            className={`font-serif transition-colors duration-300 line-clamp-1 ${
               isFeature ? "text-2xl lg:text-3xl" : "text-lg"
             }`}
+            style={{ color: "#f7f1ea" }}
           >
             {product.name}
           </h3>
 
-          {/* Decorative thin line */}
           <div className="flex items-center gap-3 mt-2">
-            <span className="font-serif text-base text-forest price">
+            <span className="font-serif text-base" style={{ color: "#c9a27a" }}>
               {formatCOP(Number(product.basePrice))}
             </span>
-            <span className="flex-1 h-px bg-forest/10 group-hover:bg-terracotta/40 transition-colors duration-500" />
+            <span className="flex-1 h-px" style={{ background: "rgba(247,241,234,0.1)" }} />
           </div>
         </div>
       </Link>
