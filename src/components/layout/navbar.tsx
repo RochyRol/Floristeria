@@ -9,6 +9,7 @@ import { useCartStore } from "@/store/cart";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
+  { href: "/", label: "Inicio" },
   { href: "/tienda", label: "Colecciones" },
   { href: "/nosotros", label: "Atelier" },
   { href: "/tienda?ocasion=empresarial", label: "Eventos" },
@@ -88,32 +89,35 @@ export function Navbar() {
 
         {/* Nav links — desktop */}
         <ul className="hidden lg:flex items-center gap-9" style={{ listStyle: "none" }}>
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="relative"
-                style={{
-                  fontSize: 12,
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  color: pathname === link.href ? "#f7f1ea" : "#bfb5ab",
-                  transition: "color 0.25s",
-                  fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#f7f1ea")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = pathname === link.href ? "#f7f1ea" : "#bfb5ab")}
-              >
-                {link.label}
-                {pathname === link.href && (
-                  <span
-                    className="absolute left-0 right-0"
-                    style={{ bottom: -6, height: 1, background: "#f7f1ea" }}
-                  />
-                )}
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href.split("?")[0]);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="relative"
+                  style={{
+                    fontSize: 11,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: isActive ? "#A87C3A" : "#bfb5ab",
+                    transition: "color 0.25s",
+                    fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#f7f1ea")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = isActive ? "#A87C3A" : "#bfb5ab")}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span
+                      className="absolute left-0 right-0"
+                      style={{ bottom: -6, height: 1, background: "linear-gradient(90deg, transparent, #A87C3A, transparent)" }}
+                    />
+                  )}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Actions */}
@@ -223,7 +227,9 @@ export function Navbar() {
               <button onClick={() => setMenuOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#f7f1ea", fontSize: 24 }}>×</button>
             </div>
             <div className="flex flex-col px-6 py-8 gap-0 flex-1">
-              {navLinks.map((link, i) => (
+              {navLinks.map((link, i) => {
+                const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href.split("?")[0]);
+                return (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, x: -20 }}
@@ -235,13 +241,14 @@ export function Navbar() {
                     className="flex items-center justify-between py-5"
                     style={{ borderBottom: "1px solid rgba(247,241,234,0.1)" }}
                   >
-                    <span style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 32, color: "#f7f1ea" }}>
+                    <span style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 32, color: isActive ? "#A87C3A" : "#f7f1ea" }}>
                       {link.label}
                     </span>
                     <ArrowRightIcon />
                   </Link>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
             <div className="px-6 pb-8 flex gap-6" style={{ borderTop: "1px solid rgba(247,241,234,0.1)", paddingTop: 24 }}>
               <Link href={session ? "/mi-cuenta" : "/login"} style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)", transition: "color 0.25s" }}>
