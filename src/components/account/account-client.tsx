@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { signOut } from "next-auth/react";
 import { motion } from "framer-motion";
-import { formatCOP, formatDateTime, ORDER_STATUS_LABELS, ORDER_STATUS_COLORS } from "@/lib/utils";
+import { formatCOP, formatDateTime, ORDER_STATUS_LABELS } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { OrderStatusBadge } from "@/components/ui/badge";
+import { OrderProgress } from "@/components/ui/order-progress";
 import Image from "next/image";
+import Link from "next/link";
 import type { Session } from "next-auth";
 
 interface OrderItem {
@@ -43,7 +45,6 @@ interface AccountClientProps {
   orders: Order[];
 }
 
-const STATUS_STEPS = ["RECEIVED", "PROCESSING", "READY", "IN_ROUTE", "DELIVERED"];
 
 export function AccountClient({ session, orders }: AccountClientProps) {
   const [activeTab, setActiveTab] = useState<"orders" | "profile">("orders");
@@ -156,61 +157,34 @@ export function AccountClient({ session, orders }: AccountClientProps) {
                       className="border-t border-forest/8"
                     >
                       <div className="p-5 grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        {/* Status timeline */}
+                        {/* Status progress */}
                         <div>
-                          <h3 className="text-xs uppercase tracking-brand font-sans font-medium text-forest/40 mb-5">
-                            Estado del pedido
-                          </h3>
-                          <div className="flex flex-col">
-                            {STATUS_STEPS.map((status, i) => {
-                              const histEntry = order.statusHistory.find((h) => h.status === status);
-                              const isCompleted = STATUS_STEPS.indexOf(order.status) >= i;
-                              const isCurrent = order.status === status;
-
-                              return (
-                                <div key={status} className="flex gap-4">
-                                  {/* Line + dot */}
-                                  <div className="flex flex-col items-center">
-                                    <div
-                                      className={`w-3 h-3 rounded-full border-2 mt-0.5 ${
-                                        isCompleted
-                                          ? "bg-forest border-forest"
-                                          : "bg-transparent border-forest/20"
-                                      }`}
-                                    />
-                                    {i < STATUS_STEPS.length - 1 && (
-                                      <div
-                                        className={`w-px flex-1 my-1 ${
-                                          isCompleted ? "bg-forest" : "bg-forest/10"
-                                        }`}
-                                        style={{ minHeight: "24px" }}
-                                      />
-                                    )}
-                                  </div>
-
-                                  <div className="pb-5">
-                                    <p
-                                      className={`text-sm font-sans font-medium ${
-                                        isCurrent ? "text-forest" : isCompleted ? "text-forest/70" : "text-forest/30"
-                                      }`}
-                                    >
-                                      {ORDER_STATUS_LABELS[status]}
-                                    </p>
-                                    {histEntry && (
-                                      <p className="text-xs font-sans text-forest/40 mt-0.5">
-                                        {formatDateTime(histEntry.timestamp)}
-                                      </p>
-                                    )}
-                                    {histEntry?.note && (
-                                      <p className="text-xs font-sans text-forest/50 mt-1 italic">
-                                        {histEntry.note}
-                                      </p>
-                                    )}
-                                  </div>
-                                </div>
-                              );
-                            })}
+                          <div className="flex items-center justify-between mb-5">
+                            <h3 className="text-xs uppercase tracking-brand font-sans font-medium text-forest/40">
+                              Estado del pedido
+                            </h3>
+                            <Link
+                              href={`/seguimiento/${order.orderNumber}`}
+                              className="text-xs font-sans text-terracotta hover:underline"
+                            >
+                              Ver seguimiento →
+                            </Link>
                           </div>
+                          <OrderProgress status={order.status} compact />
+                          {order.statusHistory.length > 0 && (
+                            <div className="mt-5 flex flex-col gap-1.5">
+                              {order.statusHistory.slice(-3).map((entry) => (
+                                <div key={entry.id} className="flex items-baseline gap-2">
+                                  <span className="text-xs font-sans text-forest/70 font-medium">
+                                    {ORDER_STATUS_LABELS[entry.status] ?? entry.status}
+                                  </span>
+                                  <span className="text-[10px] font-sans text-forest/30">
+                                    {formatDateTime(entry.timestamp)}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
 
                         {/* Items */}
