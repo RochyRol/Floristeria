@@ -103,7 +103,7 @@ export default function NosotrosPage() {
           </div>
           <div className="relative aspect-[4/5] overflow-hidden" style={{ border: `1px solid ${B}` }}>
             <Image
-              src="https://images.unsplash.com/photo-1596547608027-8bf2b955d62b?w=800&q=85&fit=crop"
+              src="https://images.unsplash.com/photo-1490750967868-88df5691cc3d?w=800&q=85&fit=crop"
               alt="Artesanas Deco Imperio"
               fill
               className="object-cover"

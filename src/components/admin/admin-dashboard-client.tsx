@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { formatCOP, formatDateTime, ORDER_STATUS_LABELS } from "@/lib/utils";
@@ -9,6 +10,22 @@ import type { Role } from "@prisma/client";
 
 const SANS  = "var(--font-manrope, sans-serif)";
 const SERIF = "var(--font-italiana, serif)";
+
+type Period = "day" | "week" | "month" | "year";
+
+const PERIOD_LABELS: Record<Period, string> = {
+  day:   "Hoy",
+  week:  "Semana",
+  month: "Mes",
+  year:  "Año",
+};
+
+const PERIOD_KPI_LABEL: Record<Period, string> = {
+  day:   "Ingresos hoy",
+  week:  "Ingresos semana",
+  month: "Ingresos del mes",
+  year:  "Ingresos del año",
+};
 
 interface Stats {
   todayOrders: number;
@@ -56,24 +73,49 @@ function SectionHead({ title, action }: { title: string; action?: React.ReactNod
   );
 }
 
+const NUM = {
+  fontFamily: SANS,
+  fontWeight: 300,
+  fontSize: 30,
+  letterSpacing: "-0.03em",
+  fontVariantNumeric: "tabular-nums",
+  color: "#111827",
+  lineHeight: 1,
+} as const;
+
 export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role }) {
+  const [period, setPeriod] = useState<Period>("month");
+  const [revenue, setRevenue] = useState(stats.monthRevenue);
+  const [loadingRevenue, setLoadingRevenue] = useState(false);
+
+  async function changePeriod(p: Period) {
+    setPeriod(p);
+    setLoadingRevenue(true);
+    try {
+      const res = await fetch(`/api/admin/stats?period=${p}`);
+      if (res.ok) {
+        const data = await res.json();
+        setRevenue(data.revenue);
+      }
+    } finally {
+      setLoadingRevenue(false);
+    }
+  }
+
   const kpis = [
     {
       label: "Pedidos hoy",
-      value: stats.todayOrders,
       display: String(stats.todayOrders),
       dot: "#2D8A4E",
     },
     {
       label: "Por atender",
-      value: stats.pendingOrders,
       display: String(stats.pendingOrders),
       dot: "#D97706",
     },
     {
-      label: "Ingresos del mes",
-      value: stats.monthRevenue,
-      display: formatCOP(stats.monthRevenue),
+      label: PERIOD_KPI_LABEL[period],
+      display: loadingRevenue ? "—" : formatCOP(revenue),
       dot: "#1F3A2E",
     },
   ];
@@ -94,23 +136,51 @@ export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role
         </Card>
       )}
 
-      {/* KPIs */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {kpis.map((k) => (
-          <Card key={k.label}>
-            <div className="px-5 py-4">
-              <div className="flex items-center gap-2 mb-3">
-                <span style={{ width: 7, height: 7, borderRadius: "50%", background: k.dot, display: "inline-block", flexShrink: 0 }} />
-                <span style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#6B7280" }}>
-                  {k.label}
-                </span>
+      {/* Period filter + KPIs */}
+      <div className="flex flex-col gap-3">
+        {/* Filter tabs */}
+        <div className="flex items-center gap-1">
+          {(Object.keys(PERIOD_LABELS) as Period[]).map((p) => (
+            <button
+              key={p}
+              onClick={() => changePeriod(p)}
+              style={{
+                fontSize: 11,
+                fontWeight: period === p ? 600 : 400,
+                fontFamily: SANS,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                padding: "5px 14px",
+                border: "1px solid",
+                borderColor: period === p ? "#1F3A2E" : "#E5E7EB",
+                borderRadius: 4,
+                background: period === p ? "#1F3A2E" : "#fff",
+                color: period === p ? "#fff" : "#6B7280",
+                cursor: "pointer",
+                transition: "all 0.15s",
+              }}
+            >
+              {PERIOD_LABELS[p]}
+            </button>
+          ))}
+        </div>
+
+        {/* KPI cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {kpis.map((k) => (
+            <Card key={k.label}>
+              <div className="px-5 py-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: k.dot, display: "inline-block", flexShrink: 0 }} />
+                  <span style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#6B7280" }}>
+                    {k.label}
+                  </span>
+                </div>
+                <p style={NUM}>{k.display}</p>
               </div>
-              <p style={{ fontFamily: SERIF, fontSize: 32, color: "#111827", lineHeight: 1, letterSpacing: "0.02em" }}>
-                {k.display}
-              </p>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          ))}
+        </div>
       </div>
 
       {/* Main content */}
@@ -142,7 +212,7 @@ export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role
                   onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "transparent")}
                 >
                   <div style={{ width: 76, flexShrink: 0 }}>
-                    <p style={{ fontSize: 12, fontWeight: 600, color: "#111827" }}>#{order.orderNumber}</p>
+                    <p style={{ fontSize: 12, fontWeight: 600, color: "#111827", fontVariantNumeric: "tabular-nums" }}>#{order.orderNumber}</p>
                     <p style={{ fontSize: 10, color: "#9CA3AF", marginTop: 1 }}>{formatDateTime(order.createdAt)}</p>
                   </div>
                   <div className="flex-1 min-w-0">
@@ -156,7 +226,7 @@ export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role
                   <div style={{ flexShrink: 0, marginRight: 12 }}>
                     <OrderStatusBadge status={order.status} />
                   </div>
-                  <p style={{ fontFamily: SERIF, fontSize: 14, color: "#111827", flexShrink: 0, letterSpacing: "0.02em" }}>
+                  <p style={{ fontFamily: SANS, fontWeight: 500, fontSize: 13, color: "#111827", flexShrink: 0, fontVariantNumeric: "tabular-nums", letterSpacing: "-0.01em" }}>
                     {formatCOP(Number(order.total))}
                   </p>
                 </Link>
@@ -187,16 +257,16 @@ export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role
                   className="flex items-center gap-3"
                   style={{ padding: "10px 20px", borderBottom: "1px solid #F3F4F6" }}
                 >
-                  <span style={{ fontSize: 11, color: "#D1D5DB", width: 14, textAlign: "center", flexShrink: 0 }}>{i + 1}</span>
+                  <span style={{ fontSize: 11, color: "#D1D5DB", width: 14, textAlign: "center", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{i + 1}</span>
                   <div style={{ width: 34, height: 34, borderRadius: 4, overflow: "hidden", border: "1px solid #E5E7EB", position: "relative", flexShrink: 0 }}>
                     {p.images[0] && <Image src={p.images[0]} alt={p.name} fill className="object-cover" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p style={{ fontSize: 12, fontWeight: 500, color: "#111827" }} className="truncate">{p.name}</p>
                     <div className="flex items-center gap-2 mt-0.5">
-                      <span style={{ fontSize: 10, color: "#9CA3AF" }}>{p.salesCount} vendidos</span>
+                      <span style={{ fontSize: 10, color: "#9CA3AF", fontVariantNumeric: "tabular-nums" }}>{p.salesCount} vendidos</span>
                       <span style={{ color: "#E5E7EB" }}>·</span>
-                      <span style={{ fontFamily: SERIF, fontSize: 12, color: "#1F3A2E" }}>{formatCOP(Number(p.basePrice))}</span>
+                      <span style={{ fontFamily: SANS, fontWeight: 500, fontSize: 12, color: "#1F3A2E", fontVariantNumeric: "tabular-nums" }}>{formatCOP(Number(p.basePrice))}</span>
                     </div>
                   </div>
                 </div>

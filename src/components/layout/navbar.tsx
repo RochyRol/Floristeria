@@ -142,6 +142,18 @@ export function Navbar() {
               <UserIcon />
             </Link>
 
+            {session && (
+              <Link
+                href="/mi-cuenta"
+                className="hidden lg:block"
+                style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", transition: "color 0.25s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f7f1ea")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#bfb5ab")}
+              >
+                Pedidos
+              </Link>
+            )}
+
             <button
               onClick={() => setCartOpen(true)}
               className="flex items-center gap-2 relative"
@@ -254,6 +266,11 @@ export function Navbar() {
               <Link href={session ? "/mi-cuenta" : "/login"} style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)", transition: "color 0.25s" }}>
                 {session ? "Mi cuenta" : "Iniciar sesión"}
               </Link>
+              {session && (
+                <Link href="/mi-cuenta" style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)", transition: "color 0.25s" }}>
+                  Pedidos
+                </Link>
+              )}
               <button
                 onClick={() => { setMenuOpen(false); setCartOpen(true); }}
                 style={{ background: "none", border: "none", cursor: "pointer", fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)" }}
