@@ -9,12 +9,6 @@ import { OrderStatusBadge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Role } from "@prisma/client";
 
-/* ── tokens ── */
-const F    = "#1F3A2E";
-const FM   = "rgba(31,58,46,0.45)";
-const FL   = "rgba(31,58,46,0.09)";
-const GOLD = "#A87C3A";
-const CARD = "#FFFFFF";
 const SANS  = "var(--font-manrope, sans-serif)";
 const SERIF = "var(--font-italiana, serif)";
 
@@ -71,7 +65,7 @@ const NEXT_STATUS_LABELS: Record<string, string> = {
 };
 
 export function AdminOrdersClient({ orders, total, page, perPage, role, activeFilters }: AdminOrdersClientProps) {
-  const router      = useRouter();
+  const router       = useRouter();
   const searchParams = useSearchParams();
   const [loadingId, setLoadingId] = useState<string | null>(null);
 
@@ -83,17 +77,17 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
   }
 
   async function advanceStatus(orderId: string, currentStatus: string) {
-    const nextStatus = NEXT_STATUS[currentStatus];
-    if (!nextStatus) return;
+    const next = NEXT_STATUS[currentStatus];
+    if (!next) return;
     setLoadingId(orderId);
     try {
       const res = await fetch(`/api/admin/orders/${orderId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: nextStatus }),
+        body: JSON.stringify({ status: next }),
       });
       if (!res.ok) throw new Error();
-      toast.success(`Estado → ${ORDER_STATUS_LABELS[nextStatus]}`);
+      toast.success(`${ORDER_STATUS_LABELS[next]}`);
       router.refresh();
     } catch {
       toast.error("Error al actualizar el estado");
@@ -103,26 +97,34 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
   }
 
   const totalPages = Math.ceil(total / perPage);
-  const canAdvance = (status: string) => NEXT_STATUS[status] && role !== "CLIENT";
+  const canAdvance  = (status: string) => NEXT_STATUS[status] && role !== "CLIENT";
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-4" style={{ fontFamily: SANS }}>
 
-      {/* Filters bar */}
-      <div className="flex flex-wrap items-center gap-3 px-4 py-3" style={{ background: CARD, border: `1px solid ${FL}` }}>
-        <div className="flex gap-1.5 flex-wrap">
+      {/* Filters */}
+      <div
+        className="flex flex-wrap items-center gap-2 p-3"
+        style={{ background: "#fff", border: "1px solid #E5E7EB", borderRadius: 8 }}
+      >
+        <div className="flex flex-wrap gap-1.5">
           {STATUS_OPTIONS.map((opt) => {
-            const isActive = (activeFilters.estado || "") === opt.value;
+            const on = (activeFilters.estado || "") === opt.value;
             return (
               <button
                 key={opt.value}
                 onClick={() => updateFilter("estado", opt.value)}
                 style={{
-                  padding: "5px 12px", fontSize: 10, letterSpacing: "0.14em",
-                  textTransform: "uppercase", fontFamily: SANS, cursor: "pointer",
-                  border: `1px solid ${isActive ? F : FL}`,
-                  background: isActive ? F : "transparent",
-                  color: isActive ? "#EDE8DF" : FM, transition: "all 0.15s",
+                  padding: "4px 11px",
+                  fontSize: 11,
+                  fontFamily: SANS,
+                  fontWeight: on ? 600 : 400,
+                  cursor: "pointer",
+                  borderRadius: 5,
+                  border: `1px solid ${on ? "#1F3A2E" : "#E5E7EB"}`,
+                  background: on ? "#1F3A2E" : "transparent",
+                  color:      on ? "#fff" : "#374151",
+                  transition: "all 0.12s",
                 }}
               >
                 {opt.label}
@@ -136,24 +138,29 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
           defaultValue={activeFilters.buscar || ""}
           onKeyDown={(e) => { if (e.key === "Enter") updateFilter("buscar", (e.target as HTMLInputElement).value); }}
           style={{
-            marginLeft: "auto", padding: "6px 12px", fontSize: 12, fontFamily: SANS,
-            background: "#F7F4EF", border: `1px solid ${FL}`, outline: "none", color: F, width: 220,
+            marginLeft: "auto", padding: "5px 11px", fontSize: 12,
+            fontFamily: SANS, background: "#F9FAFB",
+            border: "1px solid #E5E7EB", borderRadius: 6, outline: "none",
+            color: "#111827", width: 210,
           }}
         />
       </div>
 
-      <p style={{ fontSize: 11, fontFamily: SANS, color: FM, paddingLeft: 2 }}>
-        {total} pedido{total !== 1 ? "s" : ""} encontrado{total !== 1 ? "s" : ""}
+      <p style={{ fontSize: 12, color: "#6B7280", paddingLeft: 2 }}>
+        {total} pedido{total !== 1 ? "s" : ""}
       </p>
 
       {/* Table */}
-      <div style={{ background: CARD, border: `1px solid ${FL}`, overflow: "hidden" }}>
+      <div style={{ background: "#fff", border: "1px solid #E5E7EB", borderRadius: 8, overflow: "hidden" }}>
         <div className="overflow-x-auto">
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
-              <tr style={{ borderBottom: `1px solid ${FL}`, background: "#F7F4EF" }}>
+              <tr style={{ borderBottom: "1px solid #F3F4F6", background: "#F9FAFB" }}>
                 {["Pedido", "Cliente", "Estado", "Entrega", "Total", "Acción"].map((h) => (
-                  <th key={h} style={{ padding: "10px 16px", textAlign: "left", fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", fontFamily: SANS, color: FM, fontWeight: 500 }}>
+                  <th
+                    key={h}
+                    style={{ padding: "9px 16px", textAlign: "left", fontSize: 11, fontWeight: 600, fontFamily: SANS, color: "#6B7280", whiteSpace: "nowrap" }}
+                  >
                     {h}
                   </th>
                 ))}
@@ -162,7 +169,7 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
             <tbody>
               {orders.length === 0 ? (
                 <tr>
-                  <td colSpan={6} style={{ padding: "40px 16px", textAlign: "center", fontSize: 13, fontFamily: SANS, color: FM }}>
+                  <td colSpan={6} style={{ padding: "40px 16px", textAlign: "center", fontSize: 13, color: "#9CA3AF", fontFamily: SANS }}>
                     No hay pedidos con estos filtros
                   </td>
                 </tr>
@@ -170,38 +177,40 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
                 orders.map((order) => (
                   <tr
                     key={order.id}
-                    style={{ borderBottom: `1px solid ${FL}`, transition: "background 0.15s" }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "#F7F4EF")}
+                    style={{ borderBottom: "1px solid #F3F4F6" }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "#FAFAFA")}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "transparent")}
                   >
-                    <td style={{ padding: "12px 16px" }}>
-                      <Link href={`/admin/pedidos/${order.id}`} style={{ fontSize: 12, fontFamily: SANS, fontWeight: 600, color: GOLD, textDecoration: "none" }}>
+                    <td style={{ padding: "11px 16px" }}>
+                      <Link href={`/admin/pedidos/${order.id}`} style={{ fontSize: 12, fontWeight: 600, color: "#1F3A2E", textDecoration: "none" }}>
                         #{order.orderNumber}
                       </Link>
-                      <p style={{ fontSize: 10, fontFamily: SANS, color: FM, marginTop: 2 }}>{formatDateTime(order.createdAt)}</p>
+                      <p style={{ fontSize: 10, color: "#9CA3AF", marginTop: 2 }}>{formatDateTime(order.createdAt)}</p>
                     </td>
-                    <td style={{ padding: "12px 16px" }}>
-                      <p style={{ fontSize: 12, fontFamily: SANS, color: F, fontWeight: 500 }}>{order.recipientName}</p>
-                      <p style={{ fontSize: 10, fontFamily: SANS, color: FM, marginTop: 2 }}>{order.neighborhood || order.city}</p>
+                    <td style={{ padding: "11px 16px" }}>
+                      <p style={{ fontSize: 12, fontWeight: 500, color: "#111827" }}>{order.recipientName}</p>
+                      <p style={{ fontSize: 10, color: "#9CA3AF", marginTop: 2 }}>{order.neighborhood || order.city}</p>
                     </td>
-                    <td style={{ padding: "12px 16px" }}>
+                    <td style={{ padding: "11px 16px" }}>
                       <OrderStatusBadge status={order.status} />
                     </td>
-                    <td style={{ padding: "12px 16px", fontSize: 12, fontFamily: SANS, color: FM }}>
+                    <td style={{ padding: "11px 16px", fontSize: 12, color: "#374151" }}>
                       {order.deliveryDate ? new Date(order.deliveryDate).toLocaleDateString("es-CO") : "—"}
                     </td>
-                    <td style={{ padding: "12px 16px" }}>
-                      <p style={{ fontFamily: SERIF, fontSize: 14, color: F, letterSpacing: "0.02em" }}>
+                    <td style={{ padding: "11px 16px" }}>
+                      <span style={{ fontFamily: SERIF, fontSize: 13, color: "#111827", letterSpacing: "0.02em" }}>
                         {formatCOP(Number(order.total))}
-                      </p>
+                      </span>
                     </td>
-                    <td style={{ padding: "12px 16px" }}>
+                    <td style={{ padding: "11px 16px" }}>
                       {canAdvance(order.status) ? (
-                        <Button size="sm" variant="outline" loading={loadingId === order.id} onClick={() => advanceStatus(order.id, order.status)}>
+                        <Button size="sm" variant="outline" loading={loadingId === order.id}
+                          onClick={() => advanceStatus(order.id, order.status)}>
                           {NEXT_STATUS_LABELS[order.status]}
                         </Button>
                       ) : (
-                        <Link href={`/admin/pedidos/${order.id}`} style={{ fontSize: 10, fontFamily: SANS, color: FM, letterSpacing: "0.12em", textTransform: "uppercase", textDecoration: "none" }}>
+                        <Link href={`/admin/pedidos/${order.id}`}
+                          style={{ fontSize: 11, color: "#9CA3AF", textDecoration: "none", fontFamily: SANS }}>
                           Ver →
                         </Link>
                       )}
@@ -216,12 +225,22 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center gap-1.5">
+        <div className="flex justify-center gap-1">
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
             <button
               key={p}
-              onClick={() => { const params = new URLSearchParams(searchParams.toString()); params.set("pagina", String(p)); router.push(`/admin/pedidos?${params.toString()}`); }}
-              style={{ width: 34, height: 34, fontSize: 12, fontFamily: SANS, cursor: "pointer", border: `1px solid ${p === page ? F : FL}`, background: p === page ? F : "transparent", color: p === page ? "#EDE8DF" : FM, transition: "all 0.15s" }}
+              onClick={() => {
+                const params = new URLSearchParams(searchParams.toString());
+                params.set("pagina", String(p));
+                router.push(`/admin/pedidos?${params.toString()}`);
+              }}
+              style={{
+                width: 32, height: 32, fontSize: 12, fontFamily: SANS, cursor: "pointer",
+                borderRadius: 6,
+                border: `1px solid ${p === page ? "#1F3A2E" : "#E5E7EB"}`,
+                background: p === page ? "#1F3A2E" : "#fff",
+                color:      p === page ? "#fff" : "#374151",
+              }}
             >
               {p}
             </button>

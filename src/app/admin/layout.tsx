@@ -12,11 +12,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   return (
-    <div className="min-h-screen flex" style={{ background: "#F7F4EF", fontFamily: "var(--font-manrope, sans-serif)" }}>
+    <div
+      className="min-h-screen flex"
+      style={{ background: "#F3F4F6", fontFamily: "var(--font-manrope, sans-serif)" }}
+    >
       <AdminSidebar role={session.user.role} />
-      <div className="flex-1 flex flex-col min-w-0 lg:ml-64">
+      <div className="flex-1 flex flex-col min-w-0 lg:ml-[220px]">
         <AdminHeader session={session} />
-        <main className="flex-1 p-6 lg:p-8">{children}</main>
+        <main className="flex-1 p-5 lg:p-7">{children}</main>
       </div>
     </div>
   );
