@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { formatCOP, formatDateTime, ORDER_STATUS_LABELS } from "@/lib/utils";
 import { OrderStatusBadge } from "@/components/ui/badge";
+import { SyncSheetsButton } from "@/components/admin/sync-sheets-button";
 import type { Role } from "@prisma/client";
 
 interface Stats {
@@ -53,6 +54,17 @@ export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role
 
   return (
     <div className="flex flex-col gap-8">
+      {/* Sync bar — only ADMIN sees it */}
+      {role === "ADMIN" && (
+        <div className="flex items-center justify-between bg-cream-dark/40 border border-forest/8 rounded-sm px-5 py-3">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.16em] font-sans text-forest/50">Google Sheets</p>
+            <p className="text-sm font-sans text-forest/70">Envía la base de datos completa a tu hoja</p>
+          </div>
+          <SyncSheetsButton />
+        </div>
+      )}
+
       {/* KPIs */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {kpis.map((kpi) => (

@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useCartStore } from "@/store/cart";
 import { formatCOP, SHIPPING_COSTS } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -57,31 +57,86 @@ export function CheckoutClient() {
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
+  const [mounted, setMounted] = useState(false);
+
+  // Wait until cart hydrates from localStorage before deciding "empty cart" branch.
+  // Otherwise the component remounts after hydration and resets step to 0.
+  useEffect(() => { setMounted(true); }, []);
 
   const {
     register,
-    handleSubmit,
     watch,
-    setValue,
+    trigger,
+    getValues,
     formState: { errors },
   } = useForm<CheckoutForm>({
     resolver: zodResolver(checkoutSchema),
+    mode: "onChange",
     defaultValues: {
       buyerName: session?.user?.name || "",
       buyerEmail: session?.user?.email || "",
       buyerPhone: session?.user?.phone || "",
+      recipientName: "",
+      recipientPhone: "",
+      deliveryAddress: "",
+      neighborhood: "",
       city: "Medellín",
       deliveryZone: "Bello",
+      deliveryDate: "",
+      deliveryTime: "",
+      cardMessage: "",
+      deliveryNotes: "",
       paymentMethod: "CASH_ON_DELIVERY",
       sameAsBuyer: false,
     },
   });
+
+  // Fields each step must validate before advancing
+  const STEP_FIELDS: (keyof CheckoutForm)[][] = [
+    // Step 0: Datos
+    ["buyerName", "buyerEmail", "buyerPhone", "sameAsBuyer", "recipientName", "recipientPhone"],
+    // Step 1: Entrega
+    ["deliveryAddress", "neighborhood", "city", "deliveryZone", "deliveryDate", "deliveryTime"],
+    // Step 2: Pago — final submit
+    ["paymentMethod"],
+  ];
+
+  async function handleNext() {
+    let fields = STEP_FIELDS[step];
+    // If destinatario soy yo, skip recipient validation in step 0
+    if (step === 0 && getValues("sameAsBuyer")) {
+      fields = fields.filter(f => f !== "recipientName" && f !== "recipientPhone");
+    }
+    const valid = await trigger(fields);
+    if (!valid) return;
+
+    if (step < 2) {
+      setStep(step + 1);
+      return;
+    }
+
+    // Final step — submit directly with current form values.
+    // (We don't use handleSubmit() because the zodResolver re-validates ALL fields,
+    // and with sameAsBuyer logic + optional fields it can fail silently.)
+    await onSubmit(getValues());
+  }
 
   const deliveryZone = watch("deliveryZone");
   const sameAsBuyer = watch("sameAsBuyer");
   const shippingCost = SHIPPING_COSTS[deliveryZone] || 10000;
   const sub = subtotal();
   const total = sub + shippingCost;
+
+  // While the cart hydrates from localStorage, render a placeholder.
+  // This prevents the SSR (cart=[]) vs client (cart=full) hydration mismatch
+  // that was regenerating the React tree and resetting `step` back to 0.
+  if (!mounted) {
+    return (
+      <div className="pt-28 min-h-screen bg-cream flex items-center justify-center">
+        <div className="w-6 h-6 border-2 border-forest/20 border-t-forest rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   if (items.length === 0 && step !== 3) {
     return (
@@ -95,11 +150,6 @@ export function CheckoutClient() {
   }
 
   async function onSubmit(data: CheckoutForm) {
-    if (step < 2) {
-      setStep(step + 1);
-      return;
-    }
-
     setLoading(true);
     try {
       const res = await fetch("/api/orders", {
@@ -123,14 +173,18 @@ export function CheckoutClient() {
         }),
       });
 
-      if (!res.ok) throw new Error("Error al procesar el pedido");
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || "Error al procesar el pedido");
+      }
 
       const order = await res.json();
       setOrderNumber(order.orderNumber);
       clearCart();
       setStep(3);
-    } catch {
-      toast.error("No se pudo procesar el pedido. Inténtalo nuevamente.");
+    } catch (err) {
+      console.error(err);
+      toast.error(err instanceof Error ? err.message : "No se pudo procesar el pedido");
     } finally {
       setLoading(false);
     }
@@ -201,11 +255,11 @@ export function CheckoutClient() {
           ))}
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {/* Form area */}
             <div className="lg:col-span-2">
-              <AnimatePresence mode="wait">
+              <div>
                 {/* Step 0: Datos personales */}
                 {step === 0 && (
                   <motion.div
@@ -383,7 +437,7 @@ export function CheckoutClient() {
                     )}
                   </motion.div>
                 )}
-              </AnimatePresence>
+              </div>
 
               {/* Navigation */}
               <div className="flex items-center justify-between mt-8 pt-6 border-t border-forest/8">
@@ -400,7 +454,7 @@ export function CheckoutClient() {
                     <Button type="button" variant="ghost">← Carrito</Button>
                   </Link>
                 )}
-                <Button type="submit" size="lg" loading={loading}>
+                <Button type="button" size="lg" loading={loading} onClick={handleNext}>
                   {step === 2 ? "Confirmar pedido" : "Continuar →"}
                 </Button>
               </div>
@@ -446,7 +500,7 @@ export function CheckoutClient() {
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

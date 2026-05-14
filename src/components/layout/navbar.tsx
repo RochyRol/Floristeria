@@ -18,14 +18,20 @@ const navLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { data: session } = useSession();
-  const itemCount = useCartStore((s) => s.itemCount());
+  const rawItemCount = useCartStore((s) => s.itemCount());
   const setCartOpen = useCartStore((s) => s.setOpen);
+
+  // Avoid SSR/client mismatch — cart comes from localStorage which is client-only.
+  // Until mounted, force itemCount to 0 to match what the server renders.
+  const itemCount = mounted ? rawItemCount : 0;
 
   const isHome = pathname === "/";
 
   useEffect(() => {
+    setMounted(true);
     const fn = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);

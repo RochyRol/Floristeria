@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { generateOrderNumber } from "@/lib/utils";
 import { auth } from "@/lib/auth";
+import { sendToSheets, isSheetsConfigured } from "@/lib/sheets";
 
 export async function POST(req: NextRequest) {
   try {
@@ -87,6 +88,41 @@ export async function POST(req: NextRequest) {
         where: { id: item.productId },
         data: { salesCount: { increment: item.quantity } },
       }).catch(() => null);
+    }
+
+    // 🔄 Push to Google Sheets — fire-and-forget so it never blocks the order response.
+    if (isSheetsConfigured()) {
+      const customerEmail = session?.user?.email ?? buyerEmail ?? "";
+      const customerName = session?.user?.name ?? buyerName ?? "";
+      sendToSheets("order-created", {
+        orderNumber: order.orderNumber,
+        createdAt: order.createdAt.toISOString(),
+        status: "RECEIVED",
+        paymentMethod,
+        paymentStatus: "PENDING",
+        customerName,
+        customerEmail,
+        recipientName: sameAsBuyer ? buyerName : recipientName,
+        recipientPhone: sameAsBuyer ? buyerPhone : recipientPhone,
+        deliveryAddress,
+        neighborhood,
+        city,
+        deliveryDate: deliveryDate || "",
+        subtotal,
+        shippingCost,
+        discount: 0,
+        total,
+        couponCode: "",
+        cardMessage: cardMessage || "",
+        items: items.map((i: { productName: string; size?: string; quantity: number; unitPrice: number; subtotal: number; dedication?: string }) => ({
+          productName: i.productName,
+          size: i.size,
+          quantity: i.quantity,
+          unitPrice: i.unitPrice,
+          subtotal: i.subtotal,
+          dedication: i.dedication,
+        })),
+      }).catch((err) => console.error("[sheets] order-created failed:", err));
     }
 
     return NextResponse.json({ orderNumber: order.orderNumber, id: order.id });
