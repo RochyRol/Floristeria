@@ -9,17 +9,19 @@ import { OrderStatusBadge } from "@/components/ui/badge";
 import { formatCOP, formatDateTime, ORDER_STATUS_LABELS } from "@/lib/utils";
 
 const NEXT_STATUS: Record<string, string> = {
-  RECEIVED: "PROCESSING",
-  PROCESSING: "READY",
-  READY: "IN_ROUTE",
+  RECEIVED: "ACCEPTED",
+  ACCEPTED: "MAKING",
+  MAKING:   "READY",
+  READY:    "IN_ROUTE",
   IN_ROUTE: "DELIVERED",
 };
 
 const STATUS_ACTION_LABEL: Record<string, string> = {
-  RECEIVED: "Iniciar procesamiento",
-  PROCESSING: "Marcar listo",
-  READY: "Asignar en ruta",
-  IN_ROUTE: "Confirmar entrega",
+  RECEIVED: "✅ Aceptar pedido",
+  ACCEPTED: "🌸 Iniciar elaboración",
+  MAKING:   "📦 Marcar como listo",
+  READY:    "🛵 Despachar",
+  IN_ROUTE: "🏠 Confirmar entrega",
 };
 
 interface StatusEntry {

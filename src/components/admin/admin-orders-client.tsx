@@ -45,17 +45,19 @@ const STATUS_OPTIONS = [
 ];
 
 const NEXT_STATUS: Record<string, string> = {
-  RECEIVED: "PROCESSING",
-  PROCESSING: "READY",
-  READY: "IN_ROUTE",
+  RECEIVED: "ACCEPTED",
+  ACCEPTED: "MAKING",
+  MAKING:   "READY",
+  READY:    "IN_ROUTE",
   IN_ROUTE: "DELIVERED",
 };
 
 const NEXT_STATUS_LABELS: Record<string, string> = {
-  RECEIVED: "Iniciar proceso",
-  PROCESSING: "Marcar como listo",
-  READY: "Despachar",
-  IN_ROUTE: "Confirmar entrega",
+  RECEIVED: "✅ Aceptar",
+  ACCEPTED: "🌸 Iniciar elaboración",
+  MAKING:   "📦 Marcar listo",
+  READY:    "🛵 Despachar",
+  IN_ROUTE: "🏠 Confirmar entrega",
 };
 
 export function AdminOrdersClient({

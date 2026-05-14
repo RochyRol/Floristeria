@@ -16,7 +16,7 @@ async function getStats() {
       topProducts,
     ] = await Promise.all([
       prisma.order.count({ where: { createdAt: { gte: today }, status: { not: "CANCELLED" } } }),
-      prisma.order.count({ where: { status: { in: ["RECEIVED", "PROCESSING", "READY"] } } }),
+      prisma.order.count({ where: { status: { in: ["RECEIVED", "ACCEPTED", "MAKING", "READY"] } } }),
       prisma.order.aggregate({
         where: { createdAt: { gte: firstOfMonth }, status: { not: "CANCELLED" } },
         _sum: { total: true },

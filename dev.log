@@ -4,251 +4,864 @@
 
 ▲ Next.js 16.2.4 (Turbopack)
 - Local:         http://localhost:3000
-- Network:       http://192.168.0.23:3000
+- Network:       http://172.20.10.8:3000
 - Environments: .env
-✓ Ready in 1322ms
+✓ Ready in 1149ms
 - Experiments (use with caution):
   · serverActions
 
 ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__13ldxwf._.js:312:157
+ GET / 200 in 1330ms (next.js: 331ms, application-code: 999ms)
+ GET /checkout 200 in 577ms (next.js: 67ms, proxy.ts: 338ms, application-code: 172ms)
+ GET /api/auth/session 200 in 1416ms (next.js: 1373ms, application-code: 43ms)
+ GET /api/auth/session 200 in 32ms (next.js: 14ms, application-code: 18ms)
+ GET /api/auth/session 200 in 18ms (next.js: 4ms, application-code: 14ms)
+ GET /api/auth/session 200 in 21ms (next.js: 4ms, application-code: 17ms)
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
 
-  309 };
-  310 async function getFeaturedProducts() {
-  311     try {
-→ 312         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
 
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__13ldxwf._.js:328:158
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
-  325 }
-  326 async function getOccasions() {
-  327     try {
-→ 328         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+https://react.dev/link/hydration-mismatch
 
- GET / 200 in 1669ms (next.js: 350ms, application-code: 1319ms)
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__13ldxwf._.js:312:157
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/checkout" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="es"
+                          className="italiana_d93a7a64-module__fD1QQq__variable cormorant_garamond_26369008-module__5d..."
+-                         suppresshydrationwarning="true"
+-                         data-qb-installed="true"
+                        >
+                          ...
+                            <nav className="fixed top-..." style={{...}}>
+                              <LinkComponent>
+                              <ul>
+                              <div className="flex items...">
+                                <div className="hidden lg:..." style={{fontSize:12, ...}}>
+                                  <LinkComponent>
+                                  <button
+                                    onClick={function onClick}
+                                    className="flex items-center gap-2 relative"
+                                    style={{background:"none",border:"none",color:"#bfb5ab",cursor:"pointer",transition:"color 0.25s"}}
+                                    onMouseEnter={function onMouseEnter}
+                                    onMouseLeave={function onMouseLeave}
++                                   aria-label="Cesta (1)"
+-                                   aria-label="Cesta (0)"
+                                  >
+                                    <BagIcon>
+                                    <span>
+                                    <motion.span initial={{scale:0}} animate={{scale:1}} style={{display:"grid", ...}}>
++                                     <span
++                                       style={{display:"grid",placeItems:"center",width:18,height:18,borderRadius:"50%",background:"#c9a27a", ...}}
++                                       ref={function useMotionRef.useCallback}
++                                     >
+                                ...
+                  ...
 
-  309 };
-  310 async function getFeaturedProducts() {
-  311     try {
-→ 312         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at span (<anonymous>)
+    at Navbar (src/components/layout/navbar.tsx:146:17)
+    at PublicLayout (src\app\(public)\layout.tsx:9:7)
+  144 |               <span>Cesta</span>
+  145 |               {itemCount > 0 && (
+> 146 |                 <motion.span
+      |                 ^
+  147 |                   initial={{ scale: 0 }}
+  148 |                   animate={{ scale: 1 }}
+  149 |                   style={{
+ GET /api/auth/session 200 in 62ms (next.js: 22ms, application-code: 40ms)
+ GET /api/auth/session 200 in 36ms (next.js: 7ms, application-code: 29ms)
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /checkout 200 in 124ms (next.js: 12ms, proxy.ts: 27ms, application-code: 85ms)
+ GET /api/auth/session 200 in 52ms (next.js: 20ms, application-code: 32ms)
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
 
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__13ldxwf._.js:328:158
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
 
-  325 }
-  326 async function getOccasions() {
-  327     try {
-→ 328         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
 
- GET / 200 in 230ms (next.js: 11ms, application-code: 219ms)
- GET /api/auth/session 200 in 1475ms (next.js: 1438ms, application-code: 38ms)
- GET /api/auth/session 200 in 27ms (next.js: 15ms, application-code: 12ms)
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+https://react.dev/link/hydration-mismatch
 
-  175 const perPage = 12;
-  176 try {
-  177     const [products, total] = await Promise.all([
-→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+  ...
+    <LoadingBoundary name="/" loading={null}>
+      <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+        <HTTPAccessFallbackErrorBoundary pathname="/checkout" notFound={{...}} forbidden={undefined} ...>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/checkout" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                <SegmentViewNode type="layout" pagePath="(public)/l...">
+                  <SegmentTrieNode>
+                  <script>
+                  <script>
+                  <script>
+                  <script>
+                  <script>
+                  <script>
+                  <script>
+                  <PublicLayout>
+                    <Navbar>
+                      <nav className="fixed top-..." style={{...}}>
+                        <LinkComponent>
+                        <ul>
+                        <div className="flex items...">
+                          <div className="hidden lg:..." style={{fontSize:12, ...}}>
+                            <LinkComponent>
+                            <button
+                              onClick={function onClick}
+                              className="flex items-center gap-2 relative"
+                              style={{background:"none",border:"none",color:"#bfb5ab",cursor:"pointer",transition:"color 0.25s"}}
+                              onMouseEnter={function onMouseEnter}
+                              onMouseLeave={function onMouseLeave}
++                             aria-label="Cesta (1)"
+-                             aria-label="Cesta (0)"
+                            >
+                              <BagIcon>
+                              <span>
+                              <motion.span initial={{scale:0}} animate={{scale:1}} style={{display:"grid", ...}}>
++                               <span
++                                 style={{display:"grid",placeItems:"center",width:18,height:18,borderRadius:"50%",background:"#c9a27a",color:"...", ...}}
++                                 ref={function useMotionRef.useCallback}
++                               >
+                          ...
+                      ...
+                    ...
+              ...
 
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at span (<anonymous>)
+    at Navbar (src/components/layout/navbar.tsx:146:17)
+    at PublicLayout (src\app\(public)\layout.tsx:9:7)
+  144 |               <span>Cesta</span>
+  145 |               {itemCount > 0 && (
+> 146 |                 <motion.span
+      |                 ^
+  147 |                   initial={{ scale: 0 }}
+  148 |                   animate={{ scale: 1 }}
+  149 |                   style={{
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /api/auth/session 200 in 79ms (next.js: 46ms, application-code: 33ms)
+ GET /api/auth/session 200 in 33ms (next.js: 6ms, application-code: 27ms)
+ GET /api/auth/session 200 in 45ms (next.js: 10ms, application-code: 34ms)
+ GET /api/auth/session 200 in 27ms (next.js: 6ms, application-code: 21ms)
+ GET /api/auth/session 200 in 30ms (next.js: 7ms, application-code: 24ms)
+✓ Compiled in 1230ms
+⨯ ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  [90m489 |[0m             </div>
+  [90m490 |[0m           </div>
+[31m[1m>[0m [90m491 |[0m         </form>
+  [90m    |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m492 |[0m       </div>
+  [90m    |[0m [31m[1m^^^^^^[0m
+  [90m493 |[0m     </div>
+  [90m494 |[0m   );
+  [90m495 |[0m }
 
-  181     skip: (page - 1) * perPage,
-  182     take: perPage
-  183 }),
-→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
+Parsing ecmascript source code failed
 
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
 
-  202 }
-  203 async function getOccasions() {
-  204     try {
-→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
 
- GET /tienda 200 in 322ms (next.js: 83ms, application-code: 239ms)
- GET /api/auth/session 200 in 31ms (next.js: 18ms, application-code: 13ms)
- GET /api/auth/session 200 in 11ms (next.js: 4ms, application-code: 7ms)
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+ GET /checkout 500 in 2.5s (next.js: 1741ms, proxy.ts: 198ms, application-code: 526ms)
+⨯ ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  [90m489 |[0m             </div>
+  [90m490 |[0m           </div>
+[31m[1m>[0m [90m491 |[0m         </form>
+  [90m    |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m492 |[0m       </div>
+  [90m    |[0m [31m[1m^^^^^^[0m
+  [90m493 |[0m     </div>
+  [90m494 |[0m   );
+  [90m495 |[0m }
 
-  175 const perPage = 12;
-  176 try {
-  177     const [products, total] = await Promise.all([
-→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
+Parsing ecmascript source code failed
 
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
 
-  181     skip: (page - 1) * perPage,
-  182     take: perPage
-  183 }),
-→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
 
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+ GET /checkout 500 in 137ms (next.js: 40ms, proxy.ts: 61ms, application-code: 35ms)
+⨯ ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  [90m489 |[0m             </div>
+  [90m490 |[0m           </div>
+[31m[1m>[0m [90m491 |[0m         </form>
+  [90m    |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m492 |[0m       </div>
+  [90m    |[0m [31m[1m^^^^^^[0m
+  [90m493 |[0m     </div>
+  [90m494 |[0m   );
+  [90m495 |[0m }
 
-  202 }
-  203 async function getOccasions() {
-  204     try {
-→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
+Parsing ecmascript source code failed
 
- GET /tienda 200 in 191ms (next.js: 8ms, application-code: 183ms)
- GET /api/auth/session 200 in 37ms (next.js: 22ms, application-code: 15ms)
- GET /api/auth/session 200 in 21ms (next.js: 7ms, application-code: 14ms)
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
 
-  175 const perPage = 12;
-  176 try {
-  177     const [products, total] = await Promise.all([
-→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
 
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
+ GET /checkout 500 in 159ms (next.js: 26ms, proxy.ts: 112ms, application-code: 21ms)
+⨯ ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  [90m489 |[0m             </div>
+  [90m490 |[0m           </div>
+[31m[1m>[0m [90m491 |[0m         </form>
+  [90m    |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m492 |[0m       </div>
+  [90m    |[0m [31m[1m^^^^^^[0m
+  [90m493 |[0m     </div>
+  [90m494 |[0m   );
+  [90m495 |[0m }
 
-  181     skip: (page - 1) * perPage,
-  182     take: perPage
-  183 }),
-→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
+Parsing ecmascript source code failed
 
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
 
-  202 }
-  203 async function getOccasions() {
-  204     try {
-→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
 
- GET /tienda?ocasion=amor 200 in 60ms (next.js: 7ms, application-code: 53ms)
+⨯ ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  [90m489 |[0m             </div>
+  [90m490 |[0m           </div>
+[31m[1m>[0m [90m491 |[0m         </form>
+  [90m    |[0m                [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m492 |[0m       </div>
+  [90m    |[0m [31m[1m^^^^^^[0m
+  [90m493 |[0m     </div>
+  [90m494 |[0m   );
+  [90m495 |[0m }
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+ GET /checkout 500 in 217ms (next.js: 59ms, proxy.ts: 102ms, application-code: 56ms)
+ GET /checkout 500 in 208ms (next.js: 80ms, proxy.ts: 94ms, application-code: 34ms)
+[browser] Uncaught Error: ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  489 |             </div>
+  490 |           </div>
+> 491 |         </form>
+      |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 492 |       </div>
+      | ^^^^^^
+  493 |     </div>
+  494 |   );
+  495 | }
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+    at <unknown> (Error: ./src/components/checkout/checkout-client.tsx:491:16)
+    at <unknown> (Error: (./src/components/checkout/checkout-client.tsx:491:16)
+[browser] Uncaught Error: ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  489 |             </div>
+  490 |           </div>
+> 491 |         </form>
+      |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 492 |       </div>
+      | ^^^^^^
+  493 |     </div>
+  494 |   );
+  495 | }
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+    at <unknown> (Error: ./src/components/checkout/checkout-client.tsx:491:16)
+    at <unknown> (Error: (./src/components/checkout/checkout-client.tsx:491:16)
+[browser] ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  489 |             </div>
+  490 |           </div>
+> 491 |         </form>
+      |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 492 |       </div>
+      | ^^^^^^
+  493 |     </div>
+  494 |   );
+  495 | }
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx 
+[browser] ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  489 |             </div>
+  490 |           </div>
+> 491 |         </form>
+      |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 492 |       </div>
+      | ^^^^^^
+  493 |     </div>
+  494 |   );
+  495 | }
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx 
+[browser] ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  489 |             </div>
+  490 |           </div>
+> 491 |         </form>
+      |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 492 |       </div>
+      | ^^^^^^
+  493 |     </div>
+  494 |   );
+  495 | }
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx 
+[browser] ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  489 |             </div>
+  490 |           </div>
+> 491 |         </form>
+      |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 492 |       </div>
+      | ^^^^^^
+  493 |     </div>
+  494 |   );
+  495 | }
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx 
+[browser] ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  489 |             </div>
+  490 |           </div>
+> 491 |         </form>
+      |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 492 |       </div>
+      | ^^^^^^
+  493 |     </div>
+  494 |   );
+  495 | }
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx 
+[browser] ./src/components/checkout/checkout-client.tsx:491:16
+Expected '</', got 'jsx text'
+  489 |             </div>
+  490 |           </div>
+> 491 |         </form>
+      |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 492 |       </div>
+      | ^^^^^^
+  493 |     </div>
+  494 |   );
+  495 | }
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx 
+✓ Compiled in 457ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 1147ms (next.js: 186ms, proxy.ts: 158ms, application-code: 802ms)
+ GET /checkout 200 in 234ms (next.js: 18ms, proxy.ts: 75ms, application-code: 140ms)
+ GET /api/auth/session 200 in 329ms (next.js: 246ms, application-code: 83ms)
+ GET /api/auth/session 200 in 59ms (next.js: 7ms, application-code: 53ms)
+ GET /api/auth/session 200 in 25ms (next.js: 7ms, application-code: 18ms)
+ GET /api/auth/session 200 in 28ms (next.js: 6ms, application-code: 22ms)
+ GET /api/auth/session 200 in 29ms (next.js: 6ms, application-code: 23ms)
+ GET /api/auth/session 200 in 25ms (next.js: 5ms, application-code: 19ms)
+ GET /api/auth/session 200 in 26ms (next.js: 5ms, application-code: 21ms)
+ GET /api/auth/session 200 in 20ms (next.js: 4ms, application-code: 17ms)
+ GET /api/auth/session 200 in 23ms (next.js: 4ms, application-code: 18ms)
+ GET /api/auth/session 200 in 20ms (next.js: 4ms, application-code: 16ms)
+ GET /api/auth/session 200 in 23ms (next.js: 5ms, application-code: 17ms)
+ GET /api/auth/session 200 in 21ms (next.js: 5ms, application-code: 16ms)
+✓ Compiled in 116ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 542ms (next.js: 223ms, proxy.ts: 215ms, application-code: 104ms)
+ GET /checkout 200 in 100ms (next.js: 10ms, proxy.ts: 27ms, application-code: 63ms)
+ GET /checkout 200 in 547ms (next.js: 16ms, proxy.ts: 34ms, application-code: 498ms)
+ GET /api/auth/session 200 in 364ms (next.js: 292ms, application-code: 72ms)
+ GET /api/auth/session 200 in 73ms (next.js: 6ms, application-code: 67ms)
+ GET /api/auth/session 200 in 38ms (next.js: 9ms, application-code: 30ms)
+ GET /api/auth/session 200 in 33ms (next.js: 5ms, application-code: 28ms)
+ GET /api/auth/session 200 in 26ms (next.js: 6ms, application-code: 20ms)
+ GET /api/auth/session 200 in 26ms (next.js: 6ms, application-code: 20ms)
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <LoadingBoundary name="/" loading={null}>
+      <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+        <HTTPAccessFallbackErrorBoundary pathname="/checkout" notFound={{...}} forbidden={undefined} ...>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/checkout" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                <SegmentViewNode type="layout" pagePath="(public)/l...">
+                  <SegmentTrieNode>
+                  <script>
+                  <script>
+                  <script>
+                  <script>
+                  <script>
+                  <script>
+                  <script>
+                  <PublicLayout>
+                    <Navbar>
+                      <nav className="fixed top-..." style={{...}}>
+                        <LinkComponent>
+                        <ul>
+                        <div className="flex items...">
+                          <div className="hidden lg:..." style={{fontSize:12, ...}}>
+                            <LinkComponent>
+                            <button
+                              onClick={function onClick}
+                              className="flex items-center gap-2 relative"
+                              style={{background:"none",border:"none",color:"#bfb5ab",cursor:"pointer",transition:"color 0.25s"}}
+                              onMouseEnter={function onMouseEnter}
+                              onMouseLeave={function onMouseLeave}
++                             aria-label="Cesta (1)"
+-                             aria-label="Cesta (0)"
+                            >
+                              <BagIcon>
+                              <span>
+                              <motion.span initial={{scale:0}} animate={{scale:1}} style={{display:"grid", ...}}>
++                               <span
++                                 style={{display:"grid",placeItems:"center",width:18,height:18,borderRadius:"50%",background:"#c9a27a",color:"...", ...}}
++                                 ref={function useMotionRef.useCallback}
++                               >
+                          ...
+                      ...
+                    ...
+              ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at span (<anonymous>)
+    at Navbar (src/components/layout/navbar.tsx:146:17)
+    at PublicLayout (src\app\(public)\layout.tsx:9:7)
+  144 |               <span>Cesta</span>
+  145 |               {itemCount > 0 && (
+> 146 |                 <motion.span
+      |                 ^
+  147 |                   initial={{ scale: 0 }}
+  148 |                   animate={{ scale: 1 }}
+  149 |                   style={{
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+✓ Compiled in 244ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 626ms (next.js: 300ms, proxy.ts: 214ms, application-code: 113ms)
+ GET /checkout 200 in 172ms (next.js: 8ms, proxy.ts: 29ms, application-code: 136ms)
+ GET /checkout 200 in 466ms (next.js: 12ms, proxy.ts: 36ms, application-code: 418ms)
+ GET /api/auth/session 200 in 306ms (next.js: 246ms, application-code: 60ms)
+ GET /api/auth/session 200 in 63ms (next.js: 7ms, application-code: 57ms)
+ GET /api/auth/session 200 in 27ms (next.js: 6ms, application-code: 21ms)
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+✓ Compiled in 150ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 525ms (next.js: 201ms, proxy.ts: 230ms, application-code: 94ms)
+ GET /checkout 200 in 120ms (next.js: 9ms, proxy.ts: 25ms, application-code: 86ms)
+ GET /checkout 200 in 450ms (next.js: 12ms, proxy.ts: 20ms, application-code: 418ms)
+ GET /api/auth/session 200 in 317ms (next.js: 257ms, application-code: 60ms)
+ GET /api/auth/session 200 in 31ms (next.js: 8ms, application-code: 23ms)
+ GET /api/auth/session 200 in 27ms (next.js: 8ms, application-code: 20ms)
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+✓ Compiled in 144ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 566ms (next.js: 299ms, proxy.ts: 170ms, application-code: 97ms)
+ GET /checkout 200 in 126ms (next.js: 11ms, proxy.ts: 30ms, application-code: 85ms)
+✓ Compiled in 220ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 827ms (next.js: 406ms, proxy.ts: 273ms, application-code: 149ms)
+ GET /checkout 200 in 124ms (next.js: 12ms, proxy.ts: 30ms, application-code: 82ms)
+ GET /checkout 200 in 447ms (next.js: 8ms, proxy.ts: 20ms, application-code: 418ms)
+ GET /api/auth/session 200 in 324ms (next.js: 247ms, application-code: 77ms)
+ GET /api/auth/session 200 in 74ms (next.js: 9ms, application-code: 65ms)
+ GET /api/auth/session 200 in 31ms (next.js: 6ms, application-code: 24ms)
+ GET /api/auth/session 200 in 30ms (next.js: 6ms, application-code: 24ms)
+ GET /api/auth/session 200 in 33ms (next.js: 7ms, application-code: 26ms)
+ GET /api/auth/session 200 in 29ms (next.js: 6ms, application-code: 23ms)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/checkout" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="(public)/c...">
+            <SegmentTrieNode>
+            <CheckoutPage>
+              <CheckoutClient>
+                <div className="pt-24 min-...">
+                  <div className="max-w-5xl ...">
+                    <div>
+                    <div>
+                      <div className="grid grid-...">
+                        <div>
+                        <div className="lg:col-span-1">
+                          <div className="bg-cream-d...">
+                            <h3>
+                            <div>
+                            <div className="flex flex-...">
+                              <div className="flex justi...">
+                                <span>
+                                <span className="price">
++                                 $ 180.000
+-                                 $ 0
+                              ...
+          ...
+        ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at span (<anonymous>)
+    at CheckoutClient (src/components/checkout/checkout-client.tsx:487:21)
+    at CheckoutPage (src\app\(public)\checkout\page.tsx:9:10)
+  485 |                   <div className="flex justify-between text-forest/60">
+  486 |                     <span>Subtotal</span>
+> 487 |                     <span className="price">{formatCOP(sub)}</span>
+      |                     ^
+  488 |                   </div>
+  489 |                   <div className="flex justify-between text-forest/60">
+  490 |                     <span>Envío</span>
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+✓ Compiled in 314ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 633ms (next.js: 217ms, proxy.ts: 273ms, application-code: 143ms)
+ GET /checkout 200 in 168ms (next.js: 14ms, proxy.ts: 43ms, application-code: 110ms)
+ GET /checkout 200 in 514ms (next.js: 10ms, proxy.ts: 29ms, application-code: 474ms)
+ GET /api/auth/session 200 in 303ms (next.js: 253ms, application-code: 50ms)
+ GET /api/auth/session 200 in 31ms (next.js: 7ms, application-code: 25ms)
+ GET /api/auth/session 200 in 25ms (next.js: 6ms, application-code: 19ms)
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+✓ Compiled in 137ms
+⨯ ./src/components/checkout/checkout-client.tsx:447:33
+Expected '</', got 'jsx text'
+  [90m445 |[0m                   </motion.div>
+  [90m446 |[0m                 )}
+[31m[1m>[0m [90m447 |[0m               </[33mAnimatePresence[0m>
+  [90m    |[0m                                 [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m448 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m449 |[0m               {[90m/* Navigation */[0m}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+  [90m450 |[0m               <div className=[32m"flex items-center justify-between mt-8 pt-6 border-t border...[0m
+  [90m451 |[0m                 {step > [35m0[0m ? (
+  [90m452 |[0m                   <[33mButton[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+ GET /checkout 500 in 252ms (next.js: 113ms, proxy.ts: 118ms, application-code: 21ms)
+⨯ ./src/components/checkout/checkout-client.tsx:447:33
+Expected '</', got 'jsx text'
+  [90m445 |[0m                   </motion.div>
+  [90m446 |[0m                 )}
+[31m[1m>[0m [90m447 |[0m               </[33mAnimatePresence[0m>
+  [90m    |[0m                                 [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m448 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m449 |[0m               {[90m/* Navigation */[0m}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+  [90m450 |[0m               <div className=[32m"flex items-center justify-between mt-8 pt-6 border-t border...[0m
+  [90m451 |[0m                 {step > [35m0[0m ? (
+  [90m452 |[0m                   <[33mButton[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+ GET /checkout 500 in 69ms (next.js: 25ms, proxy.ts: 24ms, application-code: 19ms)
+⨯ ./src/components/checkout/checkout-client.tsx:447:33
+Expected '</', got 'jsx text'
+  [90m445 |[0m                   </motion.div>
+  [90m446 |[0m                 )}
+[31m[1m>[0m [90m447 |[0m               </[33mAnimatePresence[0m>
+  [90m    |[0m                                 [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m448 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m449 |[0m               {[90m/* Navigation */[0m}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+  [90m450 |[0m               <div className=[32m"flex items-center justify-between mt-8 pt-6 border-t border...[0m
+  [90m451 |[0m                 {step > [35m0[0m ? (
+  [90m452 |[0m                   <[33mButton[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+ GET /checkout 500 in 109ms (next.js: 19ms, proxy.ts: 72ms, application-code: 18ms)
+⨯ ./src/components/checkout/checkout-client.tsx:447:33
+Expected '</', got 'jsx text'
+  [90m445 |[0m                   </motion.div>
+  [90m446 |[0m                 )}
+[31m[1m>[0m [90m447 |[0m               </[33mAnimatePresence[0m>
+  [90m    |[0m                                 [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m448 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m449 |[0m               {[90m/* Navigation */[0m}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+  [90m450 |[0m               <div className=[32m"flex items-center justify-between mt-8 pt-6 border-t border...[0m
+  [90m451 |[0m                 {step > [35m0[0m ? (
+  [90m452 |[0m                   <[33mButton[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+⨯ ./src/components/checkout/checkout-client.tsx:447:33
+Expected '</', got 'jsx text'
+  [90m445 |[0m                   </motion.div>
+  [90m446 |[0m                 )}
+[31m[1m>[0m [90m447 |[0m               </[33mAnimatePresence[0m>
+  [90m    |[0m                                 [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m448 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m449 |[0m               {[90m/* Navigation */[0m}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+  [90m450 |[0m               <div className=[32m"flex items-center justify-between mt-8 pt-6 border-t border...[0m
+  [90m451 |[0m                 {step > [35m0[0m ? (
+  [90m452 |[0m                   <[33mButton[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+⨯ ./src/components/checkout/checkout-client.tsx:447:33
+Expected '</', got 'jsx text'
+  [90m445 |[0m                   </motion.div>
+  [90m446 |[0m                 )}
+[31m[1m>[0m [90m447 |[0m               </[33mAnimatePresence[0m>
+  [90m    |[0m                                 [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m448 |[0m
+  [90m    |[0m [31m[1m^[0m
+[31m[1m>[0m [90m449 |[0m               {[90m/* Navigation */[0m}
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^[0m
+  [90m450 |[0m               <div className=[32m"flex items-center justify-between mt-8 pt-6 border-t border...[0m
+  [90m451 |[0m                 {step > [35m0[0m ? (
+  [90m452 |[0m                   <[33mButton[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+ GET /checkout 500 in 255ms (next.js: 49ms, proxy.ts: 100ms, application-code: 106ms)
+ GET /checkout 500 in 246ms (next.js: 72ms, proxy.ts: 92ms, application-code: 82ms)
+[browser] Uncaught Error: ./src/components/checkout/checkout-client.tsx:447:33
+Expected '</', got 'jsx text'
+  445 |                   </motion.div>
+  446 |                 )}
+> 447 |               </AnimatePresence>
+      |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 448 |
+      | ^
+> 449 |               {/* Navigation */}
+      | ^^^^^^^^^^^^^^
+  450 |               <div className="flex items-center justify-between mt-8 pt-6 border-t border...
+  451 |                 {step > 0 ? (
+  452 |                   <Button
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+    at <unknown> (Error: ./src/components/checkout/checkout-client.tsx:447:33)
+    at <unknown> (Error: (./src/components/checkout/checkout-client.tsx:447:33)
+[browser] Uncaught Error: ./src/components/checkout/checkout-client.tsx:447:33
+Expected '</', got 'jsx text'
+  445 |                   </motion.div>
+  446 |                 )}
+> 447 |               </AnimatePresence>
+      |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 448 |
+      | ^
+> 449 |               {/* Navigation */}
+      | ^^^^^^^^^^^^^^
+  450 |               <div className="flex items-center justify-between mt-8 pt-6 border-t border...
+  451 |                 {step > 0 ? (
+  452 |                   <Button
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/checkout/checkout-client.tsx
+    ./src/app/(public)/checkout/page.tsx
+
+
+    at <unknown> (Error: ./src/components/checkout/checkout-client.tsx:447:33)
+    at <unknown> (Error: (./src/components/checkout/checkout-client.tsx:447:33)
+✓ Compiled in 170ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 905ms (next.js: 190ms, proxy.ts: 156ms, application-code: 558ms)
+ GET /checkout 200 in 222ms (next.js: 16ms, proxy.ts: 51ms, application-code: 155ms)
+ GET /api/auth/session 200 in 276ms (next.js: 239ms, application-code: 37ms)
+ GET /api/auth/session 200 in 21ms (next.js: 4ms, application-code: 17ms)
+ GET /api/auth/session 200 in 21ms (next.js: 4ms, application-code: 16ms)
+ GET /api/auth/session 200 in 18ms (next.js: 4ms, application-code: 13ms)
+ GET /api/auth/session 200 in 22ms (next.js: 4ms, application-code: 18ms)
+ GET /api/auth/session 200 in 20ms (next.js: 4ms, application-code: 15ms)
+ GET /checkout 200 in 165ms (next.js: 9ms, proxy.ts: 30ms, application-code: 126ms)
+ GET /api/auth/session 200 in 50ms (next.js: 23ms, application-code: 27ms)
+ GET /api/auth/session 200 in 23ms (next.js: 6ms, application-code: 17ms)
+ GET /api/auth/session 200 in 33ms (next.js: 5ms, application-code: 28ms)
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+✓ Compiled in 135ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 619ms (next.js: 305ms, proxy.ts: 199ms, application-code: 116ms)
+ GET /checkout 200 in 182ms (next.js: 11ms, proxy.ts: 33ms, application-code: 138ms)
+✓ Compiled in 116ms
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET /checkout 200 in 590ms (next.js: 307ms, proxy.ts: 175ms, application-code: 109ms)
+ GET /checkout 200 in 138ms (next.js: 16ms, proxy.ts: 28ms, application-code: 94ms)
+ GET /api/auth/session 200 in 240ms (next.js: 188ms, application-code: 51ms)
+ GET /api/auth/session 200 in 28ms (next.js: 6ms, application-code: 22ms)
+ GET /api/auth/session 200 in 25ms (next.js: 6ms, application-code: 19ms)
+ GET /checkout 200 in 412ms (next.js: 7ms, proxy.ts: 19ms, application-code: 386ms)
+ GET /api/auth/session 200 in 54ms (next.js: 23ms, application-code: 31ms)
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /api/auth/session 200 in 31ms (next.js: 9ms, application-code: 22ms)
+ GET /api/auth/session 200 in 27ms (next.js: 7ms, application-code: 20ms)
+[browser] Image with src "https://images.unsplash.com/photo-1548199569-3e1c6aa8f469?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /api/auth/session 200 in 32ms (next.js: 6ms, application-code: 26ms)
+ GET /api/auth/session 200 in 29ms (next.js: 6ms, application-code: 23ms)
+ GET /api/auth/session 200 in 34ms (next.js: 4ms, application-code: 29ms)
+ POST /api/orders 200 in 728ms (next.js: 523ms, application-code: 204ms)
+ GET /api/auth/session 200 in 42ms (next.js: 22ms, application-code: 20ms)
+ GET /api/auth/session 200 in 19ms (next.js: 4ms, application-code: 14ms)
+ GET /api/auth/session 200 in 18ms (next.js: 3ms, application-code: 15ms)
+ GET /mi-cuenta 200 in 454ms (next.js: 147ms, proxy.ts: 17ms, application-code: 290ms)
 [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
-
-  175 const perPage = 12;
-  176 try {
-  177     const [products, total] = await Promise.all([
-→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
-
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
-
-  181     skip: (page - 1) * perPage,
-  182     take: perPage
-  183 }),
-→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
-
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
-
-  202 }
-  203 async function getOccasions() {
-  204     try {
-→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
-
- GET /tienda?ocasion=cumpleanos 200 in 57ms (next.js: 4ms, application-code: 53ms)
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
-
-  175 const perPage = 12;
-  176 try {
-  177     const [products, total] = await Promise.all([
-→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
-
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
-
-  181     skip: (page - 1) * perPage,
-  182     take: perPage
-  183 }),
-→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
-
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
-
-  202 }
-  203 async function getOccasions() {
-  204     try {
-→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
-
- GET /tienda?ocasion=aniversario 200 in 66ms (next.js: 6ms, application-code: 61ms)
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
-
-  175 const perPage = 12;
-  176 try {
-  177     const [products, total] = await Promise.all([
-→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
-
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
-
-  181     skip: (page - 1) * perPage,
-  182     take: perPage
-  183 }),
-→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
-
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
-
-  202 }
-  203 async function getOccasions() {
-  204     try {
-→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
-
- GET /tienda?ocasion=nacimiento 200 in 49ms (next.js: 5ms, application-code: 44ms)
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:178:148
-
-  175 const perPage = 12;
-  176 try {
-  177     const [products, total] = await Promise.all([
-→ 178         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.findMany(
-
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:184:148
-
-  181     skip: (page - 1) * perPage,
-  182     take: perPage
-  183 }),
-→ 184 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].product.count(
-
-prisma:error 
-Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany()` invocation in
-C:\Users\samue\OneDrive\Escritorio\floristeria\.next\dev\server\chunks\ssr\[root-of-the-server]__0z3lmsk._.js:205:158
-
-  202 }
-  203 async function getOccasions() {
-  204     try {
-→ 205         return await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].occasion.findMany(
-
- GET /tienda?ocasion=empresarial 200 in 53ms (next.js: 6ms, application-code: 48ms)
+ GET /admin 200 in 294ms (next.js: 89ms, proxy.ts: 16ms, application-code: 189ms)
+[browser] Image with src "https://images.unsplash.com/photo-1567696153798-9111f9cd3d0d?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "https://images.unsplash.com/photo-1455582916367-25f75bfc6710?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /admin/productos 200 in 206ms (next.js: 69ms, proxy.ts: 17ms, application-code: 121ms)
+[browser] Encountered two children with the same key, ``. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Encountered two children with the same key, ``. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 
+[browser] Image with src "https://images.unsplash.com/photo-1494972308805-463bc619d34e?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "https://images.unsplash.com/photo-1523694576729-dc99e9c0f9b4?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=800&q=85&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+⨯ upstream image response failed for https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=85&fit=crop 404
+⨯ upstream image response failed for https://images.unsplash.com/photo-1566479179817-7fa0cb3c1688?w=800&q=85&fit=crop 404
+⨯ upstream image response failed for https://images.unsplash.com/photo-1596547608027-8bf2b955d62b?w=800&q=85&fit=crop 404
+⨯ upstream image response failed for https://images.unsplash.com/photo-1523698374983-5c9fe97c9b11?w=800&q=85&fit=crop 404
+⨯ upstream image response failed for https://images.unsplash.com/photo-1490750967868-88df5691cc08?w=800&q=85&fit=crop 404
+ GET /admin/pedidos 200 in 164ms (next.js: 67ms, proxy.ts: 15ms, application-code: 81ms)
+(node:25552) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ PATCH /api/admin/orders/cmovptekm0000psw6ne903h7p 200 in 1733ms (next.js: 1670ms, application-code: 63ms)
+ GET /admin/pedidos 200 in 118ms (next.js: 8ms, proxy.ts: 18ms, application-code: 93ms)

@@ -16,7 +16,8 @@ enum Role {
 
 enum OrderStatus {
   RECEIVED
-  PROCESSING
+  ACCEPTED
+  MAKING
   READY
   IN_ROUTE
   DELIVERED

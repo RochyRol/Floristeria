@@ -182,6 +182,12 @@ export function CheckoutClient() {
       setOrderNumber(order.orderNumber);
       clearCart();
       setStep(3);
+
+      // Send WhatsApp to the store with the order + tracking link
+      const siteUrl = window.location.origin;
+      const trackingUrl = `${siteUrl}/seguimiento/${order.orderNumber}`;
+      const waMsg = `🌸 *Nuevo pedido ${order.orderNumber}*\n\nCliente: ${data.buyerName}\nTeléfono: ${data.buyerPhone}\nDestinatario: ${data.sameAsBuyer ? data.buyerName : data.recipientName}\n\nVer pedido: ${trackingUrl}`;
+      window.open(`https://wa.me/573215039845?text=${encodeURIComponent(waMsg)}`, "_blank");
     } catch (err) {
       console.error(err);
       toast.error(err instanceof Error ? err.message : "No se pudo procesar el pedido");
@@ -192,33 +198,75 @@ export function CheckoutClient() {
 
   // Confirmation step
   if (step === 3) {
+    const trackingUrl = `/seguimiento/${orderNumber}`;
     return (
-      <div className="pt-28 min-h-screen bg-cream flex flex-col items-center justify-center gap-6 px-6 text-center">
+      <div className="pt-28 min-h-screen flex flex-col items-center justify-center gap-8 px-6 text-center" style={{ background: "#0E0E0D" }}>
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.7, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="w-20 h-20 bg-forest/10 rounded-full flex items-center justify-center text-forest text-4xl"
+          transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+          style={{ fontSize: 56 }}
         >
           🌸
         </motion.div>
-        <div>
-          <h1 className="font-serif text-display-sm text-forest">¡Pedido confirmado!</h1>
-          <p className="mt-2 font-sans text-forest/60">
-            Tu número de pedido es{" "}
-            <span className="font-medium text-forest">{orderNumber}</span>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          <p style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#A87C3A", fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 10 }}>
+            ¡Pedido confirmado!
           </p>
-          <p className="mt-1 text-sm font-sans text-forest/50">
-            Te enviaremos una confirmación por correo electrónico.
+          <h1 style={{ fontFamily: "var(--font-italiana, serif)", fontSize: "clamp(2rem, 6vw, 3.5rem)", color: "#EDE8DF", letterSpacing: "0.04em", lineHeight: 1 }}>
+            {orderNumber}
+          </h1>
+          <p style={{ marginTop: 12, fontSize: 14, color: "rgba(237,232,223,0.5)", fontFamily: "var(--font-manrope, sans-serif)", lineHeight: 1.6 }}>
+            Recibimos tu pedido. Te notificaremos<br />por WhatsApp cuando avance.
           </p>
-        </div>
-        <div className="flex gap-3">
-          <Link href="/mi-cuenta">
-            <Button>Ver mis pedidos</Button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col items-center gap-3 w-full max-w-xs"
+        >
+          <Link href={trackingUrl} className="w-full">
+            <button
+              className="w-full py-3 text-center transition-all"
+              style={{
+                background: "#A87C3A",
+                color: "#0E0E0D",
+                fontSize: 11,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-manrope, sans-serif)",
+                fontWeight: 600,
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              Ver seguimiento del pedido →
+            </button>
           </Link>
-          <Link href="/tienda">
-            <Button variant="outline">Seguir comprando</Button>
+          <Link href="/tienda" className="w-full">
+            <button
+              className="w-full py-3 text-center transition-all"
+              style={{
+                background: "transparent",
+                color: "rgba(237,232,223,0.5)",
+                fontSize: 11,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-manrope, sans-serif)",
+                border: "1px solid rgba(237,232,223,0.1)",
+                cursor: "pointer",
+              }}
+            >
+              Seguir comprando
+            </button>
           </Link>
-        </div>
+        </motion.div>
       </div>
     );
   }

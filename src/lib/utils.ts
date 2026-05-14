@@ -66,21 +66,49 @@ export function formatDateTime(date: Date | string): string {
 }
 
 export const ORDER_STATUS_LABELS: Record<string, string> = {
-  RECEIVED: "Pedido recibido",
-  PROCESSING: "Armando tu arreglo",
-  READY: "Listo para entrega",
-  IN_ROUTE: "En camino",
+  RECEIVED:  "Pedido recibido",
+  ACCEPTED:  "Pedido aceptado",
+  MAKING:    "Elaborándose",
+  READY:     "Listo",
+  IN_ROUTE:  "En camino",
   DELIVERED: "Entregado",
   CANCELLED: "Cancelado",
 };
 
 export const ORDER_STATUS_COLORS: Record<string, string> = {
-  RECEIVED: "#B8935A",
-  PROCESSING: "#C97B63",
-  READY: "#2D5241",
-  IN_ROUTE: "#1F3A2E",
-  DELIVERED: "#1F3A2E",
+  RECEIVED:  "#A87C3A",
+  ACCEPTED:  "#1C3A2B",
+  MAKING:    "#7A3D4C",
+  READY:     "#1C3A2B",
+  IN_ROUTE:  "#A87C3A",
+  DELIVERED: "#1C3A2B",
   CANCELLED: "#7A2E2E",
+};
+
+// The 5 visible phases for the progress bar (CANCELLED handled separately)
+export const ORDER_PHASES = [
+  { status: "RECEIVED",  label: "Recibido",   icon: "📥" },
+  { status: "ACCEPTED",  label: "Aceptado",   icon: "✅" },
+  { status: "MAKING",    label: "Elaborando", icon: "🌸" },
+  { status: "READY",     label: "Listo",      icon: "📦" },
+  { status: "IN_ROUTE",  label: "En camino",  icon: "🛵" },
+] as const;
+
+// Maps current status → next status (for admin one-click advance)
+export const NEXT_ORDER_STATUS: Record<string, string> = {
+  RECEIVED: "ACCEPTED",
+  ACCEPTED: "MAKING",
+  MAKING:   "READY",
+  READY:    "IN_ROUTE",
+  IN_ROUTE: "DELIVERED",
+};
+
+export const NEXT_STATUS_LABEL: Record<string, string> = {
+  RECEIVED: "Aceptar pedido",
+  ACCEPTED: "Iniciar elaboración",
+  MAKING:   "Marcar como listo",
+  READY:    "Despachar",
+  IN_ROUTE: "Confirmar entrega",
 };
 
 export const SHIPPING_COSTS: Record<string, number> = {
