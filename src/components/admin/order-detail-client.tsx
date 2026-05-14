@@ -104,6 +104,18 @@ export function OrderDetailClient({
         ],
       }));
       toast.success(`Estado actualizado: ${ORDER_STATUS_LABELS[updated.status]}`);
+
+      if (nextStatus === "ACCEPTED") {
+        const phone = (order.customer?.phone ?? order.recipientPhone).replace(/\D/g, "");
+        const normalized = phone.startsWith("57") ? phone : `57${phone}`;
+        const trackingUrl = `${window.location.origin}/seguimiento/${order.orderNumber}`;
+        const customerName = order.customer?.name ?? order.recipientName;
+        const msg =
+          `¡Hola ${customerName}! 🌸 Tu pedido *#${order.orderNumber}* ha sido *aceptado* y ya estamos trabajando en él con mucho cariño.\n\n` +
+          `Puedes seguir el estado de tu pedido en tiempo real aquí:\n${trackingUrl}\n\n` +
+          `Cualquier consulta, estamos a tu disposición. 💐`;
+        window.open(`https://wa.me/${normalized}?text=${encodeURIComponent(msg)}`, "_blank");
+      }
     } catch {
       toast.error("Error al actualizar el estado");
     } finally {
