@@ -82,6 +82,14 @@ export function OrderDetailClient({
 
   async function advanceStatus() {
     setAdvancing(true);
+
+    // Abrir la ventana sincrónicamente desde el clic para evitar el bloqueo de popups.
+    // Asignamos la URL real después de confirmar que el PATCH fue exitoso.
+    let whatsappWindow: Window | null = null;
+    if (order.status === "RECEIVED") {
+      whatsappWindow = window.open("", "_blank");
+    }
+
     try {
       const res = await fetch(`/api/admin/orders/${order.id}`, {
         method: "PATCH",
@@ -105,7 +113,7 @@ export function OrderDetailClient({
       }));
       toast.success(`Estado actualizado: ${ORDER_STATUS_LABELS[updated.status]}`);
 
-      if (nextStatus === "ACCEPTED") {
+      if (whatsappWindow) {
         const phone = (order.customer?.phone ?? order.recipientPhone).replace(/\D/g, "");
         const normalized = phone.startsWith("57") ? phone : `57${phone}`;
         const trackingUrl = `${window.location.origin}/seguimiento/${order.orderNumber}`;
@@ -114,9 +122,10 @@ export function OrderDetailClient({
           `¡Hola ${customerName}! 🌸 Tu pedido *#${order.orderNumber}* ha sido *aceptado* y ya estamos trabajando en él con mucho cariño.\n\n` +
           `Puedes seguir el estado de tu pedido en tiempo real aquí:\n${trackingUrl}\n\n` +
           `Cualquier consulta, estamos a tu disposición. 💐`;
-        window.open(`https://wa.me/${normalized}?text=${encodeURIComponent(msg)}`, "_blank");
+        whatsappWindow.location.href = `https://wa.me/${normalized}?text=${encodeURIComponent(msg)}`;
       }
     } catch {
+      whatsappWindow?.close();
       toast.error("Error al actualizar el estado");
     } finally {
       setAdvancing(false);
