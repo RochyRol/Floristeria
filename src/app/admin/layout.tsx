@@ -12,7 +12,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F6F2] flex">
+    <div className="min-h-screen flex" style={{ background: "#F7F4EF", fontFamily: "var(--font-manrope, sans-serif)" }}>
       <AdminSidebar role={session.user.role} />
       <div className="flex-1 flex flex-col min-w-0 lg:ml-64">
         <AdminHeader session={session} />

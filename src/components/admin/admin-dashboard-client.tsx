@@ -7,6 +7,16 @@ import { OrderStatusBadge } from "@/components/ui/badge";
 import { SyncSheetsButton } from "@/components/admin/sync-sheets-button";
 import type { Role } from "@prisma/client";
 
+/* ── tokens ── */
+const GOLD  = "#A87C3A";
+const F     = "#1F3A2E";       /* forest */
+const FM    = "rgba(31,58,46,0.45)";
+const FL    = "rgba(31,58,46,0.12)";
+const CARD  = "#FFFFFF";
+const BG    = "#F7F4EF";
+const SERIF = "var(--font-italiana, serif)";
+const SANS  = "var(--font-manrope, sans-serif)";
+
 interface Stats {
   todayOrders: number;
   pendingOrders: number;
@@ -30,74 +40,134 @@ interface Stats {
   }[];
 }
 
-export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role }) {
-  const kpis = [
-    {
-      label: "Pedidos hoy",
-      value: stats.todayOrders,
-      color: "bg-terracotta/10 text-terracotta",
-      icon: "📦",
-    },
-    {
-      label: "Por atender",
-      value: stats.pendingOrders,
-      color: "bg-gold/10 text-cacao",
-      icon: "⏳",
-    },
-    {
-      label: "Ingresos del mes",
-      value: formatCOP(stats.monthRevenue),
-      color: "bg-forest/10 text-forest",
-      icon: "💰",
-    },
-  ];
+const kpiConfig = [
+  {
+    key: "todayOrders" as const,
+    label: "Pedidos hoy",
+    accent: "#2D8A4E",
+    accentBg: "rgba(45,138,78,0.08)",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+    ),
+  },
+  {
+    key: "pendingOrders" as const,
+    label: "Por atender",
+    accent: "#A87C3A",
+    accentBg: "rgba(168,124,58,0.08)",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+    ),
+  },
+  {
+    key: "monthRevenue" as const,
+    label: "Ingresos del mes",
+    accent: "#1F3A2E",
+    accentBg: "rgba(31,58,46,0.07)",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+        <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+      </svg>
+    ),
+  },
+];
 
+export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role }) {
   return (
-    <div className="flex flex-col gap-8">
-      {/* Sync bar — only ADMIN sees it */}
+    <div className="flex flex-col gap-7">
+
+      {/* Google Sheets sync bar */}
       {role === "ADMIN" && (
-        <div className="flex items-center justify-between bg-cream-dark/40 border border-forest/8 rounded-sm px-5 py-3">
+        <div
+          className="flex items-center justify-between px-5 py-3.5"
+          style={{ background: CARD, border: `1px solid ${FL}`, borderLeft: `3px solid ${GOLD}` }}
+        >
           <div>
-            <p className="text-[10px] uppercase tracking-[0.16em] font-sans text-forest/50">Google Sheets</p>
-            <p className="text-sm font-sans text-forest/70">Envía la base de datos completa a tu hoja</p>
+            <p style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: GOLD, fontFamily: SANS, marginBottom: 2 }}>
+              Google Sheets
+            </p>
+            <p style={{ fontSize: 13, color: FM, fontFamily: SANS }}>
+              Sincroniza la base de datos completa a tu hoja de cálculo
+            </p>
           </div>
           <SyncSheetsButton />
         </div>
       )}
 
-      {/* KPIs */}
+      {/* KPI cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {kpis.map((kpi) => (
-          <div
-            key={kpi.label}
-            className="bg-white border border-forest/8 rounded-sm p-5 flex items-center gap-4"
-          >
-            <div className={`w-12 h-12 rounded-sm flex items-center justify-center text-2xl ${kpi.color}`}>
-              {kpi.icon}
+        {kpiConfig.map((kpi) => {
+          const raw = stats[kpi.key];
+          const display = kpi.key === "monthRevenue" ? formatCOP(raw as number) : String(raw);
+          return (
+            <div
+              key={kpi.key}
+              style={{
+                background: CARD,
+                border: `1px solid ${FL}`,
+                borderTop: `3px solid ${kpi.accent}`,
+                padding: "20px 22px",
+              }}
+            >
+              <div className="flex items-start justify-between mb-3">
+                <p style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: FM, fontFamily: SANS }}>
+                  {kpi.label}
+                </p>
+                <div
+                  style={{
+                    width: 30, height: 30,
+                    background: kpi.accentBg,
+                    color: kpi.accent,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}
+                >
+                  {kpi.icon}
+                </div>
+              </div>
+              <p
+                style={{
+                  fontFamily: SERIF,
+                  fontSize: kpi.key === "monthRevenue" ? 22 : 36,
+                  color: F,
+                  lineHeight: 1,
+                  letterSpacing: "0.02em",
+                }}
+              >
+                {display}
+              </p>
             </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-brand font-sans text-forest/40">{kpi.label}</p>
-              <p className="font-serif text-2xl text-forest mt-0.5">{kpi.value}</p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Main content: orders + top products */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
         {/* Recent orders */}
-        <div className="lg:col-span-2 bg-white border border-forest/8 rounded-sm">
-          <div className="flex items-center justify-between px-5 py-4 border-b border-forest/8">
-            <h2 className="font-serif text-base text-forest">Pedidos recientes</h2>
+        <div className="lg:col-span-2" style={{ background: CARD, border: `1px solid ${FL}` }}>
+          <div
+            className="flex items-center justify-between px-5 py-3.5"
+            style={{ borderBottom: `1px solid ${FL}` }}
+          >
+            <p style={{ fontFamily: SERIF, fontSize: 16, color: F, letterSpacing: "0.04em" }}>
+              Pedidos recientes
+            </p>
             <Link
               href="/admin/pedidos"
-              className="text-xs font-sans uppercase tracking-brand text-forest/40 hover:text-forest transition-colors"
+              style={{ fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, fontFamily: SANS, textDecoration: "none" }}
             >
               Ver todos →
             </Link>
           </div>
-          <div className="divide-y divide-forest/5">
+
+          <div>
             {stats.recentOrders.length === 0 ? (
-              <p className="px-5 py-8 text-sm font-sans text-forest/40 text-center">
+              <p style={{ padding: "32px 20px", textAlign: "center", fontSize: 13, color: FM, fontFamily: SANS }}>
                 No hay pedidos aún
               </p>
             ) : (
@@ -105,26 +175,45 @@ export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role
                 <Link
                   key={order.id}
                   href={`/admin/pedidos/${order.id}`}
-                  className="flex items-center gap-4 px-5 py-3.5 hover:bg-cream/50 transition-colors"
+                  className="flex items-center gap-4 transition-colors"
+                  style={{
+                    padding: "12px 20px",
+                    borderBottom: `1px solid ${FL}`,
+                    textDecoration: "none",
+                    display: "flex",
+                  }}
+                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "#F7F4EF")}
+                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "transparent")}
                 >
+                  {/* Order number */}
+                  <div style={{ width: 80, flexShrink: 0 }}>
+                    <p style={{ fontSize: 12, fontFamily: SANS, fontWeight: 600, color: F }}>
+                      #{order.orderNumber}
+                    </p>
+                    <p style={{ fontSize: 10, fontFamily: SANS, color: FM, marginTop: 1 }}>
+                      {formatDateTime(order.createdAt)}
+                    </p>
+                  </div>
+
+                  {/* Customer + product */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm font-sans font-medium text-forest">
-                        #{order.orderNumber}
-                      </p>
-                      <OrderStatusBadge status={order.status} />
-                    </div>
-                    <p className="text-xs font-sans text-forest/50 mt-0.5">
-                      {order.customer?.name || order.recipientName} ·{" "}
+                    <p style={{ fontSize: 12, fontFamily: SANS, color: F, fontWeight: 500 }}>
+                      {order.customer?.name || order.recipientName}
+                    </p>
+                    <p style={{ fontSize: 11, fontFamily: SANS, color: FM, marginTop: 1 }} className="truncate">
                       {order.items[0]?.productName}
                     </p>
                   </div>
-                  <div className="text-right shrink-0">
-                    <p className="font-serif text-sm text-forest price">
+
+                  {/* Status */}
+                  <div style={{ flexShrink: 0, marginRight: 12 }}>
+                    <OrderStatusBadge status={order.status} />
+                  </div>
+
+                  {/* Total */}
+                  <div style={{ flexShrink: 0, textAlign: "right" }}>
+                    <p style={{ fontFamily: SERIF, fontSize: 14, color: F, letterSpacing: "0.02em" }}>
                       {formatCOP(Number(order.total))}
-                    </p>
-                    <p className="text-[10px] font-sans text-forest/40 mt-0.5">
-                      {formatDateTime(order.createdAt)}
                     </p>
                   </div>
                 </Link>
@@ -134,40 +223,58 @@ export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role
         </div>
 
         {/* Top products */}
-        <div className="bg-white border border-forest/8 rounded-sm">
-          <div className="flex items-center justify-between px-5 py-4 border-b border-forest/8">
-            <h2 className="font-serif text-base text-forest">Top productos</h2>
+        <div style={{ background: CARD, border: `1px solid ${FL}` }}>
+          <div
+            className="flex items-center justify-between px-5 py-3.5"
+            style={{ borderBottom: `1px solid ${FL}` }}
+          >
+            <p style={{ fontFamily: SERIF, fontSize: 16, color: F, letterSpacing: "0.04em" }}>
+              Más vendidos
+            </p>
             <Link
               href="/admin/productos"
-              className="text-xs font-sans uppercase tracking-brand text-forest/40 hover:text-forest transition-colors"
+              style={{ fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, fontFamily: SANS, textDecoration: "none" }}
             >
               Gestionar →
             </Link>
           </div>
-          <div className="divide-y divide-forest/5">
+
+          <div>
             {stats.topProducts.length === 0 ? (
-              <p className="px-5 py-8 text-sm font-sans text-forest/40 text-center">
+              <p style={{ padding: "32px 20px", textAlign: "center", fontSize: 13, color: FM, fontFamily: SANS }}>
                 No hay productos aún
               </p>
             ) : (
               stats.topProducts.map((product, i) => (
-                <div key={product.id} className="flex items-center gap-3 px-5 py-3.5">
-                  <span className="text-xs font-sans text-forest/30 w-4">{i + 1}</span>
-                  <div className="relative w-10 h-10 rounded-sm overflow-hidden bg-cream-darker shrink-0">
+                <div
+                  key={product.id}
+                  className="flex items-center gap-3"
+                  style={{ padding: "11px 20px", borderBottom: `1px solid ${FL}` }}
+                >
+                  <span style={{ fontSize: 11, fontFamily: SANS, color: FM, width: 16, flexShrink: 0, textAlign: "center" }}>
+                    {i + 1}
+                  </span>
+                  <div
+                    className="relative overflow-hidden shrink-0"
+                    style={{ width: 36, height: 36, border: `1px solid ${FL}` }}
+                  >
                     {product.images[0] && (
-                      <Image
-                        src={product.images[0]}
-                        alt={product.name}
-                        fill
-                        className="object-cover"
-                      />
+                      <Image src={product.images[0]} alt={product.name} fill className="object-cover" />
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-sans text-forest line-clamp-1">{product.name}</p>
-                    <p className="text-xs font-sans text-forest/40 mt-0.5">
-                      {product.salesCount} vendidos · {formatCOP(Number(product.basePrice))}
+                    <p style={{ fontSize: 12, fontFamily: SANS, color: F, fontWeight: 500 }} className="truncate">
+                      {product.name}
                     </p>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <p style={{ fontSize: 10, fontFamily: SANS, color: FM }}>
+                        {product.salesCount} vendidos
+                      </p>
+                      <span style={{ color: FL }}>·</span>
+                      <p style={{ fontSize: 11, fontFamily: SERIF, color: GOLD, letterSpacing: "0.02em" }}>
+                        {formatCOP(Number(product.basePrice))}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))
@@ -179,20 +286,39 @@ export function AdminDashboardClient({ stats, role }: { stats: Stats; role: Role
       {/* Quick actions */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { href: "/admin/pedidos?estado=RECEIVED", label: "Nuevos pedidos", icon: "📬" },
-          { href: "/admin/pedidos?estado=PROCESSING", label: "En proceso", icon: "🌷" },
-          { href: "/admin/productos/nuevo", label: "Nuevo producto", icon: "+" },
-          { href: "/admin/pos", label: "Venta en mostrador", icon: "💳" },
-        ].map((action) => (
+          { href: "/admin/pedidos?estado=RECEIVED",   label: "Nuevos pedidos",      sub: "Por aceptar",       color: "#2D8A4E" },
+          { href: "/admin/pedidos?estado=MAKING",      label: "En elaboración",      sub: "En proceso",        color: GOLD      },
+          { href: "/admin/productos/nuevo",            label: "Nuevo producto",      sub: "Agregar al catálogo", color: F        },
+          { href: "/admin/pos",                        label: "Venta en mostrador",  sub: "Punto de venta",    color: "#7A3D4C" },
+        ].map((a) => (
           <Link
-            key={action.href}
-            href={action.href}
-            className="bg-white border border-forest/8 rounded-sm p-4 flex flex-col items-center gap-2 hover:border-forest/25 hover:bg-cream/30 transition-colors text-center"
+            key={a.href}
+            href={a.href}
+            className="flex flex-col gap-2 transition-colors group"
+            style={{
+              background: CARD,
+              border: `1px solid ${FL}`,
+              padding: "16px 18px",
+              textDecoration: "none",
+            }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = a.color)}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = FL)}
           >
-            <span className="text-2xl">{action.icon}</span>
-            <span className="text-xs font-sans uppercase tracking-brand text-forest/60">
-              {action.label}
-            </span>
+            <span
+              style={{
+                display: "inline-block",
+                width: 4,
+                height: 4,
+                borderRadius: "50%",
+                background: a.color,
+              }}
+            />
+            <p style={{ fontSize: 12, fontFamily: SANS, color: F, fontWeight: 500, lineHeight: 1.3 }}>
+              {a.label}
+            </p>
+            <p style={{ fontSize: 10, fontFamily: SANS, color: FM, letterSpacing: "0.04em" }}>
+              {a.sub}
+            </p>
           </Link>
         ))}
       </div>
