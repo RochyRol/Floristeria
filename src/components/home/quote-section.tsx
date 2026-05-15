@@ -3,7 +3,7 @@ export function QuoteSection() {
     <section
       className="relative overflow-hidden"
       style={{
-        padding: "160px 0",
+        padding: "100px 0",
         background: "#120e0c",
         borderTop: "1px solid rgba(247,241,234,0.14)",
         borderBottom: "1px solid rgba(247,241,234,0.14)",

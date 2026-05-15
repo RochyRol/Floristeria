@@ -49,7 +49,7 @@ export function TestimonialsSection() {
       style={{
         background: "#0E0E0D",
         borderTop: `1px solid ${B}`,
-        padding: "96px 0 112px",
+        padding: "64px 0 80px",
         overflow: "hidden",
       }}
     >

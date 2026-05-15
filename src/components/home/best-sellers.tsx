@@ -51,7 +51,7 @@ export function BestSellers({ products }: BestSellersProps) {
   const items = products.length > 0 ? products : fallbackProducts;
 
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden" style={{ background: "#120e0c" }}>
+    <section className="py-16 lg:py-20 relative overflow-hidden" style={{ background: "#120e0c" }}>
       {/* Subtle decorative line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16" style={{ background: "linear-gradient(to bottom, transparent, rgba(201,162,122,0.4), transparent)" }} />
 

@@ -66,7 +66,7 @@ export default function NosotrosPage() {
       </div>
 
       {/* ── Main content ── */}
-      <div className="max-w-5xl mx-auto px-6 lg:px-8 py-20">
+      <div className="max-w-5xl mx-auto px-6 lg:px-8 py-14">
 
         {/* Story block */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
@@ -162,7 +162,7 @@ export default function NosotrosPage() {
 
         {/* CTA section */}
         <div
-          className="text-center py-16 px-8"
+          className="text-center py-12 px-8"
           style={{ border: `1px solid ${B}`, position: "relative", overflow: "hidden" }}
         >
           <div

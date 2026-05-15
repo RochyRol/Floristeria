@@ -125,7 +125,7 @@ export function OccasionsGrid({ occasions }: OccasionsGridProps) {
   const items = occasions.length > 0 ? occasions : fallbackOccasions;
 
   return (
-    <section className="py-24 lg:py-36 relative overflow-hidden" style={{ background: "#0a0807" }}>
+    <section className="py-16 lg:py-24 relative overflow-hidden" style={{ background: "#0a0807" }}>
       {/* Subtle decorative top accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20" style={{ background: "linear-gradient(to bottom, transparent, rgba(201,162,122,0.4), transparent)" }} />
 

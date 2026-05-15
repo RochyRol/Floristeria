@@ -46,7 +46,7 @@ export function ProcessSection() {
             alignItems: "flex-end",
             justifyContent: "space-between",
             gap: 48,
-            padding: "100px 0 60px",
+            padding: "72px 0 48px",
           }}
         >
           <div>

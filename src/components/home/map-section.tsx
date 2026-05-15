@@ -13,7 +13,7 @@ export function MapSection() {
     <section style={{ background: "#120e0c", borderTop: "1px solid rgba(247,241,234,0.06)" }}>
       <div
         className="max-w-8xl mx-auto"
-        style={{ padding: "clamp(64px, 8vw, 120px) clamp(24px, 3vw, 48px)" }}
+        style={{ padding: "clamp(48px, 6vw, 80px) clamp(24px, 3vw, 48px)" }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
