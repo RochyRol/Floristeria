@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { toast } from "sonner";
@@ -159,6 +159,7 @@ export function OrderDetailClient({
           <p className="text-sm font-sans text-forest/50 mt-1">
             {formatDateTime(order.createdAt)}
           </p>
+          <TrackingLinkRow orderNumber={order.orderNumber} />
         </div>
         <div className="flex flex-col items-end gap-2">
           <div className="flex items-center gap-2">
@@ -368,6 +369,64 @@ export function OrderDetailClient({
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+function TrackingLinkRow({ orderNumber }: { orderNumber: string }) {
+  const [origin, setOrigin] = useState("");
+
+  useEffect(() => {
+    const { protocol, host } = window.location;
+    setOrigin(`${protocol}//${host}`);
+  }, []);
+
+  const url = origin ? `${origin}/seguimiento/${orderNumber}` : `/seguimiento/${orderNumber}`;
+
+  async function copyLink() {
+    try {
+      await navigator.clipboard.writeText(url);
+      toast.success("Link copiado al portapapeles");
+    } catch {
+      toast.error("No se pudo copiar el link");
+    }
+  }
+
+  function openLink() {
+    window.open(url, "_blank", "noopener");
+  }
+
+  return (
+    <div className="mt-3 flex items-center gap-2 flex-wrap">
+      <span className="text-[10px] uppercase tracking-brand font-sans font-medium text-forest/40">
+        Link de seguimiento
+      </span>
+      <code className="text-xs font-sans text-forest bg-cream-dark/50 px-2 py-1 rounded-sm border border-forest/8 truncate max-w-[320px]">
+        {url}
+      </code>
+      <button
+        onClick={copyLink}
+        className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] uppercase tracking-[0.12em] font-sans font-medium text-forest border border-forest/20 rounded-sm hover:border-forest/50 transition-colors"
+        title="Copiar link"
+      >
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+        Copiar
+      </button>
+      <button
+        onClick={openLink}
+        className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] uppercase tracking-[0.12em] font-sans font-medium bg-forest text-cream rounded-sm hover:bg-forest-light transition-colors"
+        title="Abrir en nueva pestaña"
+      >
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+        Abrir
+      </button>
     </div>
   );
 }
