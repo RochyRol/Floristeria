@@ -48,3 +48,6 @@ next-env.d.ts
 
 /src/generated/prisma
 docs/plans/screenshots*/
+*.png
+.playwright-mcp/
+.superpowers/
