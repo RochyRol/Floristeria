@@ -1517,7 +1517,7 @@ git commit -m "feat(reports): add download UI integrated into reports page"
 - Modify: `prisma/schema.prisma`
 - Create: `prisma/migrations/<timestamp>_optional_product_in_order_item/migration.sql` (generado por Prisma)
 
-- [ ] **Step 1: Modificar schema.prisma**
+- [x] **Step 1: Modificar schema.prisma**
 
 Buscar el bloque `model OrderItem` (línea con `model OrderItem {`). Reemplazar:
 
@@ -1561,17 +1561,17 @@ model OrderItem {
 
 (Solo dos cambios: `productId String?` y `product Product?`)
 
-- [ ] **Step 2: Crear y aplicar migración**
+- [x] **Step 2: Crear y aplicar migración**
 
 Run: `npm run db:migrate -- --name optional_product_in_order_item`
 Expected: Prisma genera la migración, la aplica a la BD de desarrollo, y regenera el cliente. La migración debe consistir en `ALTER TABLE "OrderItem" ALTER COLUMN "productId" DROP NOT NULL;`.
 
-- [ ] **Step 3: Verificar tipos generados**
+- [x] **Step 3: Verificar tipos generados**
 
 Run: `npx tsc --noEmit`
 Expected: PASS. Si hay errores referenciando `OrderItem.productId` esperando string, son los que arreglamos en la siguiente tarea.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add prisma/schema.prisma prisma/migrations/
