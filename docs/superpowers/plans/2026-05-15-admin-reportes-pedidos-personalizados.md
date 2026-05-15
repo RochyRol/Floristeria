@@ -814,7 +814,7 @@ git commit -m "feat(reports): add Excel generator for sales report"
 **Files:**
 - Create: `src/lib/reports/clients-excel.ts`
 
-- [ ] **Step 1: Implementar**
+- [x] **Step 1: Implementar**
 
 `src/lib/reports/clients-excel.ts`:
 
@@ -883,7 +883,7 @@ export async function buildClientsExcel(
 }
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/lib/reports/clients-excel.ts
