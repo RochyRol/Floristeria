@@ -82,11 +82,13 @@ function CardSlot({ occasion, delay, className = "", isHero = false, style }: Ca
           </span>
           <h3
             style={{
-              fontFamily: "var(--font-italiana), 'Italiana', serif",
-              fontSize: isHero ? "clamp(1.6rem, 3vw, 2.8rem)" : "clamp(1.2rem, 2vw, 1.8rem)",
+              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontWeight: 600,
+              fontSize: isHero ? "clamp(2rem, 3.5vw, 3.2rem)" : "clamp(1.5rem, 2.4vw, 2.2rem)",
               color: "#f7f1ea",
-              lineHeight: 1.1,
-              letterSpacing: "0.02em",
+              lineHeight: 1.05,
+              letterSpacing: "0.01em",
             }}
           >
             {occasion.name}
@@ -144,10 +146,10 @@ export function OccasionsGrid({ occasions }: OccasionsGridProps) {
             </span>
             <span className="w-8 h-px" style={{ background: "#c9a27a" }} />
           </div>
-          <h2 className="font-serif text-4xl lg:text-6xl leading-tight max-w-2xl" style={{ color: "#f7f1ea" }}>
-            ¿Cuál es la <span className="italic" style={{ color: "#c9a27a" }}>ocasión</span>?
+          <h2 className="font-serif text-4xl lg:text-6xl leading-tight max-w-2xl" style={{ color: "#f7f1ea", fontWeight: 500, letterSpacing: "0.005em" }}>
+            ¿Cuál es la <span className="italic" style={{ color: "#c9a27a", fontWeight: 600 }}>ocasión</span>?
           </h2>
-          <p className="mt-5 max-w-md text-base font-sans leading-relaxed" style={{ color: "#8a7f76" }}>
+          <p className="mt-5 max-w-md text-base font-sans leading-relaxed" style={{ color: "#bfb5ab", fontWeight: 450 }}>
             Cada momento merece su propio arreglo. Encuentra el ideal para celebrar.
           </p>
         </motion.div>

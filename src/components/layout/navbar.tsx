@@ -229,11 +229,11 @@ export function Navbar() {
             animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
             exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
-            className="fixed inset-0 z-40 lg:hidden overflow-y-auto flex flex-col"
+            className="fixed inset-0 z-[60] lg:hidden overflow-y-auto flex flex-col"
             style={{ background: "#0a0807", top: 0 }}
           >
             <div className="flex items-center justify-between px-6 py-5" style={{ borderBottom: "1px solid rgba(247,241,234,0.14)" }}>
-              <Link href="/" style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 20, letterSpacing: "0.28em", color: "#f7f1ea" }}>
+              <Link href="/" style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 20, letterSpacing: "0.16em", color: "#f7f1ea" }}>
                 DECO·IMPERIO
               </Link>
               <button onClick={() => setMenuOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#f7f1ea", fontSize: 24 }}>×</button>
@@ -253,7 +253,7 @@ export function Navbar() {
                     className="flex items-center justify-between py-5"
                     style={{ borderBottom: "1px solid rgba(247,241,234,0.1)" }}
                   >
-                    <span style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 32, color: isActive ? "#A87C3A" : "#f7f1ea" }}>
+                    <span style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 500, fontSize: 30, color: isActive ? "#A87C3A" : "#f7f1ea" }}>
                       {link.label}
                     </span>
                     <ArrowRightIcon />

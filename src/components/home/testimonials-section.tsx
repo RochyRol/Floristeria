@@ -70,10 +70,13 @@ export function TestimonialsSection() {
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-italiana, serif)",
-              fontSize: "clamp(2.2rem, 4vw, 3.5rem)",
+              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontWeight: 600,
+              fontSize: "clamp(2rem, 3.5vw, 3rem)",
               color: P,
-              letterSpacing: "0.04em",
+              letterSpacing: "0.005em",
+              lineHeight: 1.1,
             }}
           >
             Historias reales

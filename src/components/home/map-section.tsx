@@ -39,11 +39,13 @@ export function MapSection() {
               </p>
               <h2
                 style={{
-                  fontFamily: "var(--font-italiana), 'Italiana', serif",
-                  fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+                  fontStyle: "italic",
+                  fontWeight: 600,
+                  fontSize: "clamp(1.8rem, 3.2vw, 2.8rem)",
                   color: "#f7f1ea",
-                  lineHeight: 1.15,
-                  letterSpacing: "0.02em",
+                  lineHeight: 1.1,
+                  letterSpacing: "0.005em",
                 }}
               >
                 Visita nuestra floristería

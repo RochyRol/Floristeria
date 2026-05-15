@@ -132,7 +132,7 @@ export function HeroSection() {
           animate={{ opacity: 1, scaleX: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           className="flourish mb-6"
-          style={{ fontSize: 12, letterSpacing: "0.16em" }}
+          style={{ fontSize: 13, letterSpacing: "0.18em", color: "#e8d5b0", fontWeight: 600 }}
         >
           — Floristería de autor —
         </motion.div>
@@ -223,7 +223,7 @@ export function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-9 left-1/2 z-30 flex flex-col items-center gap-2.5"
+        className="absolute bottom-9 left-1/2 z-30 hidden md:flex flex-col items-center gap-2.5"
         style={{ transform: "translateX(-50%)" }}
       >
         <span

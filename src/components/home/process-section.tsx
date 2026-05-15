@@ -64,11 +64,12 @@ export function ProcessSection() {
             </span>
             <h2
               style={{
-                fontFamily: "var(--font-italiana), 'Italiana', serif",
-                fontWeight: 400,
-                fontSize: "clamp(40px, 5.4vw, 84px)",
-                lineHeight: 1,
-                letterSpacing: "0.02em",
+                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+                fontStyle: "italic",
+                fontWeight: 600,
+                fontSize: "clamp(36px, 4.8vw, 72px)",
+                lineHeight: 1.05,
+                letterSpacing: "0.005em",
                 color: "#f7f1ea",
               }}
             >
@@ -130,10 +131,11 @@ export function ProcessSection() {
             </span>
             <h4
               style={{
-                fontFamily: "var(--font-italiana), 'Italiana', serif",
-                fontWeight: 400,
-                fontSize: 28,
-                lineHeight: 1.05,
+                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+                fontStyle: "italic",
+                fontWeight: 600,
+                fontSize: 24,
+                lineHeight: 1.15,
                 color: "#f7f1ea",
               }}
             >

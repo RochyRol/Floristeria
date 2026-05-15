@@ -69,10 +69,10 @@ export function QuoteSection() {
           style={{
             fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
             fontStyle: "italic",
-            fontSize: "clamp(28px, 3.8vw, 46px)",
-            lineHeight: 1.25,
+            fontSize: "clamp(26px, 3.4vw, 42px)",
+            lineHeight: 1.3,
             color: "#f7f1ea",
-            fontWeight: 300,
+            fontWeight: 500,
           }}
         >
           Una flor no piensa en competir con la flor de al lado.

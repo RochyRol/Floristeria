@@ -70,8 +70,8 @@ export function BestSellers({ products }: BestSellersProps) {
                 Los más queridos
               </span>
             </div>
-            <h2 className="font-serif text-4xl lg:text-6xl leading-tight" style={{ color: "#f7f1ea" }}>
-              Favoritos de la <span className="italic" style={{ color: "#c9a27a" }}>temporada</span>
+            <h2 className="font-serif text-4xl lg:text-6xl leading-tight" style={{ color: "#f7f1ea", fontWeight: 500, letterSpacing: "0.005em" }}>
+              Favoritos de la <span className="italic" style={{ color: "#c9a27a", fontWeight: 600 }}>temporada</span>
             </h2>
           </div>
           <Link
