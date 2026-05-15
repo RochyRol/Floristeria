@@ -27,6 +27,11 @@
   --color-terracotta: #C97B63;
   --color-gold: #B8935A;
   --color-gold-light: #D4AF78;
+  --color-gold-pale: #E8D5B0;
+  --color-cacao: #3D2817;
+  --color-cacao-light: #6B4532;
+  --color-burgundy: #7A2E2E;
+  --color-burgundy-light: #9E4040;
   --color-ink: #1A1614;
 
   /* ---------- Fonts ---------- */
@@ -155,6 +160,21 @@
   --font-italiana: "Italiana", serif;
   --font-cormorant: "Cormorant Garamond", Georgia, serif;
   --font-manrope: "Manrope", system-ui, sans-serif;
+}
+
+@layer components {
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.125rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    font-family: var(--font-sans);
+    white-space: nowrap;
+  }
 }
 
 @layer base {

@@ -22,9 +22,16 @@ interface CartItem extends PosProduct {
 
 type Mode = "catalog" | "custom";
 
+function getTrackingPath(orderNumber: string): string {
+  return `/seguimiento/${orderNumber}`;
+}
+
 function getTrackingUrl(orderNumber: string): string {
-  if (typeof window === "undefined") return `/seguimiento/${orderNumber}`;
-  return `${window.location.origin}/seguimiento/${orderNumber}`;
+  if (typeof window === "undefined") return getTrackingPath(orderNumber);
+  // Forzar el protocolo actual (http en desarrollo) para evitar que el navegador
+  // intente conectar por https a localhost al pegar el URL.
+  const { protocol, host } = window.location;
+  return `${protocol}//${host}${getTrackingPath(orderNumber)}`;
 }
 
 function showOrderSuccessToast(
@@ -34,9 +41,17 @@ function showOrderSuccessToast(
   const url = getTrackingUrl(orderNumber);
   toast.success(`Pedido registrado: ${orderNumber}`, {
     description: opts?.description
-      ? `${opts.description} · Link: ${url}`
-      : `Link de seguimiento: ${url}`,
+      ? `${opts.description} · ${url}`
+      : url,
     action: {
+      label: "Abrir",
+      onClick: () => {
+        // Abrir directamente con el protocolo correcto en una nueva pestaña
+        // evita que el navegador autocomplete https al pegar localhost.
+        window.open(url, "_blank", "noopener");
+      },
+    },
+    cancel: {
       label: "Copiar link",
       onClick: async () => {
         try {
@@ -47,7 +62,7 @@ function showOrderSuccessToast(
         }
       },
     },
-    duration: 12000,
+    duration: 15000,
   });
 }
 
