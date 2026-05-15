@@ -653,7 +653,7 @@ git commit -m "feat(reports): add clients report data aggregator"
 **Files:**
 - Create: `src/lib/reports/sales-excel.ts`
 
-- [ ] **Step 1: Implementar el generador**
+- [x] **Step 1: Implementar el generador**
 
 `src/lib/reports/sales-excel.ts`:
 
@@ -778,7 +778,7 @@ export async function buildSalesExcel(
 }
 ```
 
-- [ ] **Step 2: Smoke test manual**
+- [x] **Step 2: Smoke test manual**
 
 Run:
 ```bash
@@ -800,7 +800,7 @@ import('./src/lib/reports/sales-excel.ts').then(async (m) => {
 ```
 Expected: `OK <number>`, archivo `/tmp/test-sales.xlsx` válido.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/lib/reports/sales-excel.ts
