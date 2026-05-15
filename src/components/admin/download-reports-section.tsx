@@ -103,7 +103,7 @@ export function DownloadReportsSection() {
               <button
                 onClick={() => handleDownload(r.id, "xlsx")}
                 disabled={loading !== null}
-                className="inline-flex items-center gap-2 px-3.5 py-2 bg-forest text-cream text-[11px] uppercase tracking-[0.14em] font-sans font-medium hover:bg-forest-light disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-sm"
+                className="inline-flex items-center gap-2 px-3.5 py-2 bg-forest text-cream text-[13px] uppercase tracking-[0.14em] font-sans font-semibold hover:bg-forest-light disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-sm"
               >
                 <DownloadIcon spinning={loading === `${r.id}-xlsx`} />
                 Excel
@@ -111,7 +111,7 @@ export function DownloadReportsSection() {
               <button
                 onClick={() => handleDownload(r.id, "pdf")}
                 disabled={loading !== null}
-                className="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-forest border border-forest/20 text-[11px] uppercase tracking-[0.14em] font-sans font-medium hover:border-forest/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-sm"
+                className="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-forest border border-forest/20 text-[13px] uppercase tracking-[0.14em] font-sans font-semibold hover:border-forest/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-sm"
               >
                 <DownloadIcon spinning={loading === `${r.id}-pdf`} />
                 PDF
