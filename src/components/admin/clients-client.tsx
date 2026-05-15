@@ -61,7 +61,7 @@ export function ClientsClient({ clients, total, page, perPage, search }: Props) 
           />
           <button
             onClick={() => applySearch(query)}
-            className="px-4 py-2 text-xs font-sans uppercase tracking-brand bg-forest text-cream rounded-sm hover:bg-forest/90 transition-colors"
+            className="px-4 py-2 text-xs font-sans font-semibold uppercase tracking-brand bg-forest text-cream rounded-sm hover:bg-forest/90 transition-colors"
           >
             Buscar
           </button>
@@ -77,7 +77,8 @@ export function ClientsClient({ clients, total, page, perPage, search }: Props) 
                   (h) => (
                     <th
                       key={h}
-                      className="px-4 py-3 text-left text-[10px] uppercase tracking-brand font-sans font-medium text-forest/40"
+                      className="px-4 py-3 text-left text-[12px] uppercase font-sans font-bold text-forest/40"
+                    style={{ letterSpacing: "0.08em" }}
                     >
                       {h}
                     </th>
@@ -108,7 +109,7 @@ export function ClientsClient({ clients, total, page, perPage, search }: Props) 
                       {c.phone ?? "—"}
                     </td>
                     <td className="px-4 py-3">
-                      <span className="badge bg-forest/8 text-forest text-[10px]">
+                      <span className="badge bg-forest/8 text-forest text-[11px]">
                         {c._count.orders} pedido{c._count.orders !== 1 ? "s" : ""}
                       </span>
                     </td>
@@ -117,7 +118,7 @@ export function ClientsClient({ clients, total, page, perPage, search }: Props) 
                     </td>
                     <td className="px-4 py-3">
                       <span
-                        className={`badge text-[9px] ${
+                        className={`badge text-[11px] ${
                           c.active
                             ? "bg-forest/10 text-forest"
                             : "bg-burgundy/10 text-burgundy"

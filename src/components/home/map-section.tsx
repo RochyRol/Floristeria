@@ -13,15 +13,14 @@ export function MapSection() {
     <section style={{ background: "#120e0c", borderTop: "1px solid rgba(247,241,234,0.06)" }}>
       <div
         className="max-w-8xl mx-auto"
-        style={{ padding: "clamp(64px, 8vw, 120px) clamp(24px, 3vw, 48px)" }}
+        style={{ padding: "clamp(48px, 6vw, 80px) clamp(24px, 3vw, 48px)" }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* Info column */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-col gap-8"
           >
@@ -30,8 +29,8 @@ export function MapSection() {
               <p
                 className="uppercase mb-4"
                 style={{
-                  fontSize: 11,
-                  letterSpacing: "0.22em",
+                  fontSize: 12,
+                  letterSpacing: "0.14em",
                   color: "#c9a27a",
                   fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                 }}
@@ -40,11 +39,13 @@ export function MapSection() {
               </p>
               <h2
                 style={{
-                  fontFamily: "var(--font-italiana), 'Italiana', serif",
-                  fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+                  fontStyle: "italic",
+                  fontWeight: 600,
+                  fontSize: "clamp(1.8rem, 3.2vw, 2.8rem)",
                   color: "#f7f1ea",
-                  lineHeight: 1.15,
-                  letterSpacing: "0.02em",
+                  lineHeight: 1.1,
+                  letterSpacing: "0.005em",
                 }}
               >
                 Visita nuestra floristería
@@ -77,8 +78,8 @@ export function MapSection() {
                     color: "#0a0807",
                     border: "none",
                     padding: "12px 24px",
-                    fontSize: 11,
-                    letterSpacing: "0.2em",
+                    fontSize: 12,
+                    letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                     fontWeight: 500,
@@ -98,8 +99,8 @@ export function MapSection() {
                     color: "#bfb5ab",
                     border: "1px solid rgba(247,241,234,0.2)",
                     padding: "12px 24px",
-                    fontSize: 11,
-                    letterSpacing: "0.2em",
+                    fontSize: 12,
+                    letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                     fontWeight: 500,
@@ -126,8 +127,7 @@ export function MapSection() {
           {/* Map column */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             className="relative"
           >
@@ -181,9 +181,9 @@ function InfoRow({
         <p
           className="uppercase mb-0.5"
           style={{
-            fontSize: 9,
-            letterSpacing: "0.2em",
-            color: "#8a7f76",
+            fontSize: 12,
+            letterSpacing: "0.14em",
+            color: "#a89e94",
             fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
           }}
         >
@@ -191,7 +191,7 @@ function InfoRow({
         </p>
         <div
           style={{
-            fontSize: 13,
+            fontSize: 14,
             color: "#bfb5ab",
             fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
           }}

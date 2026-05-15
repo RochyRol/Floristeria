@@ -31,6 +31,76 @@ export async function POST(req: NextRequest) {
       total,
     } = body;
 
+    if (!Array.isArray(items) || items.length === 0) {
+      return NextResponse.json({ error: "El pedido debe tener al menos un item" }, { status: 400 });
+    }
+
+    // Server-side validation: never trust client-supplied prices.
+    // - For catalog items (with productId): re-fetch unitPrice from DB.
+    // - For custom items (no productId): require client unitPrice > 0 and within sane bounds.
+    // Always recompute subtotal/total server-side to prevent tampering.
+    const MAX_UNIT_PRICE = 50_000_000; // 50M COP — sane upper bound
+    const MAX_QUANTITY = 999;
+    const validatedItems: Array<{
+      productId: string | null;
+      productName: string;
+      productImage?: string;
+      size?: string;
+      quantity: number;
+      unitPrice: number;
+      subtotal: number;
+      dedication?: string;
+    }> = [];
+
+    for (const item of items) {
+      if (!item.productName || typeof item.productName !== "string" || item.productName.trim().length < 3) {
+        return NextResponse.json(
+          { error: "Cada item requiere una descripción (mínimo 3 caracteres)" },
+          { status: 400 }
+        );
+      }
+      const qty = Number(item.quantity);
+      if (!Number.isInteger(qty) || qty < 1 || qty > MAX_QUANTITY) {
+        return NextResponse.json({ error: "Cantidad inválida" }, { status: 400 });
+      }
+
+      let unitPrice: number;
+      if (item.productId) {
+        // Re-fetch authoritative price from DB
+        const product = await prisma.product.findUnique({
+          where: { id: item.productId },
+          select: { basePrice: true, name: true },
+        });
+        if (!product) {
+          return NextResponse.json({ error: `Producto no encontrado` }, { status: 400 });
+        }
+        unitPrice = Number(product.basePrice);
+      } else {
+        // Custom POS item — accept client price but validate bounds
+        const clientPrice = Number(item.unitPrice);
+        if (!Number.isFinite(clientPrice) || clientPrice <= 0 || clientPrice > MAX_UNIT_PRICE) {
+          return NextResponse.json({ error: "Precio inválido en item personalizado" }, { status: 400 });
+        }
+        unitPrice = clientPrice;
+      }
+
+      validatedItems.push({
+        productId: item.productId || null,
+        productName: item.productName,
+        productImage: item.productImage,
+        size: item.size,
+        quantity: qty,
+        unitPrice,
+        subtotal: unitPrice * qty,
+        dedication: item.dedication,
+      });
+    }
+
+    // Recompute totals from validated items
+    const computedSubtotal = validatedItems.reduce((s, i) => s + i.subtotal, 0);
+    const safeShippingCost = Math.max(0, Number(shippingCost) || 0);
+    const computedTotal = computedSubtotal + safeShippingCost;
+
     const orderNumber = generateOrderNumber();
 
     const order = await prisma.order.create({
@@ -47,30 +117,12 @@ export async function POST(req: NextRequest) {
         cardMessage,
         deliveryNotes,
         paymentMethod,
-        subtotal,
-        shippingCost,
-        total,
+        subtotal: computedSubtotal,
+        shippingCost: safeShippingCost,
+        total: computedTotal,
         status: "RECEIVED",
         items: {
-          create: items.map((item: {
-            productId: string;
-            productName: string;
-            productImage?: string;
-            size?: string;
-            quantity: number;
-            unitPrice: number;
-            subtotal: number;
-            dedication?: string;
-          }) => ({
-            productId: item.productId,
-            productName: item.productName,
-            productImage: item.productImage,
-            size: item.size,
-            quantity: item.quantity,
-            unitPrice: item.unitPrice,
-            subtotal: item.subtotal,
-            dedication: item.dedication,
-          })),
+          create: validatedItems,
         },
         statusHistory: {
           create: {
@@ -82,8 +134,9 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // Update product sales count
-    for (const item of items) {
+    // Update product sales count (solo para items con productId del catálogo)
+    for (const item of validatedItems) {
+      if (!item.productId) continue;
       await prisma.product.update({
         where: { id: item.productId },
         data: { salesCount: { increment: item.quantity } },
@@ -108,13 +161,13 @@ export async function POST(req: NextRequest) {
         neighborhood,
         city,
         deliveryDate: deliveryDate || "",
-        subtotal,
-        shippingCost,
+        subtotal: computedSubtotal,
+        shippingCost: safeShippingCost,
         discount: 0,
-        total,
+        total: computedTotal,
         couponCode: "",
         cardMessage: cardMessage || "",
-        items: items.map((i: { productName: string; size?: string; quantity: number; unitPrice: number; subtotal: number; dedication?: string }) => ({
+        items: validatedItems.map((i) => ({
           productName: i.productName,
           size: i.size,
           quantity: i.quantity,

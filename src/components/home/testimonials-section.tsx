@@ -49,7 +49,7 @@ export function TestimonialsSection() {
       style={{
         background: "#0E0E0D",
         borderTop: `1px solid ${B}`,
-        padding: "96px 0 112px",
+        padding: "64px 0 80px",
         overflow: "hidden",
       }}
     >
@@ -57,24 +57,26 @@ export function TestimonialsSection() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           className="flex flex-col items-center text-center mb-16"
         >
           <div className="flex items-center gap-4 mb-4">
             <span className="w-10 h-px" style={{ background: `linear-gradient(to right, transparent, ${GOLD})` }} />
-            <span style={{ fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)" }}>
+            <span style={{ fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)" }}>
               Lo que dicen nuestros clientes
             </span>
             <span className="w-10 h-px" style={{ background: `linear-gradient(to left, transparent, ${GOLD})` }} />
           </div>
           <h2
             style={{
-              fontFamily: "var(--font-italiana, serif)",
-              fontSize: "clamp(2.2rem, 4vw, 3.5rem)",
+              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontWeight: 600,
+              fontSize: "clamp(2rem, 3.5vw, 3rem)",
               color: P,
-              letterSpacing: "0.04em",
+              letterSpacing: "0.005em",
+              lineHeight: 1.1,
             }}
           >
             Historias reales
@@ -87,8 +89,7 @@ export function TestimonialsSection() {
             <motion.div
               key={t.id}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
               style={{ background: "#0E0E0D", padding: "36px 32px" }}
             >
@@ -122,11 +123,11 @@ export function TestimonialsSection() {
                 </div>
                 <div>
                   <p style={{ fontSize: 13, fontFamily: "var(--font-manrope, sans-serif)", color: P, fontWeight: 500 }}>{t.name}</p>
-                  <p style={{ fontSize: 10, fontFamily: "var(--font-manrope, sans-serif)", color: "rgba(237,232,223,0.3)" }}>{t.location}</p>
+                  <p style={{ fontSize: 12, fontFamily: "var(--font-manrope, sans-serif)", color: "rgba(237,232,223,0.55)" }}>{t.location}</p>
                 </div>
                 <span
                   className="ml-auto"
-                  style={{ fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)" }}
+                  style={{ fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)" }}
                 >
                   {t.product}
                 </span>

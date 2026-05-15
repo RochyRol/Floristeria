@@ -51,7 +51,7 @@ export function BestSellers({ products }: BestSellersProps) {
   const items = products.length > 0 ? products : fallbackProducts;
 
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden" style={{ background: "#120e0c" }}>
+    <section className="py-16 lg:py-20 relative overflow-hidden" style={{ background: "#120e0c" }}>
       {/* Subtle decorative line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16" style={{ background: "linear-gradient(to bottom, transparent, rgba(201,162,122,0.4), transparent)" }} />
 
@@ -59,8 +59,7 @@ export function BestSellers({ products }: BestSellersProps) {
         {/* Editorial header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="flex items-end justify-between mb-14 lg:mb-20"
         >
@@ -71,13 +70,13 @@ export function BestSellers({ products }: BestSellersProps) {
                 Los más queridos
               </span>
             </div>
-            <h2 className="font-serif text-4xl lg:text-6xl leading-tight" style={{ color: "#f7f1ea" }}>
-              Favoritos de la <span className="italic" style={{ color: "#c9a27a" }}>temporada</span>
+            <h2 className="font-serif text-4xl lg:text-6xl leading-tight" style={{ color: "#f7f1ea", fontWeight: 500, letterSpacing: "0.005em" }}>
+              Favoritos de la <span className="italic" style={{ color: "#c9a27a", fontWeight: 600 }}>temporada</span>
             </h2>
           </div>
           <Link
             href="/tienda"
-            className="hidden sm:inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-sans font-medium transition-colors group pb-2"
+            className="hidden sm:inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] font-sans font-medium transition-colors group pb-2"
             style={{ color: "#bfb5ab" }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#f7f1ea")}
             onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#bfb5ab")}
@@ -108,7 +107,7 @@ export function BestSellers({ products }: BestSellersProps) {
         <div className="sm:hidden flex justify-center mt-10">
           <Link
             href="/tienda"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-sans font-medium transition-colors pb-1"
+            className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] font-sans font-medium transition-colors pb-1"
             style={{ color: "#bfb5ab", borderBottom: "1px solid rgba(247,241,234,0.2)" }}
           >
             Ver toda la colección

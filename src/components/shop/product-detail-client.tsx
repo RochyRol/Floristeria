@@ -99,7 +99,7 @@ export function ProductDetailClient({ product, relatedProducts }: ProductDetailC
     <div className="pt-20 lg:pt-24 min-h-screen bg-cream">
       {/* Breadcrumb */}
       <div className="max-w-8xl mx-auto px-6 lg:px-12 py-5 border-b border-forest/8">
-        <nav className="flex items-center gap-2 text-xs font-sans text-forest/40">
+        <nav className="flex items-center gap-2 text-xs font-sans text-forest/55">
           <Link href="/" className="hover:text-forest transition-colors">Inicio</Link>
           <span>/</span>
           <Link href="/tienda" className="hover:text-forest transition-colors">Tienda</Link>
@@ -176,7 +176,7 @@ export function ProductDetailClient({ product, relatedProducts }: ProductDetailC
               )}
               <h1 className="font-serif text-display-sm text-forest">{product.name}</h1>
               {product.tagline && (
-                <p className="mt-2 text-base font-sans text-forest/60 italic">{product.tagline}</p>
+                <p className="mt-2 text-base font-sans text-forest/70 italic">{product.tagline}</p>
               )}
             </div>
 
@@ -192,7 +192,7 @@ export function ProductDetailClient({ product, relatedProducts }: ProductDetailC
 
             {/* Size selector */}
             <div>
-              <p className="text-[10px] uppercase tracking-brand font-sans font-medium text-forest/50 mb-3">
+              <p className="text-[11px] uppercase tracking-brand font-sans font-medium text-forest/65 mb-3">
                 Tamaño del arreglo
               </p>
               <div className="flex gap-3">
@@ -216,14 +216,14 @@ export function ProductDetailClient({ product, relatedProducts }: ProductDetailC
                 ))}
               </div>
               {selectedSize.description && (
-                <p className="mt-2 text-xs font-sans text-forest/45">{selectedSize.description}</p>
+                <p className="mt-2 text-xs font-sans text-forest/60">{selectedSize.description}</p>
               )}
             </div>
 
             {/* Quantity */}
             <div className="flex items-center gap-6">
               <div>
-                <p className="text-[10px] uppercase tracking-brand font-sans font-medium text-forest/50 mb-2">
+                <p className="text-[11px] uppercase tracking-brand font-sans font-medium text-forest/65 mb-2">
                   Cantidad
                 </p>
                 <div className="inline-flex items-center border border-forest/20 rounded-sm">
@@ -307,7 +307,7 @@ export function ProductDetailClient({ product, relatedProducts }: ProductDetailC
               ].map((item) => (
                 <div key={item.text} className="flex items-start gap-3">
                   <span className="text-base leading-snug">{item.icon}</span>
-                  <p className="text-xs font-sans text-forest/55 leading-snug">{item.text}</p>
+                  <p className="text-xs font-sans text-forest/65 leading-snug">{item.text}</p>
                 </div>
               ))}
             </div>
@@ -329,7 +329,7 @@ export function ProductDetailClient({ product, relatedProducts }: ProductDetailC
               <dl className="flex flex-col gap-3">
                 {Object.entries(specs).map(([key, value]) => (
                   <div key={key} className="flex gap-3">
-                    <dt className="text-xs font-sans uppercase tracking-brand text-forest/40 w-32 shrink-0 pt-0.5">
+                    <dt className="text-xs font-sans uppercase tracking-brand text-forest/55 w-32 shrink-0 pt-0.5">
                       {key}
                     </dt>
                     <dd className="text-sm font-sans text-forest/70">{value}</dd>

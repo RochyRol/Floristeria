@@ -46,7 +46,7 @@ export function ProcessSection() {
             alignItems: "flex-end",
             justifyContent: "space-between",
             gap: 48,
-            padding: "100px 0 60px",
+            padding: "72px 0 48px",
           }}
         >
           <div>
@@ -55,7 +55,7 @@ export function ProcessSection() {
                 fontFamily: "var(--font-italiana), 'Italiana', serif",
                 fontSize: 14,
                 color: "#c9a27a",
-                letterSpacing: "0.4em",
+                letterSpacing: "0.2em",
                 display: "block",
                 marginBottom: 18,
               }}
@@ -64,11 +64,12 @@ export function ProcessSection() {
             </span>
             <h2
               style={{
-                fontFamily: "var(--font-italiana), 'Italiana', serif",
-                fontWeight: 400,
-                fontSize: "clamp(40px, 5.4vw, 84px)",
-                lineHeight: 1,
-                letterSpacing: "0.02em",
+                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+                fontStyle: "italic",
+                fontWeight: 600,
+                fontSize: "clamp(36px, 4.8vw, 72px)",
+                lineHeight: 1.05,
+                letterSpacing: "0.005em",
                 color: "#f7f1ea",
               }}
             >
@@ -107,8 +108,7 @@ export function ProcessSection() {
           <motion.div
             key={step.n}
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1, duration: 0.6 }}
             style={{
               background: "#0a0807",
@@ -124,17 +124,18 @@ export function ProcessSection() {
                 fontFamily: "var(--font-italiana), 'Italiana', serif",
                 fontSize: 14,
                 color: "#c9a27a",
-                letterSpacing: "0.3em",
+                letterSpacing: "0.16em",
               }}
             >
               {step.n}
             </span>
             <h4
               style={{
-                fontFamily: "var(--font-italiana), 'Italiana', serif",
-                fontWeight: 400,
-                fontSize: 28,
-                lineHeight: 1.05,
+                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+                fontStyle: "italic",
+                fontWeight: 600,
+                fontSize: 24,
+                lineHeight: 1.15,
                 color: "#f7f1ea",
               }}
             >

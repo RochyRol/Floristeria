@@ -55,7 +55,7 @@ const fallbackProducts: ProductCardData[] = [
 const BG   = "#0A0807";
 const GOLD = "#A87C3A";
 const PARCHMENT = "#EDE8DF";
-const MUTED = "rgba(237,232,223,0.45)";
+const MUTED = "rgba(237,232,223,0.72)";
 const BORDER = "rgba(237,232,223,0.07)";
 const CARD_BG = "rgba(255,255,255,0.025)";
 
@@ -109,17 +109,19 @@ export function ShopPageClient({ products, total, page, perPage, occasions, acti
           >
             <div className="flex items-center gap-3 mb-5">
               <span className="w-8 h-px" style={{ background: GOLD }} />
-              <span style={{ fontSize: 10, letterSpacing: "0.26em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)" }}>
+              <span style={{ fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)", fontWeight: 600 }}>
                 {activeOccasion ? "Ocasión" : "Colección completa"}
               </span>
             </div>
             <h1
               style={{
-                fontFamily: "var(--font-italiana, serif)",
-                fontSize: "clamp(2.8rem, 6vw, 5rem)",
+                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+                fontStyle: "italic",
+                fontWeight: 600,
+                fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
                 color: PARCHMENT,
-                lineHeight: 1.05,
-                letterSpacing: "0.04em",
+                lineHeight: 1.1,
+                letterSpacing: "0.005em",
               }}
             >
               {activeOccasion ? (
@@ -128,12 +130,12 @@ export function ShopPageClient({ products, total, page, perPage, occasions, acti
                 <>Cada arreglo, <em style={{ color: GOLD, fontStyle: "italic" }}>una historia</em></>
               )}
             </h1>
-            <p style={{ marginTop: 16, maxWidth: 480, fontSize: 15, fontFamily: "var(--font-manrope, sans-serif)", color: MUTED, lineHeight: 1.7 }}>
+            <p style={{ marginTop: 16, maxWidth: 480, fontSize: 16, fontFamily: "var(--font-manrope, sans-serif)", color: MUTED, lineHeight: 1.65, fontWeight: 450 }}>
               {activeOccasion
                 ? "Cuidadosamente seleccionados para celebrar este momento especial."
                 : "Diseñados a mano en Bello, Antioquia. Cada flor es elegida pensando en el momento que va a vivir."}
             </p>
-            <p style={{ marginTop: 14, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(237,232,223,0.25)", fontFamily: "var(--font-manrope, sans-serif)" }}>
+            <p style={{ marginTop: 14, fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(237,232,223,0.55)", fontFamily: "var(--font-manrope, sans-serif)", fontWeight: 500 }}>
               {displayProducts.length} arreglos disponibles
             </p>
           </motion.div>
@@ -154,7 +156,7 @@ export function ShopPageClient({ products, total, page, perPage, occasions, acti
       {hasActiveFilters && (
         <div style={{ borderBottom: `1px solid ${BORDER}`, background: "rgba(255,255,255,0.02)" }}>
           <div className="max-w-8xl mx-auto px-6 lg:px-12 py-4 flex items-center gap-3 flex-wrap">
-            <span style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(237,232,223,0.3)", fontFamily: "var(--font-manrope)" }}>
+            <span style={{ fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(237,232,223,0.6)", fontFamily: "var(--font-manrope)", fontWeight: 600 }}>
               Filtrado por
             </span>
             {activeOccasion   && <DarkChip label={activeOccasion.name}    onRemove={() => updateFilter("ocasion", null)} />}
@@ -162,7 +164,7 @@ export function ShopPageClient({ products, total, page, perPage, occasions, acti
             {activeFilters.buscar && <DarkChip label={`"${activeFilters.buscar}"`} onRemove={() => updateFilter("buscar", null)} />}
             <button
               onClick={clearAllFilters}
-              style={{ marginLeft: "auto", fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-manrope)" }}
+              style={{ marginLeft: "auto", fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-manrope)", fontWeight: 600 }}
             >
               Limpiar todo →
             </button>
@@ -184,8 +186,8 @@ export function ShopPageClient({ products, total, page, perPage, occasions, acti
             {/* Sort bar */}
             <div className="flex items-center justify-between mb-10 pb-6" style={{ borderBottom: `1px solid ${BORDER}` }}>
               <div className="flex items-center gap-4">
-                <p style={{ fontSize: 13, fontFamily: "var(--font-manrope)", color: "rgba(237,232,223,0.35)" }}>
-                  <span style={{ fontFamily: "var(--font-italiana, serif)", color: PARCHMENT, fontSize: 18, marginRight: 4 }}>
+                <p style={{ fontSize: 14, fontFamily: "var(--font-manrope)", color: "rgba(237,232,223,0.7)", fontWeight: 500 }}>
+                  <span style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 600, color: PARCHMENT, fontSize: 22, marginRight: 6 }}>
                     {displayProducts.length}
                   </span>
                   arreglo{displayProducts.length === 1 ? "" : "s"}
@@ -193,22 +195,23 @@ export function ShopPageClient({ products, total, page, perPage, occasions, acti
                 <button
                   onClick={() => setFilterDrawerOpen(true)}
                   className="lg:hidden flex items-center gap-2"
-                  style={{ padding: "7px 14px", border: `1px solid rgba(237,232,223,0.15)`, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: MUTED, background: "none", cursor: "pointer", fontFamily: "var(--font-manrope)" }}
+                  style={{ padding: "9px 16px", border: `1px solid rgba(237,232,223,0.22)`, fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: PARCHMENT, background: "none", cursor: "pointer", fontFamily: "var(--font-manrope)", fontWeight: 600 }}
                 >
                   <FilterIcon /> Filtros
                 </button>
               </div>
               <div className="flex items-center gap-3">
-                <span style={{ fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(237,232,223,0.3)", fontFamily: "var(--font-manrope)" }} className="hidden sm:inline">
+                <span style={{ fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(237,232,223,0.6)", fontFamily: "var(--font-manrope)", fontWeight: 600 }} className="hidden sm:inline">
                   Ordenar
                 </span>
                 <select
                   value={activeFilters.orden || "mas-vendidos"}
                   onChange={(e) => updateFilter("orden", e.target.value)}
                   style={{
-                    fontSize: 11,
+                    fontSize: 13,
                     fontFamily: "var(--font-manrope)",
-                    color: MUTED,
+                    fontWeight: 500,
+                    color: PARCHMENT,
                     background: "rgba(255,255,255,0.04)",
                     border: `1px solid rgba(237,232,223,0.12)`,
                     padding: "8px 32px 8px 12px",
@@ -253,18 +256,18 @@ export function ShopPageClient({ products, total, page, perPage, occasions, acti
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setFilterDrawerOpen(false)}
-              className="fixed inset-0 z-50 lg:hidden"
+              className="fixed inset-0 z-[60] lg:hidden"
               style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)" }}
             />
             <motion.div
               initial={{ x: "-100%" }} animate={{ x: 0 }} exit={{ x: "-100%" }}
               transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed inset-y-0 left-0 w-80 max-w-[85vw] z-50 lg:hidden overflow-y-auto"
+              className="fixed inset-y-0 left-0 w-80 max-w-[85vw] z-[60] lg:hidden overflow-y-auto"
               style={{ background: "#0D0B0A", borderRight: `1px solid ${BORDER}` }}
             >
-              <div className="p-6">
+              <div className="px-6 pb-6" style={{ paddingTop: 96 }}>
                 <div className="flex items-center justify-between mb-8">
-                  <p style={{ fontFamily: "var(--font-italiana, serif)", fontSize: 22, color: PARCHMENT, letterSpacing: "0.06em" }}>
+                  <p style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 600, fontSize: 26, color: PARCHMENT, letterSpacing: "0.005em" }}>
                     Filtros
                   </p>
                   <button
@@ -326,17 +329,17 @@ function FilterSidebar({ occasions, activeFilters, onUpdate }: {
       </FilterGroup>
 
       <div style={{ paddingTop: 24, borderTop: `1px solid rgba(237,232,223,0.06)` }}>
-        <p style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope)", marginBottom: 8 }}>
+        <p style={{ fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope)", marginBottom: 8, fontWeight: 600 }}>
           ¿Necesitas ayuda?
         </p>
-        <p style={{ fontSize: 13, fontFamily: "var(--font-manrope)", color: MUTED, lineHeight: 1.6, marginBottom: 14 }}>
+        <p style={{ fontSize: 14, fontFamily: "var(--font-manrope)", color: MUTED, lineHeight: 1.6, marginBottom: 14, fontWeight: 450 }}>
           Te ayudamos a elegir el arreglo perfecto para tu ocasión.
         </p>
         <a
           href="https://wa.me/573215039845"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "#25D366", fontFamily: "var(--font-manrope)", display: "inline-flex", alignItems: "center", gap: 6 }}
+          style={{ fontSize: 13, letterSpacing: "0.14em", textTransform: "uppercase", color: "#25D366", fontFamily: "var(--font-manrope)", display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 600 }}
         >
           WhatsApp →
         </a>
@@ -350,7 +353,7 @@ function FilterGroup({ label, children }: { label: string; children: React.React
     <div>
       <div className="flex items-center gap-2 mb-4">
         <span className="w-4 h-px" style={{ background: GOLD }} />
-        <h3 style={{ fontSize: 9, letterSpacing: "0.26em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope)", fontWeight: 500 }}>
+        <h3 style={{ fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope)", fontWeight: 700 }}>
           {label}
         </h3>
       </div>
@@ -366,12 +369,13 @@ function FilterItem({ active, onClick, children }: { active: boolean; onClick: (
         onClick={onClick}
         className="w-full text-left flex items-center gap-3 group"
         style={{
-          padding: "7px 0",
+          padding: "9px 0",
           background: "none",
           border: "none",
           cursor: "pointer",
-          fontSize: 12,
+          fontSize: 14,
           fontFamily: "var(--font-manrope)",
+          fontWeight: active ? 600 : 500,
           color: active ? PARCHMENT : MUTED,
           transition: "color 0.2s",
         }}
@@ -396,7 +400,7 @@ function DarkChip({ label, onRemove }: { label: string; onRemove: () => void }) 
   return (
     <span
       className="inline-flex items-center gap-2"
-      style={{ background: "rgba(168,124,58,0.1)", border: "1px solid rgba(168,124,58,0.25)", padding: "4px 12px", fontSize: 11, fontFamily: "var(--font-manrope)", color: GOLD, letterSpacing: "0.06em" }}
+      style={{ background: "rgba(168,124,58,0.12)", border: "1px solid rgba(168,124,58,0.35)", padding: "6px 14px", fontSize: 13, fontFamily: "var(--font-manrope)", color: GOLD, letterSpacing: "0.04em", fontWeight: 500 }}
     >
       {label}
       <button onClick={onRemove} style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(168,124,58,0.6)", lineHeight: 1, padding: 0, fontSize: 14 }}>×</button>
@@ -413,14 +417,14 @@ function EmptyState({ onClear }: { onClear: () => void }) {
         </svg>
       </div>
       <div>
-        <p style={{ fontFamily: "var(--font-italiana, serif)", fontSize: 26, color: PARCHMENT, marginBottom: 8 }}>Sin resultados</p>
-        <p style={{ fontSize: 13, fontFamily: "var(--font-manrope)", color: MUTED, maxWidth: 300 }}>
+        <p style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 600, fontSize: 30, color: PARCHMENT, marginBottom: 8 }}>Sin resultados</p>
+        <p style={{ fontSize: 14, fontFamily: "var(--font-manrope)", color: MUTED, maxWidth: 300, fontWeight: 450 }}>
           No encontramos arreglos con esos filtros. Prueba con otra combinación.
         </p>
       </div>
       <button
         onClick={onClear}
-        style={{ fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: BG, background: PARCHMENT, padding: "12px 28px", border: "none", cursor: "pointer", fontFamily: "var(--font-manrope)" }}
+        style={{ fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: BG, background: PARCHMENT, padding: "14px 32px", border: "none", cursor: "pointer", fontFamily: "var(--font-manrope)", fontWeight: 600 }}
       >
         Ver todos
       </button>
@@ -434,7 +438,7 @@ function Pagination({ page, totalPages, onChange }: { page: number; totalPages: 
       <button
         onClick={() => onChange(page - 1)}
         disabled={page <= 1}
-        style={{ padding: "8px 16px", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: MUTED, background: "none", border: "none", cursor: page <= 1 ? "not-allowed" : "pointer", opacity: page <= 1 ? 0.3 : 1, fontFamily: "var(--font-manrope)" }}
+        style={{ padding: "10px 18px", fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: PARCHMENT, background: "none", border: "none", cursor: page <= 1 ? "not-allowed" : "pointer", opacity: page <= 1 ? 0.3 : 1, fontFamily: "var(--font-manrope)", fontWeight: 600 }}
       >
         ← Anterior
       </button>
@@ -444,9 +448,9 @@ function Pagination({ page, totalPages, onChange }: { page: number; totalPages: 
             key={p}
             onClick={() => onChange(p)}
             style={{
-              width: 36, height: 36, fontSize: 12, fontFamily: "var(--font-manrope)", cursor: "pointer", border: "none",
+              width: 40, height: 40, fontSize: 14, fontFamily: "var(--font-manrope)", fontWeight: 600, cursor: "pointer", border: "none",
               background: p === page ? GOLD : "transparent",
-              color: p === page ? BG : MUTED,
+              color: p === page ? BG : PARCHMENT,
               outline: p !== page ? `1px solid rgba(237,232,223,0.1)` : "none",
               transition: "all 0.2s",
             }}

@@ -3,7 +3,7 @@ export function QuoteSection() {
     <section
       className="relative overflow-hidden"
       style={{
-        padding: "160px 0",
+        padding: "100px 0",
         background: "#120e0c",
         borderTop: "1px solid rgba(247,241,234,0.14)",
         borderBottom: "1px solid rgba(247,241,234,0.14)",
@@ -69,10 +69,10 @@ export function QuoteSection() {
           style={{
             fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
             fontStyle: "italic",
-            fontSize: "clamp(28px, 3.8vw, 46px)",
-            lineHeight: 1.25,
+            fontSize: "clamp(26px, 3.4vw, 42px)",
+            lineHeight: 1.3,
             color: "#f7f1ea",
-            fontWeight: 300,
+            fontWeight: 500,
           }}
         >
           Una flor no piensa en competir con la flor de al lado.
@@ -82,8 +82,8 @@ export function QuoteSection() {
         <div
           style={{
             marginTop: 36,
-            fontSize: 11,
-            letterSpacing: "0.32em",
+            fontSize: 12,
+            letterSpacing: "0.16em",
             textTransform: "uppercase",
             color: "#bfb5ab",
             fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
