@@ -12,7 +12,7 @@
 
   --color-parchment: #f7f1ea;
   --color-parchment-dim: #bfb5ab;
-  --color-parchment-muted: #8a7f76;
+  --color-parchment-muted: #a89e94;
 
   --color-amber: #c9a27a;
   --color-amber-light: #d4b896;
@@ -27,6 +27,11 @@
   --color-terracotta: #C97B63;
   --color-gold: #B8935A;
   --color-gold-light: #D4AF78;
+  --color-gold-pale: #E8D5B0;
+  --color-cacao: #3D2817;
+  --color-cacao-light: #6B4532;
+  --color-burgundy: #7A2E2E;
+  --color-burgundy-light: #9E4040;
   --color-ink: #1A1614;
 
   /* ---------- Fonts ---------- */
@@ -46,9 +51,9 @@
   --text-display-sm--line-height: 1.2;
 
   /* Italiana hero sizes */
-  --text-hero: clamp(72px, 12vw, 176px);
+  --text-hero: clamp(56px, 9vw, 128px);
   --text-hero--line-height: 0.92;
-  --text-hero--letter-spacing: 0.04em;
+  --text-hero--letter-spacing: 0.02em;
 
   /* ---------- Spacing extras ---------- */
   --spacing-18: 4.5rem;
@@ -60,8 +65,8 @@
   --tracking-widest: 0.2em;
   --tracking-wider: 0.1em;
   --tracking-brand: 0.08em;
-  --tracking-luxury: 0.32em;
-  --tracking-ultra: 0.4em;
+  --tracking-luxury: 0.16em;
+  --tracking-ultra: 0.22em;
 
   /* ---------- Border radius ---------- */
   --radius-none: 0;
@@ -150,10 +155,26 @@
   --foreground: #f7f1ea;
   --line: rgba(247, 241, 234, 0.14);
   --accent: #c9a27a;
+  --color-parchment-muted: #a89e94;
 
   --font-italiana: "Italiana", serif;
   --font-cormorant: "Cormorant Garamond", Georgia, serif;
   --font-manrope: "Manrope", system-ui, sans-serif;
+}
+
+@layer components {
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.125rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    font-family: var(--font-sans);
+    white-space: nowrap;
+  }
 }
 
 @layer base {
@@ -169,7 +190,8 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-manrope), "Manrope", system-ui, sans-serif;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 450;
     line-height: 1.6;
     overflow-x: hidden;
   }
@@ -180,9 +202,11 @@
     line-height: 1;
   }
   h4, h5, h6 {
-    font-family: var(--font-italiana), "Italiana", serif;
-    font-weight: 400;
-    letter-spacing: 0.04em;
+    font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.25;
   }
   a {
     color: inherit;
@@ -217,10 +241,11 @@
    ============================================ */
 .eyebrow {
   font-family: var(--font-manrope), "Manrope", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.32em;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  font-weight: 600;
   text-transform: uppercase;
-  color: var(--parchment-dim, #bfb5ab);
+  color: #cfc4b9;
 }
 
 .serif-italic {
@@ -236,12 +261,13 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 16px 28px;
-  border: 1px solid #f7f1ea;
+  padding: 18px 32px;
+  border: 1.5px solid #f7f1ea;
   background: transparent;
   color: #f7f1ea;
-  font-size: 11px;
-  letter-spacing: 0.32em;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
   font-family: var(--font-manrope), "Manrope", sans-serif;
@@ -281,8 +307,8 @@
   white-space: nowrap;
   animation: marquee 38s linear infinite;
   font-family: var(--font-italiana), "Italiana", serif;
-  font-size: 22px;
-  letter-spacing: 0.18em;
+  font-size: 20px;
+  letter-spacing: 0.12em;
   color: #f7f1ea;
 }
 .marquee-track-luxury:hover { animation-play-state: paused; }
@@ -323,7 +349,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 1;
 }
@@ -335,12 +361,14 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  color: #c9a27a;
-  font-family: var(--font-italiana), "Italiana", serif;
-  letter-spacing: 0.32em;
-  font-size: 11px;
+  color: #e8d5b0;
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
   justify-content: center;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
 }
 .flourish::before,
 .flourish::after {
@@ -348,7 +376,7 @@
   flex: 1;
   max-width: 80px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #c9a27a, transparent);
+  background: linear-gradient(90deg, transparent, #e8d5b0, transparent);
 }
 
 /* ============================================
@@ -378,16 +406,17 @@
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--line);
-  padding: 12px 0;
+  padding: 14px 0;
   color: #f7f1ea;
-  font-family: var(--font-cormorant), "Cormorant Garamond", serif;
-  font-size: 20px;
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
   width: 100%;
   outline: none;
   transition: border-color 0.3s;
 }
 .input-elegant:focus { border-bottom-color: #f7f1ea; }
-.input-elegant::placeholder { color: #8a7f76; }
+.input-elegant::placeholder { color: #a89e94; }
 
 /* ============================================
    Order status (keep for account pages)

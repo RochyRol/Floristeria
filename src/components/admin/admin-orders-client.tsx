@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import type { Role } from "@prisma/client";
 
 const SANS  = "var(--font-manrope, sans-serif)";
-const SERIF = "var(--font-italiana, serif)";
 
 interface Order {
   id: string;
@@ -116,7 +115,7 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
                 onClick={() => updateFilter("estado", opt.value)}
                 style={{
                   padding: "4px 11px",
-                  fontSize: 11,
+                  fontSize: 13,
                   fontFamily: SANS,
                   fontWeight: on ? 600 : 400,
                   cursor: "pointer",
@@ -146,7 +145,7 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
         />
       </div>
 
-      <p style={{ fontSize: 12, color: "#6B7280", paddingLeft: 2 }}>
+      <p style={{ fontSize: 13, color: "#6B7280", paddingLeft: 2 }}>
         {total} pedido{total !== 1 ? "s" : ""}
       </p>
 
@@ -159,7 +158,7 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
                 {["Pedido", "Cliente", "Estado", "Entrega", "Total", "Acción"].map((h) => (
                   <th
                     key={h}
-                    style={{ padding: "9px 16px", textAlign: "left", fontSize: 11, fontWeight: 600, fontFamily: SANS, color: "#6B7280", whiteSpace: "nowrap" }}
+                    style={{ padding: "9px 16px", textAlign: "left", fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", fontFamily: SANS, color: "#6B7280", whiteSpace: "nowrap" }}
                   >
                     {h}
                   </th>
@@ -182,23 +181,23 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "transparent")}
                   >
                     <td style={{ padding: "11px 16px" }}>
-                      <Link href={`/admin/pedidos/${order.id}`} style={{ fontSize: 12, fontWeight: 600, color: "#1F3A2E", textDecoration: "none" }}>
+                      <Link href={`/admin/pedidos/${order.id}`} style={{ fontSize: 13, fontWeight: 600, color: "#1F3A2E", textDecoration: "none" }}>
                         #{order.orderNumber}
                       </Link>
-                      <p style={{ fontSize: 10, color: "#9CA3AF", marginTop: 2 }}>{formatDateTime(order.createdAt)}</p>
+                      <p style={{ fontSize: 12, color: "#9CA3AF", marginTop: 2 }}>{formatDateTime(order.createdAt)}</p>
                     </td>
                     <td style={{ padding: "11px 16px" }}>
-                      <p style={{ fontSize: 12, fontWeight: 500, color: "#111827" }}>{order.recipientName}</p>
-                      <p style={{ fontSize: 10, color: "#9CA3AF", marginTop: 2 }}>{order.neighborhood || order.city}</p>
+                      <p style={{ fontSize: 13, fontWeight: 500, color: "#111827" }}>{order.recipientName}</p>
+                      <p style={{ fontSize: 12, color: "#9CA3AF", marginTop: 2 }}>{order.neighborhood || order.city}</p>
                     </td>
                     <td style={{ padding: "11px 16px" }}>
                       <OrderStatusBadge status={order.status} />
                     </td>
-                    <td style={{ padding: "11px 16px", fontSize: 12, color: "#374151" }}>
+                    <td style={{ padding: "11px 16px", fontSize: 13, color: "#374151" }}>
                       {order.deliveryDate ? new Date(order.deliveryDate).toLocaleDateString("es-CO") : "—"}
                     </td>
                     <td style={{ padding: "11px 16px" }}>
-                      <span style={{ fontFamily: SERIF, fontSize: 13, color: "#111827", letterSpacing: "0.02em" }}>
+                      <span style={{ fontFamily: SANS, fontSize: 13, fontWeight: 500, color: "#111827", letterSpacing: "0.02em" }}>
                         {formatCOP(Number(order.total))}
                       </span>
                     </td>
@@ -210,7 +209,7 @@ export function AdminOrdersClient({ orders, total, page, perPage, role, activeFi
                         </Button>
                       ) : (
                         <Link href={`/admin/pedidos/${order.id}`}
-                          style={{ fontSize: 11, color: "#9CA3AF", textDecoration: "none", fontFamily: SANS }}>
+                          style={{ fontSize: 13, color: "#9CA3AF", textDecoration: "none", fontFamily: SANS }}>
                           Ver →
                         </Link>
                       )}

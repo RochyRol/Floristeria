@@ -59,7 +59,7 @@ export function AccountClient({ session, orders }: AccountClientProps) {
             <h1 className="font-serif text-display-sm text-forest">
               Hola, {session.user?.name?.split(" ")[0]}
             </h1>
-            <p className="text-sm font-sans text-forest/50 mt-1">{session.user?.email}</p>
+            <p className="text-sm font-sans text-forest/65 mt-1">{session.user?.email}</p>
           </div>
           <Button
             variant="ghost"
@@ -95,7 +95,7 @@ export function AccountClient({ session, orders }: AccountClientProps) {
           <div className="flex flex-col gap-5">
             {orders.length === 0 ? (
               <div className="text-center py-20">
-                <p className="font-serif text-xl text-forest/40">Aún no tienes pedidos</p>
+                <p className="font-serif text-xl text-forest/60">Aún no tienes pedidos</p>
                 <a href="/tienda" className="mt-4 inline-block text-sm font-sans text-terracotta underline">
                   Explorar la tienda
                 </a>
@@ -117,7 +117,7 @@ export function AccountClient({ session, orders }: AccountClientProps) {
                   >
                     <div className="flex items-center gap-5">
                       <div>
-                        <p className="text-xs font-sans uppercase tracking-brand text-forest/40">
+                        <p className="text-xs font-sans uppercase tracking-brand text-forest/55">
                           Pedido
                         </p>
                         <p className="text-sm font-sans font-medium text-forest mt-0.5">
@@ -125,13 +125,13 @@ export function AccountClient({ session, orders }: AccountClientProps) {
                         </p>
                       </div>
                       <div className="hidden sm:block">
-                        <p className="text-xs font-sans text-forest/40">Fecha</p>
+                        <p className="text-xs font-sans text-forest/55">Fecha</p>
                         <p className="text-sm font-sans text-forest/70">
                           {formatDateTime(order.createdAt)}
                         </p>
                       </div>
                       <div>
-                        <p className="text-xs font-sans text-forest/40">Total</p>
+                        <p className="text-xs font-sans text-forest/55">Total</p>
                         <p className="font-serif text-sm text-forest price">
                           {formatCOP(Number(order.total))}
                         </p>
@@ -160,7 +160,7 @@ export function AccountClient({ session, orders }: AccountClientProps) {
                         {/* Status progress */}
                         <div>
                           <div className="flex items-center justify-between mb-5">
-                            <h3 className="text-xs uppercase tracking-brand font-sans font-medium text-forest/40">
+                            <h3 className="text-xs uppercase tracking-brand font-sans font-medium text-forest/55">
                               Estado del pedido
                             </h3>
                             <Link
@@ -178,7 +178,7 @@ export function AccountClient({ session, orders }: AccountClientProps) {
                                   <span className="text-xs font-sans text-forest/70 font-medium">
                                     {ORDER_STATUS_LABELS[entry.status] ?? entry.status}
                                   </span>
-                                  <span className="text-[10px] font-sans text-forest/30">
+                                                    <span className="text-[11px] font-sans text-forest/55">
                                     {formatDateTime(entry.timestamp)}
                                   </span>
                                 </div>
@@ -189,7 +189,7 @@ export function AccountClient({ session, orders }: AccountClientProps) {
 
                         {/* Items */}
                         <div>
-                          <h3 className="text-xs uppercase tracking-brand font-sans font-medium text-forest/40 mb-4">
+                          <h3 className="text-xs uppercase tracking-brand font-sans font-medium text-forest/55 mb-4">
                             Artículos
                           </h3>
                           <div className="flex flex-col gap-3">
@@ -207,7 +207,7 @@ export function AccountClient({ session, orders }: AccountClientProps) {
                                 </div>
                                 <div>
                                   <p className="text-sm font-sans text-forest">{item.productName}</p>
-                                  <p className="text-xs font-sans text-forest/40">
+                                  <p className="text-xs font-sans text-forest/60">
                                     {item.size} · Cant: {item.quantity}
                                   </p>
                                   <p className="text-xs font-serif text-forest/70 price">
@@ -241,15 +241,15 @@ export function AccountClient({ session, orders }: AccountClientProps) {
               <div className="bg-cream-dark border border-forest/8 rounded-sm p-6 flex flex-col gap-4">
                 <h3 className="font-serif text-base text-forest">Información personal</h3>
                 <div className="flex flex-col gap-1">
-                  <p className="text-[10px] uppercase tracking-brand font-sans text-forest/40">Nombre</p>
+                  <p className="text-[11px] uppercase tracking-brand font-sans text-forest/55">Nombre</p>
                   <p className="text-sm font-sans text-forest">{session.user?.name}</p>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <p className="text-[10px] uppercase tracking-brand font-sans text-forest/40">Email</p>
+                  <p className="text-[11px] uppercase tracking-brand font-sans text-forest/55">Email</p>
                   <p className="text-sm font-sans text-forest">{session.user?.email}</p>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <p className="text-[10px] uppercase tracking-brand font-sans text-forest/40">Rol</p>
+                  <p className="text-[11px] uppercase tracking-brand font-sans text-forest/55">Rol</p>
                   <p className="text-sm font-sans text-forest capitalize">{session.user?.role?.toLowerCase()}</p>
                 </div>
               </div>

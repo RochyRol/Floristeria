@@ -46,7 +46,7 @@ export function CartDrawer() {
             <div className="flex items-center justify-between px-6 py-5 border-b border-forest/8">
               <div>
                 <h2 className="font-serif text-xl text-forest">Tu carrito</h2>
-                <p className="text-xs font-sans text-forest/50 mt-0.5">
+                <p className="text-xs font-sans text-forest/65 mt-0.5">
                   {itemCount()} {itemCount() === 1 ? "artículo" : "artículos"}
                 </p>
               </div>
@@ -74,7 +74,7 @@ export function CartDrawer() {
                   </div>
                   <div>
                     <p className="font-serif text-lg text-forest">Tu carrito está vacío</p>
-                    <p className="text-sm font-sans text-forest/50 mt-1">
+                    <p className="text-sm font-sans text-forest/65 mt-1">
                       Explora nuestra tienda y encuentra el arreglo perfecto.
                     </p>
                   </div>
@@ -103,7 +103,7 @@ export function CartDrawer() {
                           {item.name}
                         </p>
                         {item.sizeLabel && (
-                          <p className="text-xs font-sans text-forest/50 mt-0.5">{item.sizeLabel}</p>
+                          <p className="text-xs font-sans text-forest/65 mt-0.5">{item.sizeLabel}</p>
                         )}
                         <div className="flex items-center justify-between mt-2">
                           <div className="flex items-center gap-2 border border-forest/15 rounded-sm">
@@ -150,7 +150,7 @@ export function CartDrawer() {
                   <span className="text-sm font-sans text-forest/70">Subtotal</span>
                   <span className="font-serif text-lg text-forest price">{formatCOP(subtotal())}</span>
                 </div>
-                <p className="text-xs font-sans text-forest/40">
+                <p className="text-xs font-sans text-forest/60">
                   El costo de envío se calculará en el checkout.
                 </p>
                 <Link href="/checkout" onClick={() => setOpen(false)}>

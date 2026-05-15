@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { formatCOP } from "@/lib/utils";
 import { ORDER_STATUS_LABELS } from "@/lib/utils";
+import { DownloadReportsSection } from "./download-reports-section";
 
 interface MonthData {
   label: string;
@@ -86,6 +87,8 @@ export function ReportsClient({ data }: { data: ReportData }) {
         </p>
       </div>
 
+      <DownloadReportsSection />
+
       {/* KPI cards */}
       <div className="grid grid-cols-4 gap-4">
         {kpis.map((k) => (
@@ -93,7 +96,7 @@ export function ReportsClient({ data }: { data: ReportData }) {
             key={k.label}
             className="bg-white border border-forest/8 rounded-sm p-5 flex flex-col gap-2"
           >
-            <p className="text-[10px] uppercase tracking-brand font-sans font-medium text-forest/40">
+            <p className="text-[12px] uppercase tracking-brand font-sans font-medium text-forest/40">
               {k.label}
             </p>
             <p className="font-serif text-2xl text-forest price">{k.value}</p>
@@ -134,13 +137,13 @@ export function ReportsClient({ data }: { data: ReportData }) {
                         title={formatCOP(m.total)}
                       >
                         {m.total > 0 && (
-                          <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-sans text-forest/40 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-[11px] font-sans text-forest/40 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                             {formatCOP(m.total)}
                           </div>
                         )}
                       </div>
                     </div>
-                    <span className="text-[9px] font-sans text-forest/30">{m.label}</span>
+                    <span className="text-[11px] font-sans text-forest/30">{m.label}</span>
                   </div>
                 );
               })}
@@ -228,7 +231,7 @@ export function ReportsClient({ data }: { data: ReportData }) {
                   <p className="text-sm font-sans font-medium text-forest">
                     {p.salesCount}
                   </p>
-                  <p className="text-[10px] font-sans text-forest/40 uppercase tracking-brand">
+                  <p className="text-[12px] font-sans text-forest/40 uppercase tracking-brand">
                     ventas
                   </p>
                 </div>

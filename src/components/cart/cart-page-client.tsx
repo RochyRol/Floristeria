@@ -27,7 +27,7 @@ export function CartPageClient() {
         </div>
         <div className="text-center">
           <h1 className="font-serif text-2xl text-forest">Tu carrito está vacío</h1>
-          <p className="mt-2 text-sm font-sans text-forest/55">
+          <p className="mt-2 text-sm font-sans text-forest/70">
             Explora nuestra tienda y encuentra el arreglo perfecto.
           </p>
         </div>
@@ -43,7 +43,7 @@ export function CartPageClient() {
       <div className="max-w-6xl mx-auto px-6 lg:px-8 py-12">
         <div className="mb-10">
           <h1 className="font-serif text-display-sm text-forest">Mi carrito</h1>
-          <p className="text-sm font-sans text-forest/50 mt-1">
+          <p className="text-sm font-sans text-forest/65 mt-1">
             {items.length} {items.length === 1 ? "artículo" : "artículos"}
           </p>
         </div>
@@ -65,9 +65,9 @@ export function CartPageClient() {
                           {item.name}
                         </h3>
                       </Link>
-                      <p className="text-xs font-sans text-forest/50 mt-0.5">{item.sizeLabel}</p>
+                      <p className="text-xs font-sans text-forest/65 mt-0.5">{item.sizeLabel}</p>
                       {item.dedication && (
-                        <p className="text-xs font-sans text-forest/40 mt-1 italic">
+                        <p className="text-xs font-sans text-forest/60 mt-1 italic">
                           &ldquo;{item.dedication}&rdquo;
                         </p>
                       )}
@@ -121,7 +121,7 @@ export function CartPageClient() {
 
               {/* Shipping zone */}
               <div className="mb-5">
-                <label className="text-[10px] uppercase tracking-brand font-sans font-medium text-forest/50 block mb-2">
+                <label className="text-[11px] uppercase tracking-brand font-sans font-medium text-forest/65 block mb-2">
                   Zona de entrega
                 </label>
                 <select

@@ -57,8 +57,7 @@ function CardSlot({ occasion, delay, className = "", isHero = false, style }: Ca
   return (
     <motion.div
       initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={`relative overflow-hidden ${className}`}
       style={{ background: "#1a1411", borderRadius: "1px", ...style }}
@@ -77,17 +76,19 @@ function CardSlot({ occasion, delay, className = "", isHero = false, style }: Ca
         <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-7">
           <span
             className="inline-block uppercase mb-2"
-            style={{ fontSize: 9, letterSpacing: "0.22em", color: "rgba(247,241,234,0.55)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
+            style={{ fontSize: 12, letterSpacing: "0.14em", color: "rgba(247,241,234,0.78)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
           >
             Colección
           </span>
           <h3
             style={{
-              fontFamily: "var(--font-italiana), 'Italiana', serif",
-              fontSize: isHero ? "clamp(1.6rem, 3vw, 2.8rem)" : "clamp(1.2rem, 2vw, 1.8rem)",
+              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontWeight: 600,
+              fontSize: isHero ? "clamp(2rem, 3.5vw, 3.2rem)" : "clamp(1.5rem, 2.4vw, 2.2rem)",
               color: "#f7f1ea",
-              lineHeight: 1.1,
-              letterSpacing: "0.02em",
+              lineHeight: 1.05,
+              letterSpacing: "0.01em",
             }}
           >
             {occasion.name}
@@ -95,7 +96,7 @@ function CardSlot({ occasion, delay, className = "", isHero = false, style }: Ca
           {occasion.description && (
             <p
               className="mt-2 max-w-xs leading-relaxed"
-              style={{ fontSize: 13, color: "rgba(247,241,234,0.65)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
+              style={{ fontSize: 14, color: "rgba(247,241,234,0.82)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
             >
               {occasion.description}
             </p>
@@ -103,8 +104,8 @@ function CardSlot({ occasion, delay, className = "", isHero = false, style }: Ca
           <span
             className="inline-flex items-center gap-2 mt-4 pb-1 transition-all"
             style={{
-              fontSize: 10,
-              letterSpacing: "0.18em",
+              fontSize: 12,
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "#c9a27a",
               borderBottom: "1px solid rgba(201,162,122,0.4)",
@@ -126,7 +127,7 @@ export function OccasionsGrid({ occasions }: OccasionsGridProps) {
   const items = occasions.length > 0 ? occasions : fallbackOccasions;
 
   return (
-    <section className="py-24 lg:py-36 relative overflow-hidden" style={{ background: "#0a0807" }}>
+    <section className="py-16 lg:py-24 relative overflow-hidden" style={{ background: "#0a0807" }}>
       {/* Subtle decorative top accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20" style={{ background: "linear-gradient(to bottom, transparent, rgba(201,162,122,0.4), transparent)" }} />
 
@@ -134,8 +135,7 @@ export function OccasionsGrid({ occasions }: OccasionsGridProps) {
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="flex flex-col items-center text-center mb-16 lg:mb-20"
         >
@@ -146,10 +146,10 @@ export function OccasionsGrid({ occasions }: OccasionsGridProps) {
             </span>
             <span className="w-8 h-px" style={{ background: "#c9a27a" }} />
           </div>
-          <h2 className="font-serif text-4xl lg:text-6xl leading-tight max-w-2xl" style={{ color: "#f7f1ea" }}>
-            ¿Cuál es la <span className="italic" style={{ color: "#c9a27a" }}>ocasión</span>?
+          <h2 className="font-serif text-4xl lg:text-6xl leading-tight max-w-2xl" style={{ color: "#f7f1ea", fontWeight: 500, letterSpacing: "0.005em" }}>
+            ¿Cuál es la <span className="italic" style={{ color: "#c9a27a", fontWeight: 600 }}>ocasión</span>?
           </h2>
-          <p className="mt-5 max-w-md text-base font-sans leading-relaxed" style={{ color: "#8a7f76" }}>
+          <p className="mt-5 max-w-md text-base font-sans leading-relaxed" style={{ color: "#bfb5ab", fontWeight: 450 }}>
             Cada momento merece su propio arreglo. Encuentra el ideal para celebrar.
           </p>
         </motion.div>

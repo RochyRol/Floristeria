@@ -34,7 +34,8 @@ export function Badge({ variant = "default", children, className }: BadgeProps) 
 
 const statusVariants: Record<string, BadgeVariant> = {
   RECEIVED: "gold",
-  PROCESSING: "warning",
+  ACCEPTED: "warning",
+  MAKING: "warning",
   READY: "success",
   IN_ROUTE: "default",
   DELIVERED: "success",

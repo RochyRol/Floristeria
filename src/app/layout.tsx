@@ -22,7 +22,7 @@ const cormorant = Cormorant_Garamond({
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -69,10 +69,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 border: "1px solid rgba(247,241,234,0.14)",
                 color: "#0a0807",
                 fontFamily: "var(--font-manrope)",
-                fontSize: "0.8125rem",
-                letterSpacing: "0.1em",
+                fontSize: "0.875rem",
+                letterSpacing: "0.04em",
                 borderRadius: "0px",
-                textTransform: "uppercase",
               },
             }}
           />

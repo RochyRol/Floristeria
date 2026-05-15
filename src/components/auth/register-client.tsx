@@ -75,7 +75,7 @@ export function RegisterClient() {
         <div className="text-center mb-10">
           <Link href="/" className="inline-block">
             <p className="font-serif text-2xl text-forest">Deco Imperio</p>
-            <p className="text-[10px] uppercase tracking-widest font-sans text-gold mt-0.5">
+            <p className="text-[11px] uppercase tracking-widest font-sans text-gold mt-0.5">
               Floristería
             </p>
           </Link>
@@ -83,7 +83,7 @@ export function RegisterClient() {
 
         <div className="bg-cream-dark border border-forest/8 rounded-sm p-8">
           <h1 className="font-serif text-xl text-forest mb-1">Crear cuenta</h1>
-          <p className="text-sm font-sans text-forest/50 mb-6">
+          <p className="text-sm font-sans text-forest/65 mb-6">
             Únete para gestionar tus pedidos fácilmente.
           </p>
 

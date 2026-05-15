@@ -53,13 +53,13 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
             <p style={{ fontFamily: "var(--font-italiana, serif)", fontSize: 22, letterSpacing: "0.06em", color: "#EDE8DF" }}>
               Deco·Imperio
             </p>
-            <p style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "#A87C3A", fontFamily: "var(--font-manrope, sans-serif)", marginTop: 1 }}>
+            <p style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "#A87C3A", fontFamily: "var(--font-manrope, sans-serif)", marginTop: 1 }}>
               Floristería
             </p>
           </div>
           <a
             href="/"
-            style={{ fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(237,232,223,0.4)", fontFamily: "var(--font-manrope, sans-serif)", textDecoration: "none" }}
+            style={{ fontSize: 12, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(237,232,223,0.65)", fontFamily: "var(--font-manrope, sans-serif)", textDecoration: "none" }}
           >
             Ir a la tienda →
           </a>
@@ -74,7 +74,7 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="mb-10"
         >
-          <p style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#A87C3A", fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 8 }}>
+          <p style={{ fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: "#A87C3A", fontFamily: "var(--font-manrope, sans-serif)", fontWeight: 600, marginBottom: 8 }}>
             Seguimiento de pedido
           </p>
           <h1 style={{ fontFamily: "var(--font-italiana, serif)", fontSize: "clamp(2rem, 6vw, 3.5rem)", color: "#EDE8DF", lineHeight: 1, letterSpacing: "0.04em" }}>
@@ -87,16 +87,17 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
                 background: order.status === "CANCELLED" ? "rgba(122,46,46,0.2)" : "rgba(168,124,58,0.15)",
                 border: `1px solid ${order.status === "CANCELLED" ? "rgba(122,46,46,0.4)" : "rgba(168,124,58,0.4)"}`,
                 color: order.status === "CANCELLED" ? "#c07070" : "#A87C3A",
-                fontSize: 11,
-                letterSpacing: "0.16em",
+                fontSize: 12,
+                letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 fontFamily: "var(--font-manrope, sans-serif)",
+                fontWeight: 600,
                 padding: "4px 12px",
               }}
             >
               {currentLabel}
             </span>
-            <span style={{ color: "rgba(237,232,223,0.3)", fontSize: 12, fontFamily: "var(--font-manrope, sans-serif)" }}>
+            <span style={{ color: "rgba(237,232,223,0.65)", fontSize: 12, fontFamily: "var(--font-manrope, sans-serif)" }}>
               {formatDateTime(order.createdAt)}
             </span>
           </div>
@@ -129,14 +130,14 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
             className="p-5 rounded-sm"
             style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(237,232,223,0.06)" }}
           >
-            <p style={{ fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(237,232,223,0.35)", fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 6 }}>
+            <p style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(237,232,223,0.65)", fontFamily: "var(--font-manrope, sans-serif)", fontWeight: 500, marginBottom: 6 }}>
               Destinatario
             </p>
             <p style={{ fontFamily: "var(--font-italiana, serif)", fontSize: 18, color: "#EDE8DF" }}>
               {order.recipientName}
             </p>
             {order.deliveryAddress && (
-              <p style={{ fontSize: 12, color: "rgba(237,232,223,0.45)", fontFamily: "var(--font-manrope, sans-serif)", marginTop: 4, lineHeight: 1.5 }}>
+              <p style={{ fontSize: 13, color: "rgba(237,232,223,0.72)", fontFamily: "var(--font-manrope, sans-serif)", marginTop: 4, lineHeight: 1.5 }}>
                 {order.deliveryAddress}
               </p>
             )}
@@ -148,7 +149,7 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
               className="p-5 rounded-sm"
               style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(237,232,223,0.06)" }}
             >
-              <p style={{ fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(237,232,223,0.35)", fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 6 }}>
+              <p style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(237,232,223,0.65)", fontFamily: "var(--font-manrope, sans-serif)", fontWeight: 500, marginBottom: 6 }}>
                 Entrega programada
               </p>
               {order.deliveryDate && (
@@ -169,7 +170,7 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
             className="p-5 rounded-sm sm:col-span-2"
             style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(237,232,223,0.06)" }}
           >
-            <p style={{ fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(237,232,223,0.35)", fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 10 }}>
+            <p style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(237,232,223,0.65)", fontFamily: "var(--font-manrope, sans-serif)", fontWeight: 500, marginBottom: 10 }}>
               Tu pedido
             </p>
             <div className="flex flex-col gap-2">
@@ -178,7 +179,7 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
                   <p style={{ fontFamily: "var(--font-manrope, sans-serif)", fontSize: 13, color: "rgba(237,232,223,0.8)" }}>
                     {item.productName}
                     {item.size && item.size !== "Estándar" && (
-                      <span style={{ color: "rgba(237,232,223,0.35)", fontSize: 11, marginLeft: 6 }}>· {item.size}</span>
+                      <span style={{ color: "rgba(237,232,223,0.65)", fontSize: 12, marginLeft: 6 }}>· {item.size}</span>
                     )}
                   </p>
                   <span style={{ fontSize: 12, color: "rgba(237,232,223,0.4)", fontFamily: "var(--font-manrope, sans-serif)" }}>
@@ -198,7 +199,7 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
             transition={{ duration: 0.7, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="mb-10"
           >
-            <p style={{ fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(237,232,223,0.35)", fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 14 }}>
+            <p style={{ fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(237,232,223,0.65)", fontFamily: "var(--font-manrope, sans-serif)", fontWeight: 500, marginBottom: 14 }}>
               Historial
             </p>
             <div className="flex flex-col gap-0">
@@ -214,14 +215,14 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
                     )}
                   </div>
                   <div className="pb-4">
-                    <p style={{ fontFamily: "var(--font-manrope, sans-serif)", fontSize: 12, color: i === order.statusHistory.length - 1 ? "#EDE8DF" : "rgba(237,232,223,0.5)", fontWeight: i === order.statusHistory.length - 1 ? 600 : 400 }}>
+                    <p style={{ fontFamily: "var(--font-manrope, sans-serif)", fontSize: 13, color: i === order.statusHistory.length - 1 ? "#EDE8DF" : "rgba(237,232,223,0.72)", fontWeight: i === order.statusHistory.length - 1 ? 600 : 500 }}>
                       {ORDER_STATUS_LABELS[entry.status] ?? entry.status}
                     </p>
-                    <p style={{ fontSize: 10, color: "rgba(237,232,223,0.25)", fontFamily: "var(--font-manrope, sans-serif)", marginTop: 2 }}>
+                    <p style={{ fontSize: 12, color: "rgba(237,232,223,0.60)", fontFamily: "var(--font-manrope, sans-serif)", marginTop: 2 }}>
                       {formatDateTime(entry.timestamp)}
                     </p>
                     {entry.note && (
-                      <p style={{ fontSize: 11, color: "rgba(237,232,223,0.4)", fontFamily: "var(--font-manrope, sans-serif)", marginTop: 3, fontStyle: "italic" }}>
+                      <p style={{ fontSize: 12, color: "rgba(237,232,223,0.65)", fontFamily: "var(--font-manrope, sans-serif)", marginTop: 3, fontStyle: "italic" }}>
                         {entry.note}
                       </p>
                     )}
@@ -240,7 +241,7 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
           className="flex flex-col items-center text-center gap-4 pt-4"
           style={{ borderTop: "1px solid rgba(237,232,223,0.06)" }}
         >
-          <p style={{ fontSize: 12, color: "rgba(237,232,223,0.35)", fontFamily: "var(--font-manrope, sans-serif)", letterSpacing: "0.05em" }}>
+          <p style={{ fontSize: 13, color: "rgba(237,232,223,0.65)", fontFamily: "var(--font-manrope, sans-serif)", letterSpacing: "0.03em" }}>
             ¿Tienes alguna pregunta sobre tu pedido?
           </p>
           <button
@@ -250,10 +251,11 @@ export function TrackingClient({ order }: { order: TrackingOrder }) {
               background: "rgba(37,211,102,0.1)",
               border: "1px solid rgba(37,211,102,0.3)",
               color: "#25D366",
-              fontSize: 11,
-              letterSpacing: "0.18em",
+              fontSize: 12,
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               fontFamily: "var(--font-manrope, sans-serif)",
+              fontWeight: 600,
               cursor: "pointer",
             }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(37,211,102,0.18)"; }}

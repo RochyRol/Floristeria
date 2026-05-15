@@ -29,7 +29,8 @@ export default async function AdminProductsPage() {
                 {["", "Nombre", "Precio", "Categoría", "Stock", "Estado", ""].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-left text-[10px] uppercase tracking-brand font-sans font-medium text-forest/40"
+                    className="px-4 py-3 text-left text-[12px] uppercase font-sans font-bold text-forest/40"
+                    style={{ letterSpacing: "0.08em" }}
                   >
                     {h}
                   </th>
@@ -61,7 +62,7 @@ export default async function AdminProductsPage() {
                     <td className="px-4 py-3">
                       <p className="text-sm font-sans font-medium text-forest">{product.name}</p>
                       {product.tagline && (
-                        <p className="text-[11px] font-sans text-forest/40 line-clamp-1">
+                        <p className="text-[12px] font-sans text-forest/40 line-clamp-1">
                           {product.tagline}
                         </p>
                       )}
@@ -77,7 +78,7 @@ export default async function AdminProductsPage() {
                     </td>
                     <td className="px-4 py-3">
                       <span
-                        className={`badge text-[9px] ${
+                        className={`badge text-[11px] ${
                           product.active
                             ? "bg-forest/10 text-forest"
                             : "bg-burgundy/10 text-burgundy"

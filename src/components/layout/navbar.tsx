@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/tienda", label: "Colecciones" },
-  { href: "/nosotros", label: "Atelier" },
+  { href: "/nosotros", label: "Quiénes Somos" },
   { href: "/tienda?ocasion=empresarial", label: "Eventos" },
   { href: "/contacto", label: "Contacto" },
 ];
@@ -79,7 +79,7 @@ export function Navbar() {
             style={{
               fontFamily: "var(--font-italiana), 'Italiana', serif",
               fontSize: 20,
-              letterSpacing: "0.28em",
+              letterSpacing: "0.16em",
               color: "#f7f1ea",
             }}
           >
@@ -97,8 +97,8 @@ export function Navbar() {
                   href={link.href}
                   className="relative"
                   style={{
-                    fontSize: 11,
-                    letterSpacing: "0.22em",
+                    fontSize: 12,
+                    letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     color: isActive ? "#A87C3A" : "#bfb5ab",
                     transition: "color 0.25s",
@@ -146,7 +146,7 @@ export function Navbar() {
               <Link
                 href="/mi-cuenta"
                 className="hidden lg:block"
-                style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", transition: "color 0.25s" }}
+                style={{ fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "#bfb5ab", transition: "color 0.25s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#f7f1ea")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#bfb5ab")}
               >
@@ -191,8 +191,8 @@ export function Navbar() {
               <Link
                 href="/admin"
                 style={{
-                  fontSize: 10,
-                  letterSpacing: "0.2em",
+                  fontSize: 12,
+                  letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   border: "1px solid rgba(247,241,234,0.2)",
                   padding: "6px 12px",
@@ -229,11 +229,11 @@ export function Navbar() {
             animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
             exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
-            className="fixed inset-0 z-40 lg:hidden overflow-y-auto flex flex-col"
+            className="fixed inset-0 z-[60] lg:hidden overflow-y-auto flex flex-col"
             style={{ background: "#0a0807", top: 0 }}
           >
             <div className="flex items-center justify-between px-6 py-5" style={{ borderBottom: "1px solid rgba(247,241,234,0.14)" }}>
-              <Link href="/" style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 20, letterSpacing: "0.28em", color: "#f7f1ea" }}>
+              <Link href="/" style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 20, letterSpacing: "0.16em", color: "#f7f1ea" }}>
                 DECO·IMPERIO
               </Link>
               <button onClick={() => setMenuOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "#f7f1ea", fontSize: 24 }}>×</button>
@@ -253,7 +253,7 @@ export function Navbar() {
                     className="flex items-center justify-between py-5"
                     style={{ borderBottom: "1px solid rgba(247,241,234,0.1)" }}
                   >
-                    <span style={{ fontFamily: "var(--font-italiana), 'Italiana', serif", fontSize: 32, color: isActive ? "#A87C3A" : "#f7f1ea" }}>
+                    <span style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 500, fontSize: 30, color: isActive ? "#A87C3A" : "#f7f1ea" }}>
                       {link.label}
                     </span>
                     <ArrowRightIcon />
@@ -263,17 +263,17 @@ export function Navbar() {
               })}
             </div>
             <div className="px-6 pb-8 flex gap-6" style={{ borderTop: "1px solid rgba(247,241,234,0.1)", paddingTop: 24 }}>
-              <Link href={session ? "/mi-cuenta" : "/login"} style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)", transition: "color 0.25s" }}>
+              <Link href={session ? "/mi-cuenta" : "/login"} style={{ fontSize: 13, letterSpacing: "0.14em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)", transition: "color 0.25s" }}>
                 {session ? "Mi cuenta" : "Iniciar sesión"}
               </Link>
               {session && (
-                <Link href="/mi-cuenta" style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)", transition: "color 0.25s" }}>
+                <Link href="/mi-cuenta" style={{ fontSize: 13, letterSpacing: "0.14em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)", transition: "color 0.25s" }}>
                   Pedidos
                 </Link>
               )}
               <button
                 onClick={() => { setMenuOpen(false); setCartOpen(true); }}
-                style={{ background: "none", border: "none", cursor: "pointer", fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)" }}
+                style={{ background: "none", border: "none", cursor: "pointer", fontSize: 13, letterSpacing: "0.14em", textTransform: "uppercase", color: "#bfb5ab", fontFamily: "var(--font-manrope)" }}
               >
                 Cesta {itemCount > 0 ? `(${itemCount})` : ""}
               </button>
