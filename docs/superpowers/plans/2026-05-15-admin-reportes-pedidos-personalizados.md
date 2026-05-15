@@ -1218,7 +1218,7 @@ git commit -m "feat(reports): add sales report API endpoint"
 **Files:**
 - Create: `src/app/api/admin/reports/clientes/route.ts`
 
-- [ ] **Step 1: Implementar**
+- [x] **Step 1: Implementar**
 
 `src/app/api/admin/reports/clientes/route.ts`:
 
@@ -1276,12 +1276,12 @@ export async function GET(req: NextRequest) {
 }
 ```
 
-- [ ] **Step 2: Verificación manual**
+- [x] **Step 2: Verificación manual**
 
 Probar `http://localhost:3000/api/admin/reports/clientes?period=month&format=xlsx` y `format=pdf` autenticado como ADMIN.
 Expected: descarga válida en ambos formatos.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/app/api/admin/reports/clientes/route.ts
