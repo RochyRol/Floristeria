@@ -55,7 +55,7 @@ export function ProcessSection() {
                 fontFamily: "var(--font-italiana), 'Italiana', serif",
                 fontSize: 14,
                 color: "#c9a27a",
-                letterSpacing: "0.4em",
+                letterSpacing: "0.2em",
                 display: "block",
                 marginBottom: 18,
               }}
@@ -123,7 +123,7 @@ export function ProcessSection() {
                 fontFamily: "var(--font-italiana), 'Italiana', serif",
                 fontSize: 14,
                 color: "#c9a27a",
-                letterSpacing: "0.3em",
+                letterSpacing: "0.16em",
               }}
             >
               {step.n}

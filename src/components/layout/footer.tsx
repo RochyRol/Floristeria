@@ -62,10 +62,10 @@ export function Footer() {
           <div>
             <h6
               style={{
-                fontSize: 10,
-                letterSpacing: "0.3em",
+                fontSize: 12,
+                letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#8a7f76",
+                color: "#a89e94",
                 marginBottom: 18,
                 fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
               }}
@@ -104,10 +104,10 @@ export function Footer() {
           <div>
             <h6
               style={{
-                fontSize: 10,
-                letterSpacing: "0.3em",
+                fontSize: 12,
+                letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#8a7f76",
+                color: "#a89e94",
                 marginBottom: 18,
                 fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
               }}
@@ -144,10 +144,10 @@ export function Footer() {
           <div>
             <h6
               style={{
-                fontSize: 10,
-                letterSpacing: "0.3em",
+                fontSize: 12,
+                letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#8a7f76",
+                color: "#a89e94",
                 marginBottom: 18,
                 fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
               }}
@@ -192,8 +192,8 @@ export function Footer() {
                   color: "#c9a27a",
                   cursor: "pointer",
                   fontFamily: "var(--font-italiana), 'Italiana', serif",
-                  letterSpacing: "0.2em",
-                  fontSize: 11,
+                  letterSpacing: "0.14em",
+                  fontSize: 12,
                   textTransform: "uppercase",
                 }}
               >
@@ -212,9 +212,9 @@ export function Footer() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            color: "#8a7f76",
-            fontSize: 11,
-            letterSpacing: "0.18em",
+            color: "#a89e94",
+            fontSize: 12,
+            letterSpacing: "0.14em",
             textTransform: "uppercase",
             flexWrap: "wrap",
             gap: 16,

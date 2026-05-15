@@ -29,8 +29,8 @@ export function MapSection() {
               <p
                 className="uppercase mb-4"
                 style={{
-                  fontSize: 11,
-                  letterSpacing: "0.22em",
+                  fontSize: 12,
+                  letterSpacing: "0.14em",
                   color: "#c9a27a",
                   fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                 }}
@@ -76,8 +76,8 @@ export function MapSection() {
                     color: "#0a0807",
                     border: "none",
                     padding: "12px 24px",
-                    fontSize: 11,
-                    letterSpacing: "0.2em",
+                    fontSize: 12,
+                    letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                     fontWeight: 500,
@@ -97,8 +97,8 @@ export function MapSection() {
                     color: "#bfb5ab",
                     border: "1px solid rgba(247,241,234,0.2)",
                     padding: "12px 24px",
-                    fontSize: 11,
-                    letterSpacing: "0.2em",
+                    fontSize: 12,
+                    letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
                     fontWeight: 500,
@@ -179,9 +179,9 @@ function InfoRow({
         <p
           className="uppercase mb-0.5"
           style={{
-            fontSize: 9,
-            letterSpacing: "0.2em",
-            color: "#8a7f76",
+            fontSize: 12,
+            letterSpacing: "0.14em",
+            color: "#a89e94",
             fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
           }}
         >
@@ -189,7 +189,7 @@ function InfoRow({
         </p>
         <div
           style={{
-            fontSize: 13,
+            fontSize: 14,
             color: "#bfb5ab",
             fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
           }}

@@ -63,7 +63,7 @@ export function TestimonialsSection() {
         >
           <div className="flex items-center gap-4 mb-4">
             <span className="w-10 h-px" style={{ background: `linear-gradient(to right, transparent, ${GOLD})` }} />
-            <span style={{ fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)" }}>
+            <span style={{ fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)" }}>
               Lo que dicen nuestros clientes
             </span>
             <span className="w-10 h-px" style={{ background: `linear-gradient(to left, transparent, ${GOLD})` }} />
@@ -120,11 +120,11 @@ export function TestimonialsSection() {
                 </div>
                 <div>
                   <p style={{ fontSize: 13, fontFamily: "var(--font-manrope, sans-serif)", color: P, fontWeight: 500 }}>{t.name}</p>
-                  <p style={{ fontSize: 10, fontFamily: "var(--font-manrope, sans-serif)", color: "rgba(237,232,223,0.3)" }}>{t.location}</p>
+                  <p style={{ fontSize: 12, fontFamily: "var(--font-manrope, sans-serif)", color: "rgba(237,232,223,0.55)" }}>{t.location}</p>
                 </div>
                 <span
                   className="ml-auto"
-                  style={{ fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)" }}
+                  style={{ fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)" }}
                 >
                   {t.product}
                 </span>

@@ -29,7 +29,7 @@ export function HeroSection() {
 
       {/* Decorative frame */}
       <div
-        className="absolute z-20 pointer-events-none"
+        className="absolute z-20 pointer-events-none hidden md:block"
         style={{ inset: "24px", border: "1px solid rgba(247,241,234,0.18)" }}
       >
         {/* Corner marks */}
@@ -61,7 +61,7 @@ export function HeroSection() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute z-30"
+        className="absolute z-30 hidden md:flex"
         style={{
           top: 64,
           right: 84,
@@ -88,8 +88,8 @@ export function HeroSection() {
           left: 60,
           transform: "translateY(-50%) rotate(-90deg)",
           transformOrigin: "left top",
-          fontSize: 10,
-          letterSpacing: "0.4em",
+          fontSize: 12,
+          letterSpacing: "0.2em",
           color: "#bfb5ab",
           textTransform: "uppercase",
           whiteSpace: "nowrap",
@@ -110,8 +110,8 @@ export function HeroSection() {
           right: 42,
           transform: "translateY(-50%) rotate(90deg)",
           transformOrigin: "right top",
-          fontSize: 10,
-          letterSpacing: "0.4em",
+          fontSize: 12,
+          letterSpacing: "0.2em",
           color: "#bfb5ab",
           textTransform: "uppercase",
           whiteSpace: "nowrap",
@@ -132,7 +132,7 @@ export function HeroSection() {
           animate={{ opacity: 1, scaleX: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           className="flourish mb-6"
-          style={{ fontSize: 11, letterSpacing: "0.32em" }}
+          style={{ fontSize: 12, letterSpacing: "0.16em" }}
         >
           — Floristería de autor —
         </motion.div>
@@ -146,7 +146,7 @@ export function HeroSection() {
             style={{
               fontFamily: "var(--font-italiana), 'Italiana', serif",
               fontWeight: 400,
-              fontSize: "clamp(72px, 12vw, 176px)",
+              fontSize: "clamp(56px, 9vw, 128px)",
               lineHeight: 0.92,
               letterSpacing: "0.04em",
               color: "#f7f1ea",
@@ -165,7 +165,7 @@ export function HeroSection() {
             style={{
               fontFamily: "var(--font-italiana), 'Italiana', serif",
               fontWeight: 400,
-              fontSize: "clamp(72px, 12vw, 176px)",
+              fontSize: "clamp(56px, 9vw, 128px)",
               lineHeight: 0.92,
               letterSpacing: "0.04em",
               color: "#f7f1ea",
@@ -228,11 +228,12 @@ export function HeroSection() {
       >
         <span
           style={{
-            fontSize: 10,
-            letterSpacing: "0.4em",
+            fontSize: 12,
+            letterSpacing: "0.2em",
             textTransform: "uppercase",
             color: "#bfb5ab",
             fontFamily: "var(--font-manrope), 'Manrope', sans-serif",
+            fontWeight: 600,
           }}
         >
           Descubrir

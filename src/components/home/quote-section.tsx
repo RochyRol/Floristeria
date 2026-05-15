@@ -82,8 +82,8 @@ export function QuoteSection() {
         <div
           style={{
             marginTop: 36,
-            fontSize: 11,
-            letterSpacing: "0.32em",
+            fontSize: 12,
+            letterSpacing: "0.16em",
             textTransform: "uppercase",
             color: "#bfb5ab",
             fontFamily: "var(--font-manrope), 'Manrope', sans-serif",

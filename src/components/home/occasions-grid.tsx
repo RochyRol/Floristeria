@@ -76,7 +76,7 @@ function CardSlot({ occasion, delay, className = "", isHero = false, style }: Ca
         <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-7">
           <span
             className="inline-block uppercase mb-2"
-            style={{ fontSize: 9, letterSpacing: "0.22em", color: "rgba(247,241,234,0.55)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
+            style={{ fontSize: 12, letterSpacing: "0.14em", color: "rgba(247,241,234,0.78)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
           >
             Colección
           </span>
@@ -94,7 +94,7 @@ function CardSlot({ occasion, delay, className = "", isHero = false, style }: Ca
           {occasion.description && (
             <p
               className="mt-2 max-w-xs leading-relaxed"
-              style={{ fontSize: 13, color: "rgba(247,241,234,0.65)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
+              style={{ fontSize: 14, color: "rgba(247,241,234,0.82)", fontFamily: "var(--font-manrope), 'Manrope', sans-serif" }}
             >
               {occasion.description}
             </p>
@@ -102,8 +102,8 @@ function CardSlot({ occasion, delay, className = "", isHero = false, style }: Ca
           <span
             className="inline-flex items-center gap-2 mt-4 pb-1 transition-all"
             style={{
-              fontSize: 10,
-              letterSpacing: "0.18em",
+              fontSize: 12,
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: "#c9a27a",
               borderBottom: "1px solid rgba(201,162,122,0.4)",
