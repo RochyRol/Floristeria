@@ -48,7 +48,7 @@
 **Files:**
 - Modify: `package.json`
 
-- [ ] **Step 1: Instalar exceljs y @react-pdf/renderer**
+- [x] **Step 1: Instalar exceljs y @react-pdf/renderer**
 
 ```bash
 npm install exceljs @react-pdf/renderer
@@ -56,12 +56,12 @@ npm install exceljs @react-pdf/renderer
 
 Esperado: ambas dependencias se agregan a `dependencies` en `package.json`.
 
-- [ ] **Step 2: Verificar versiones instaladas**
+- [x] **Step 2: Verificar versiones instaladas**
 
 Run: `node -e "console.log(require('exceljs/package.json').version, require('@react-pdf/renderer/package.json').version)"`
 Expected: imprime ambas versiones sin error.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add package.json package-lock.json
