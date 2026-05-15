@@ -1296,7 +1296,7 @@ git commit -m "feat(reports): add clients report API endpoint"
 - Create: `src/components/admin/download-reports-section.tsx`
 - Modify: `src/components/admin/reports-client.tsx` (insertar componente arriba de los KPIs)
 
-- [ ] **Step 1: Crear el componente**
+- [x] **Step 1: Crear el componente**
 
 `src/components/admin/download-reports-section.tsx`:
 
@@ -1452,7 +1452,7 @@ function DownloadIcon({ spinning }: { spinning: boolean }) {
 }
 ```
 
-- [ ] **Step 2: Integrar en reports-client**
+- [x] **Step 2: Integrar en reports-client**
 
 En `src/components/admin/reports-client.tsx`:
 
@@ -1492,7 +1492,7 @@ y reemplazarlo por:
       {/* KPI cards */}
 ```
 
-- [ ] **Step 3: Verificación manual**
+- [x] **Step 3: Verificación manual**
 
 Run: `npm run dev` y entrar a `/admin/reportes` autenticado como ADMIN.
 
@@ -1502,7 +1502,7 @@ Expected:
 - Click en Excel/PDF de cada reporte descarga el archivo correcto
 - Toast de éxito al completar
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/components/admin/download-reports-section.tsx src/components/admin/reports-client.tsx

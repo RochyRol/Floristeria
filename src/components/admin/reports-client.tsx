@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { formatCOP } from "@/lib/utils";
 import { ORDER_STATUS_LABELS } from "@/lib/utils";
+import { DownloadReportsSection } from "./download-reports-section";
 
 interface MonthData {
   label: string;
@@ -85,6 +86,8 @@ export function ReportsClient({ data }: { data: ReportData }) {
           Resumen de desempeño del negocio
         </p>
       </div>
+
+      <DownloadReportsSection />
 
       {/* KPI cards */}
       <div className="grid grid-cols-4 gap-4">
