@@ -21,7 +21,7 @@ export function MarqueeSection() {
           display: "flex",
           gap: 64,
           whiteSpace: "nowrap",
-          animation: "marquee 38s linear infinite",
+          animation: "marquee 60s linear infinite",
           fontFamily: "var(--font-italiana), 'Italiana', serif",
           fontSize: 22,
           letterSpacing: "0.18em",

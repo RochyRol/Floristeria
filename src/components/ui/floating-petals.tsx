@@ -76,7 +76,7 @@ function PetalSVG({ type, size, color }: { type: number; size: number; color: st
 const GOLD = "#A87C3A";
 const PARCHMENT = "#EDE8DF";
 
-export function FloatingPetals({ count = 18 }: { count?: number }) {
+export function FloatingPetals({ count = 9 }: { count?: number }) {
   const [petals, setPetals] = useState<Petal[]>([]);
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export function FloatingPetals({ count = 18 }: { count?: number }) {
         id: i,
         x: Math.random() * 100,
         size: 8 + Math.random() * 20,
-        opacity: 0.06 + Math.random() * 0.12,
+        opacity: 0.042 + Math.random() * 0.084,
         duration: 18 + Math.random() * 28,
         delay: -Math.random() * 30,
         type: Math.floor(Math.random() * 5),
