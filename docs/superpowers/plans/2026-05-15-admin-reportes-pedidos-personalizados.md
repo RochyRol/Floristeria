@@ -226,7 +226,7 @@ git commit -m "feat(reports): add period range helper for week/month/year"
 - Create: `src/lib/reports/sales-data.ts`
 - Test: `src/lib/reports/sales-data.test.ts`
 
-- [ ] **Step 1: Escribir el test**
+- [x] **Step 1: Escribir el test**
 
 `src/lib/reports/sales-data.test.ts`:
 
@@ -319,12 +319,12 @@ describe("getSalesReportData", () => {
 });
 ```
 
-- [ ] **Step 2: Verificar que falla**
+- [x] **Step 2: Verificar que falla**
 
 Run: `npm run test -- sales-data`
 Expected: FAIL — módulo no existe.
 
-- [ ] **Step 3: Implementar el agregador**
+- [x] **Step 3: Implementar el agregador**
 
 `src/lib/reports/sales-data.ts`:
 
@@ -419,12 +419,12 @@ export async function getSalesReportData(range: SalesReportRange): Promise<Sales
 }
 ```
 
-- [ ] **Step 4: Verificar tests**
+- [x] **Step 4: Verificar tests**
 
 Run: `npm run test -- sales-data`
 Expected: PASS (2 tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/reports/sales-data.ts src/lib/reports/sales-data.test.ts
@@ -439,7 +439,7 @@ git commit -m "feat(reports): add sales report data aggregator"
 - Create: `src/lib/reports/clients-data.ts`
 - Test: `src/lib/reports/clients-data.test.ts`
 
-- [ ] **Step 1: Escribir el test**
+- [x] **Step 1: Escribir el test**
 
 `src/lib/reports/clients-data.test.ts`:
 
@@ -524,12 +524,12 @@ describe("getClientsReportData", () => {
 });
 ```
 
-- [ ] **Step 2: Verificar que falla**
+- [x] **Step 2: Verificar que falla**
 
 Run: `npm run test -- clients-data`
 Expected: FAIL.
 
-- [ ] **Step 3: Implementar**
+- [x] **Step 3: Implementar**
 
 `src/lib/reports/clients-data.ts`:
 
@@ -634,12 +634,12 @@ export async function getClientsReportData(range: ClientsReportRange): Promise<C
 }
 ```
 
-- [ ] **Step 4: Verificar tests**
+- [x] **Step 4: Verificar tests**
 
 Run: `npm run test -- clients-data`
 Expected: PASS (2 tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/reports/clients-data.ts src/lib/reports/clients-data.test.ts
