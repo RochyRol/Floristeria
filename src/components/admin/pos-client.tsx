@@ -22,6 +22,35 @@ interface CartItem extends PosProduct {
 
 type Mode = "catalog" | "custom";
 
+function getTrackingUrl(orderNumber: string): string {
+  if (typeof window === "undefined") return `/seguimiento/${orderNumber}`;
+  return `${window.location.origin}/seguimiento/${orderNumber}`;
+}
+
+function showOrderSuccessToast(
+  orderNumber: string,
+  opts?: { description?: string }
+) {
+  const url = getTrackingUrl(orderNumber);
+  toast.success(`Pedido registrado: ${orderNumber}`, {
+    description: opts?.description
+      ? `${opts.description} · Link: ${url}`
+      : `Link de seguimiento: ${url}`,
+    action: {
+      label: "Copiar link",
+      onClick: async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          toast.success("Link copiado al portapapeles");
+        } catch {
+          toast.error("No se pudo copiar el link");
+        }
+      },
+    },
+    duration: 12000,
+  });
+}
+
 export function PosClient({ products }: { products: PosProduct[] }) {
   const [mode, setMode] = useState<Mode>("catalog");
 
@@ -126,7 +155,7 @@ function CatalogMode({ products }: { products: PosProduct[] }) {
       });
       if (!res.ok) throw new Error();
       const order = await res.json();
-      toast.success(`Venta registrada: ${order.orderNumber}`, {
+      showOrderSuccessToast(order.orderNumber, {
         description:
           payment === "POS_CASH" && cashGiven
             ? `Cambio: ${formatCOP(change)}`
@@ -286,7 +315,7 @@ function CustomMode() {
         throw new Error(err.error || "Error al registrar");
       }
       const order = await res.json();
-      toast.success(`Pedido registrado: ${order.orderNumber}`);
+      showOrderSuccessToast(order.orderNumber);
       setDescription("");
       setPrice("");
       setCustomerName("");
@@ -313,7 +342,7 @@ function CustomMode() {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Ej: Ramo de rosas rojas con girasoles, papel kraft, moño dorado..."
             rows={4}
-            className="w-full px-3 py-2 text-sm font-sans border border-forest/15 rounded-sm bg-white focus:outline-none focus:border-forest/40 placeholder:text-forest/30 resize-none"
+            className="w-full px-3 py-2 text-sm font-sans text-forest border border-forest/15 rounded-sm bg-white focus:outline-none focus:border-forest/40 placeholder:text-forest/30 resize-none"
           />
         </div>
         <Input
