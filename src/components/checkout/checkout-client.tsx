@@ -214,13 +214,13 @@ export function CheckoutClient() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <p style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "#A87C3A", fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 10 }}>
+          <p style={{ fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: "#A87C3A", fontFamily: "var(--font-manrope, sans-serif)", fontWeight: 600, marginBottom: 10 }}>
             ¡Pedido confirmado!
           </p>
           <h1 style={{ fontFamily: "var(--font-italiana, serif)", fontSize: "clamp(2rem, 6vw, 3.5rem)", color: "#EDE8DF", letterSpacing: "0.04em", lineHeight: 1 }}>
             {orderNumber}
           </h1>
-          <p style={{ marginTop: 12, fontSize: 14, color: "rgba(237,232,223,0.5)", fontFamily: "var(--font-manrope, sans-serif)", lineHeight: 1.6 }}>
+          <p style={{ marginTop: 12, fontSize: 14, color: "rgba(237,232,223,0.72)", fontFamily: "var(--font-manrope, sans-serif)", lineHeight: 1.6 }}>
             Recibimos tu pedido. Te notificaremos<br />por WhatsApp cuando avance.
           </p>
         </motion.div>
@@ -237,8 +237,8 @@ export function CheckoutClient() {
               style={{
                 background: "#A87C3A",
                 color: "#0E0E0D",
-                fontSize: 11,
-                letterSpacing: "0.18em",
+                fontSize: 12,
+                letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 fontFamily: "var(--font-manrope, sans-serif)",
                 fontWeight: 600,
@@ -254,12 +254,12 @@ export function CheckoutClient() {
               className="w-full py-3 text-center transition-all"
               style={{
                 background: "transparent",
-                color: "rgba(237,232,223,0.5)",
-                fontSize: 11,
-                letterSpacing: "0.18em",
+                color: "rgba(237,232,223,0.68)",
+                fontSize: 12,
+                letterSpacing: "0.14em",
                 textTransform: "uppercase",
                 fontFamily: "var(--font-manrope, sans-serif)",
-                border: "1px solid rgba(237,232,223,0.1)",
+                border: "1px solid rgba(237,232,223,0.18)",
                 cursor: "pointer",
               }}
             >
@@ -295,7 +295,7 @@ export function CheckoutClient() {
                   i + 1
                 )}
               </div>
-              <span className={`text-xs uppercase tracking-brand font-sans hidden sm:block ${i === step ? "text-forest" : "text-forest/40"}`}>
+              <span className={`text-xs uppercase tracking-brand font-sans hidden sm:block ${i === step ? "text-forest" : "text-forest/55"}`}>
                 {s}
               </span>
               {i < 2 && <div className="w-8 lg:w-16 h-px bg-forest/10 mx-1" />}
@@ -517,13 +517,13 @@ export function CheckoutClient() {
                     <div key={item.id} className="flex gap-3">
                       <div className="relative w-14 h-14 rounded-sm overflow-hidden bg-cream-darker shrink-0">
                         <Image src={item.image} alt={item.name} fill className="object-cover" />
-                        <span className="absolute -top-1 -right-1 w-5 h-5 bg-forest text-cream text-[10px] rounded-full flex items-center justify-center font-sans">
+                        <span className="absolute -top-1 -right-1 w-5 h-5 bg-forest text-cream text-[11px] rounded-full flex items-center justify-center font-sans">
                           {item.quantity}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-sans text-forest line-clamp-1">{item.name}</p>
-                        <p className="text-[10px] font-sans text-forest/40">{item.sizeLabel}</p>
+                        <p className="text-[11px] font-sans text-forest/60">{item.sizeLabel}</p>
                         <p className="text-xs font-serif text-forest mt-0.5 price">
                           {formatCOP(item.price * item.quantity)}
                         </p>
