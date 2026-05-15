@@ -12,14 +12,24 @@ export async function PATCH(
   }
 
   const { id } = await params;
-  const { status, note, assignedFloristId, assignedDeliveryId, internalNote } = await req.json();
+  const {
+    status,
+    note,
+    assignedFloristId,
+    assignedDeliveryId,
+    internalNote,
+    deliveryDate,
+    deliveryTime,
+  } = await req.json();
 
   try {
     const updates: Record<string, unknown> = {};
-    if (status) updates.status = status;
-    if (assignedFloristId !== undefined) updates.assignedFloristId = assignedFloristId;
+    if (status)                          updates.status             = status;
+    if (assignedFloristId  !== undefined) updates.assignedFloristId  = assignedFloristId;
     if (assignedDeliveryId !== undefined) updates.assignedDeliveryId = assignedDeliveryId;
-    if (internalNote !== undefined) updates.internalNote = internalNote;
+    if (internalNote       !== undefined) updates.internalNote       = internalNote;
+    if (deliveryDate       !== undefined) updates.deliveryDate       = deliveryDate ? new Date(deliveryDate) : null;
+    if (deliveryTime       !== undefined) updates.deliveryTime       = deliveryTime;
 
     const order = await prisma.order.update({
       where: { id },
@@ -38,12 +48,13 @@ export async function PATCH(
       include: {
         items: true,
         statusHistory: { orderBy: { timestamp: "asc" } },
-        customer: { select: { name: true, email: true } },
+        customer: { select: { name: true, email: true, phone: true } },
       },
     });
 
     return NextResponse.json(order);
   } catch (error) {
+    console.error("[orders PATCH]", error);
     return NextResponse.json({ error: "Error al actualizar" }, { status: 500 });
   }
 }

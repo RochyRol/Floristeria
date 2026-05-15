@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { generateOrderNumber } from "@/lib/utils";
 import { auth } from "@/lib/auth";
@@ -41,16 +42,7 @@ export async function POST(req: NextRequest) {
     // Always recompute subtotal/total server-side to prevent tampering.
     const MAX_UNIT_PRICE = 50_000_000; // 50M COP — sane upper bound
     const MAX_QUANTITY = 999;
-    const validatedItems: Array<{
-      productId: string | null;
-      productName: string;
-      productImage?: string;
-      size?: string;
-      quantity: number;
-      unitPrice: number;
-      subtotal: number;
-      dedication?: string;
-    }> = [];
+    const validatedItems: Prisma.OrderItemUncheckedCreateWithoutOrderInput[] = [];
 
     for (const item of items) {
       if (!item.productName || typeof item.productName !== "string" || item.productName.trim().length < 3) {
@@ -97,7 +89,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Recompute totals from validated items
-    const computedSubtotal = validatedItems.reduce((s, i) => s + i.subtotal, 0);
+    const computedSubtotal = validatedItems.reduce((s, i) => s + Number(i.subtotal), 0);
     const safeShippingCost = Math.max(0, Number(shippingCost) || 0);
     const computedTotal = computedSubtotal + safeShippingCost;
 
