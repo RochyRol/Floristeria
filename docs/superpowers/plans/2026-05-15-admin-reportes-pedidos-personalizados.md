@@ -76,7 +76,7 @@ git commit -m "chore: install exceljs and @react-pdf/renderer for downloadable r
 - Create: `src/lib/reports/periods.ts`
 - Test: `src/lib/reports/periods.test.ts`
 
-- [ ] **Step 1: Escribir el test fallando**
+- [x] **Step 1: Escribir el test fallando**
 
 `src/lib/reports/periods.test.ts`:
 
@@ -129,12 +129,12 @@ describe("getPeriodRange", () => {
 });
 ```
 
-- [ ] **Step 2: Verificar que falla**
+- [x] **Step 2: Verificar que falla**
 
 Run: `npm run test -- periods`
 Expected: FAIL — no existe el módulo.
 
-- [ ] **Step 3: Implementar el helper**
+- [x] **Step 3: Implementar el helper**
 
 `src/lib/reports/periods.ts`:
 
@@ -206,12 +206,12 @@ export function getPeriodRange(period: Period, reference: Date = new Date()): Pe
 }
 ```
 
-- [ ] **Step 4: Verificar que pasan los tests**
+- [x] **Step 4: Verificar que pasan los tests**
 
 Run: `npm run test -- periods`
 Expected: PASS (5 tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/lib/reports/periods.ts src/lib/reports/periods.test.ts
