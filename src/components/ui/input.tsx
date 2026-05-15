@@ -20,7 +20,7 @@ function FieldLabel({ htmlFor, children }: { htmlFor?: string; children: React.R
   return (
     <label
       htmlFor={htmlFor}
-      className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-[#374151]"
+      className="block text-[12px] font-semibold uppercase tracking-[0.1em] text-[#374151]"
       style={{ fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 6 }}
     >
       {children}
@@ -55,12 +55,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {error && (
-          <p className="mt-1 text-[11px] text-red-500" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
+          <p className="mt-1 text-[12px] text-red-500" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
             {error}
           </p>
         )}
         {hint && !error && (
-          <p className="mt-1 text-[11px] text-[#6B7280]" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
+          <p className="mt-1 text-[12px] text-[#6B7280]" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
             {hint}
           </p>
         )}
@@ -95,12 +95,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
         {error && (
-          <p className="mt-1 text-[11px] text-red-500" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
+          <p className="mt-1 text-[12px] text-red-500" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
             {error}
           </p>
         )}
         {hint && !error && (
-          <p className="mt-1 text-[11px] text-[#6B7280]" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
+          <p className="mt-1 text-[12px] text-[#6B7280]" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
             {hint}
           </p>
         )}
@@ -144,7 +144,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           {children ?? options?.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
         </select>
         {error && (
-          <p className="mt-1 text-[11px] text-red-500" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
+          <p className="mt-1 text-[12px] text-red-500" style={{ fontFamily: "var(--font-manrope, sans-serif)" }}>
             {error}
           </p>
         )}

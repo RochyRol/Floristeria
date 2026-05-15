@@ -77,7 +77,7 @@ export function BestSellers({ products }: BestSellersProps) {
           </div>
           <Link
             href="/tienda"
-            className="hidden sm:inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-sans font-medium transition-colors group pb-2"
+            className="hidden sm:inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] font-sans font-medium transition-colors group pb-2"
             style={{ color: "#bfb5ab" }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#f7f1ea")}
             onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#bfb5ab")}
@@ -108,7 +108,7 @@ export function BestSellers({ products }: BestSellersProps) {
         <div className="sm:hidden flex justify-center mt-10">
           <Link
             href="/tienda"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-sans font-medium transition-colors pb-1"
+            className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] font-sans font-medium transition-colors pb-1"
             style={{ color: "#bfb5ab", borderBottom: "1px solid rgba(247,241,234,0.2)" }}
           >
             Ver toda la colección
