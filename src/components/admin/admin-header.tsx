@@ -35,7 +35,7 @@ export function AdminHeader({ session }: { session: Session }) {
         fontFamily: "var(--font-manrope, sans-serif)",
       }}
     >
-      <h1 style={{ fontSize: 15, fontWeight: 600, color: "#111827" }}>
+      <h1 style={{ fontFamily: "var(--font-italiana, serif)", fontSize: 20, color: "#111827", letterSpacing: "0.04em", lineHeight: 1 }}>
         {title}
       </h1>
 
