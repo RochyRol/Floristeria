@@ -314,14 +314,14 @@ export function OrderDetailClient({
             </div>
             <div className="px-5 py-4 flex flex-col gap-2">
               <div>
-                <p className="text-[10px] uppercase tracking-brand font-sans text-forest/40">
+                <p className="text-[12px] uppercase tracking-brand font-sans font-medium text-forest/40">
                   Destinatario
                 </p>
                 <p className="text-sm font-sans text-forest">{order.recipientName}</p>
                 <p className="text-xs font-sans text-forest/50">{order.recipientPhone}</p>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-brand font-sans text-forest/40">
+                <p className="text-[12px] uppercase tracking-brand font-sans font-medium text-forest/40">
                   Dirección
                 </p>
                 <p className="text-sm font-sans text-forest">{order.deliveryAddress}</p>
@@ -331,7 +331,7 @@ export function OrderDetailClient({
               </div>
               {(order.deliveryDate || order.deliveryTime) && (
                 <div>
-                  <p className="text-[10px] uppercase tracking-brand font-sans text-forest/40">
+                  <p className="text-[12px] uppercase tracking-brand font-sans font-medium text-forest/40">
                     Fecha / Hora
                   </p>
                   <p className="text-sm font-sans text-forest">
@@ -398,18 +398,18 @@ function TrackingLinkRow({ orderNumber }: { orderNumber: string }) {
 
   return (
     <div className="mt-3 flex items-center gap-2 flex-wrap">
-      <span className="text-[10px] uppercase tracking-brand font-sans font-medium text-forest/40">
+      <span className="text-[12px] uppercase tracking-brand font-sans font-semibold text-forest/60">
         Link de seguimiento
       </span>
-      <code className="text-xs font-sans text-forest bg-cream-dark/50 px-2 py-1 rounded-sm border border-forest/8 truncate max-w-[320px]">
+      <code className="text-[13px] font-sans text-forest bg-cream-dark/50 px-2 py-1 rounded-sm border border-forest/8 truncate max-w-[320px]">
         {url}
       </code>
       <button
         onClick={copyLink}
-        className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] uppercase tracking-[0.12em] font-sans font-medium text-forest border border-forest/20 rounded-sm hover:border-forest/50 transition-colors"
+        className="inline-flex items-center gap-1 px-2.5 py-1 text-[12px] uppercase tracking-[0.10em] font-sans font-semibold text-forest border border-forest/20 rounded-sm hover:border-forest/50 transition-colors"
         title="Copiar link"
       >
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
         </svg>
@@ -417,10 +417,10 @@ function TrackingLinkRow({ orderNumber }: { orderNumber: string }) {
       </button>
       <button
         onClick={openLink}
-        className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] uppercase tracking-[0.12em] font-sans font-medium bg-forest text-cream rounded-sm hover:bg-forest-light transition-colors"
+        className="inline-flex items-center gap-1 px-2.5 py-1 text-[12px] uppercase tracking-[0.10em] font-sans font-semibold bg-forest text-cream rounded-sm hover:bg-forest-light transition-colors"
         title="Abrir en nueva pestaña"
       >
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
           <polyline points="15 3 21 3 21 9" />
           <line x1="10" y1="14" x2="21" y2="3" />
