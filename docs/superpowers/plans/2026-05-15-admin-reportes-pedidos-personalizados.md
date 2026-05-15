@@ -1726,7 +1726,7 @@ git commit -m "feat(api): accept order items without catalog productId"
 **Files:**
 - Modify: `src/components/admin/pos-client.tsx`
 
-- [ ] **Step 1: Refactor mínimo para introducir tabs**
+- [x] **Step 1: Refactor mínimo para introducir tabs**
 
 Reemplazar el archivo completo. Mantiene la funcionalidad actual del catálogo y agrega el modo personalizado.
 
@@ -2150,7 +2150,7 @@ function PaymentSelector({
 
 **Nota sobre PaymentMethod:** este archivo cambia los valores enviados de `"CASH"|"CARD"|"TRANSFER"|"NEQUI"` (strings que no existían en el enum del schema) a `"POS_CASH"|"POS_CARD"|"BANK_TRANSFER"` (valores reales del enum `PaymentMethod`). Esto **corrige** un bug existente en el POS que enviaba valores inválidos.
 
-- [ ] **Step 2: Verificación manual completa**
+- [x] **Step 2: Verificación manual completa**
 
 Run: `npm run dev`. Entrar a `/admin/pos` autenticado como ADMIN o SELLER.
 
@@ -2166,7 +2166,7 @@ Run: `npm run dev`. Entrar a `/admin/pos` autenticado como ADMIN o SELLER.
 - Toast de éxito con número de pedido
 - Ir a `/admin/pedidos`, verificar que aparece con la descripción correcta como nombre del item
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/components/admin/pos-client.tsx
