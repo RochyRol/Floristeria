@@ -31,6 +31,21 @@ export async function POST(req: NextRequest) {
       total,
     } = body;
 
+    if (!Array.isArray(items) || items.length === 0) {
+      return NextResponse.json({ error: "El pedido debe tener al menos un item" }, { status: 400 });
+    }
+    for (const item of items) {
+      if (!item.productName || typeof item.productName !== "string" || item.productName.trim().length < 3) {
+        return NextResponse.json(
+          { error: "Cada item requiere una descripción (mínimo 3 caracteres)" },
+          { status: 400 }
+        );
+      }
+      if (!item.quantity || item.quantity < 1) {
+        return NextResponse.json({ error: "Cantidad inválida" }, { status: 400 });
+      }
+    }
+
     const orderNumber = generateOrderNumber();
 
     const order = await prisma.order.create({
@@ -53,7 +68,7 @@ export async function POST(req: NextRequest) {
         status: "RECEIVED",
         items: {
           create: items.map((item: {
-            productId: string;
+            productId?: string | null;
             productName: string;
             productImage?: string;
             size?: string;
@@ -62,7 +77,7 @@ export async function POST(req: NextRequest) {
             subtotal: number;
             dedication?: string;
           }) => ({
-            productId: item.productId,
+            productId: item.productId || null,
             productName: item.productName,
             productImage: item.productImage,
             size: item.size,
@@ -82,8 +97,9 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // Update product sales count
+    // Update product sales count (solo para items con productId del catálogo)
     for (const item of items) {
+      if (!item.productId) continue;
       await prisma.product.update({
         where: { id: item.productId },
         data: { salesCount: { increment: item.quantity } },

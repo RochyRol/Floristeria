@@ -1585,7 +1585,7 @@ git commit -m "feat(db): make OrderItem.productId optional for custom POS orders
 **Files:**
 - Modify: `src/app/api/orders/route.ts`
 
-- [ ] **Step 1: Actualizar el endpoint POST**
+- [x] **Step 1: Actualizar el endpoint POST**
 
 Reemplazar el bloque actual de `items.map(...)` dentro de `prisma.order.create` (líneas 54-74) y el loop de `Update product sales count` (líneas 86-91).
 
@@ -1666,7 +1666,7 @@ Por:
     }
 ```
 
-- [ ] **Step 2: Validar al menos un item con productName**
+- [x] **Step 2: Validar al menos un item con productName**
 
 Justo después del `await req.json();` y antes de `const orderNumber = ...`, agregar:
 
@@ -1687,7 +1687,7 @@ Justo después del `await req.json();` y antes de `const orderNumber = ...`, agr
     }
 ```
 
-- [ ] **Step 3: Smoke test manual**
+- [x] **Step 3: Smoke test manual**
 
 Iniciar `npm run dev`. Con la app corriendo, ejecutar:
 
@@ -1712,7 +1712,7 @@ curl -X POST http://localhost:3000/api/orders \
 ```
 Expected: `{"orderNumber":"FL-...","id":"..."}` (HTTP 200). El pedido aparece en `/admin/pedidos` con productName = "Ramo personalizado de prueba" y sin productId.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/app/api/orders/route.ts
