@@ -45,7 +45,7 @@ export function AdminHeader({ session }: { session: Session }) {
           <span style={{ fontSize: 13, fontWeight: 500, color: "#111827" }}>
             {session.user?.name}
           </span>
-          <span style={{ fontSize: 10, color: "#9CA3AF", marginTop: 3, textTransform: "uppercase", letterSpacing: "0.1em" }}>
+          <span style={{ fontSize: 12, color: "#9CA3AF", marginTop: 3, textTransform: "uppercase", letterSpacing: "0.1em" }}>
             {ROLE_LABELS[role] ?? role}
           </span>
         </div>
@@ -71,7 +71,7 @@ export function AdminHeader({ session }: { session: Session }) {
         <button
           onClick={() => signOut({ callbackUrl: "/" })}
           className="flex items-center gap-1.5 transition-colors"
-          style={{ fontSize: 12, color: "#6B7280", background: "none", border: "none", cursor: "pointer" }}
+          style={{ fontSize: 13, color: "#6B7280", background: "none", border: "none", cursor: "pointer" }}
           onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#111827")}
           onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6B7280")}
         >

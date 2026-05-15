@@ -97,7 +97,7 @@ export function AdminSidebar({ role }: { role: Role }) {
           <span style={{ fontFamily: "var(--font-italiana, serif)", fontSize: 19, color: "#111827", letterSpacing: "0.06em", lineHeight: 1 }}>
             Deco · Imperio
           </span>
-          <span style={{ fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "#9CA3AF" }}>
+          <span style={{ fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "#9CA3AF" }}>
             Admin
           </span>
         </Link>
@@ -138,7 +138,7 @@ export function AdminSidebar({ role }: { role: Role }) {
         <Link
           href="/"
           className="flex items-center gap-2 px-3 py-2 rounded-md no-underline transition-colors"
-          style={{ fontSize: 12, color: "#9CA3AF" }}
+          style={{ fontSize: 13, color: "#9CA3AF" }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#374151"; (e.currentTarget as HTMLElement).style.background = "#F9FAFB"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#9CA3AF"; (e.currentTarget as HTMLElement).style.background = "transparent"; }}
         >
