@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getWhatsAppUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Atelier — Deco Imperio",
+  title: "Quiénes Somos — Deco Imperio",
   description: "La historia de Floristería Deco Imperio. Arte floral artesanal en Bello, Niquía desde 2009.",
 };
 
@@ -22,7 +22,7 @@ export default function NosotrosPage() {
       <div className="relative overflow-hidden" style={{ height: "60vh", minHeight: 400 }}>
         <Image
           src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=1800&q=85&fit=crop"
-          alt="Atelier Deco Imperio"
+          alt="Floristería Deco Imperio"
           fill
           className="object-cover"
           style={{ filter: "brightness(0.45) saturate(0.9)" }}
@@ -37,21 +37,21 @@ export default function NosotrosPage() {
         <div className="absolute pointer-events-none" style={{ inset: 20, border: `1px solid rgba(237,232,223,0.12)` }} />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
-          <p style={{ fontSize: 10, letterSpacing: "0.32em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 16 }}>
+          <p style={{ fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", color: GOLD, fontFamily: "var(--font-manrope, sans-serif)", marginBottom: 16, fontWeight: 600 }}>
             Desde 2009
           </p>
           <h1
             style={{
               fontFamily: "var(--font-italiana, serif)",
-              fontSize: "clamp(3rem, 8vw, 6rem)",
+              fontSize: "clamp(2.8rem, 7vw, 5.4rem)",
               color: P,
               lineHeight: 1,
-              letterSpacing: "0.05em",
+              letterSpacing: "0.04em",
             }}
           >
-            El Atelier
+            Quiénes Somos
           </h1>
-          <p style={{ marginTop: 16, fontSize: 15, fontFamily: "var(--font-cormorant, 'Cormorant Garamond', serif)", fontStyle: "italic", color: M, maxWidth: 500, lineHeight: 1.7 }}>
+          <p style={{ marginTop: 18, fontSize: 17, fontFamily: "var(--font-cormorant, 'Cormorant Garamond', serif)", fontStyle: "italic", fontWeight: 500, color: "rgba(237,232,223,0.78)", maxWidth: 500, lineHeight: 1.6 }}>
             Quince años poniendo flores en los momentos que importan.
           </p>
         </div>
@@ -59,7 +59,7 @@ export default function NosotrosPage() {
         {/* side label */}
         <p
           className="absolute hidden lg:block"
-          style={{ top: "50%", left: 32, transform: "translateY(-50%) rotate(-90deg)", transformOrigin: "left center", fontSize: 9, letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(237,232,223,0.3)", fontFamily: "var(--font-manrope, sans-serif)", whiteSpace: "nowrap" }}
+          style={{ top: "50%", left: 32, transform: "translateY(-50%) rotate(-90deg)", transformOrigin: "left center", fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(237,232,223,0.55)", fontFamily: "var(--font-manrope, sans-serif)", whiteSpace: "nowrap", fontWeight: 600 }}
         >
           Bello · Niquía · Antioquia
         </p>
