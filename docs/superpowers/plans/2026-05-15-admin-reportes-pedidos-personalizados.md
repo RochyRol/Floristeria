@@ -1137,7 +1137,7 @@ git commit -m "feat(reports): add PDF generator for clients report"
 **Files:**
 - Create: `src/app/api/admin/reports/ventas/route.ts`
 
-- [ ] **Step 1: Implementar la ruta**
+- [x] **Step 1: Implementar la ruta**
 
 `src/app/api/admin/reports/ventas/route.ts`:
 
@@ -1195,7 +1195,7 @@ export async function GET(req: NextRequest) {
 }
 ```
 
-- [ ] **Step 2: Verificación manual**
+- [x] **Step 2: Verificación manual**
 
 Run: `npm run dev` y abrir en navegador autenticado como ADMIN:
 `http://localhost:3000/api/admin/reports/ventas?period=month&format=xlsx`
@@ -1204,7 +1204,7 @@ Expected: descarga un `.xlsx` válido.
 
 Probar también `format=pdf`. Expected: descarga `.pdf`.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/app/api/admin/reports/ventas/route.ts
