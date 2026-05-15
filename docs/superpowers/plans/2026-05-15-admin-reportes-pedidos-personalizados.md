@@ -897,7 +897,7 @@ git commit -m "feat(reports): add Excel generator for clients report"
 **Files:**
 - Create: `src/lib/reports/sales-pdf.tsx`
 
-- [ ] **Step 1: Implementar el documento PDF**
+- [x] **Step 1: Implementar el documento PDF**
 
 `src/lib/reports/sales-pdf.tsx`:
 
@@ -1016,7 +1016,7 @@ export async function buildSalesPdf(data: SalesReportData, periodLabel: string):
 }
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/lib/reports/sales-pdf.tsx
@@ -1030,7 +1030,7 @@ git commit -m "feat(reports): add PDF generator for sales report"
 **Files:**
 - Create: `src/lib/reports/clients-pdf.tsx`
 
-- [ ] **Step 1: Implementar**
+- [x] **Step 1: Implementar**
 
 `src/lib/reports/clients-pdf.tsx`:
 
@@ -1123,7 +1123,7 @@ export async function buildClientsPdf(data: ClientsReportData, periodLabel: stri
 }
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add src/lib/reports/clients-pdf.tsx
