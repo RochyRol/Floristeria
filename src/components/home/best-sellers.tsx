@@ -59,8 +59,7 @@ export function BestSellers({ products }: BestSellersProps) {
         {/* Editorial header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="flex items-end justify-between mb-14 lg:mb-20"
         >

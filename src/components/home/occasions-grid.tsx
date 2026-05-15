@@ -57,8 +57,7 @@ function CardSlot({ occasion, delay, className = "", isHero = false, style }: Ca
   return (
     <motion.div
       initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={`relative overflow-hidden ${className}`}
       style={{ background: "#1a1411", borderRadius: "1px", ...style }}
@@ -134,8 +133,7 @@ export function OccasionsGrid({ occasions }: OccasionsGridProps) {
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="flex flex-col items-center text-center mb-16 lg:mb-20"
         >

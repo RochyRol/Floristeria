@@ -57,8 +57,7 @@ export function TestimonialsSection() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           className="flex flex-col items-center text-center mb-16"
         >
@@ -87,8 +86,7 @@ export function TestimonialsSection() {
             <motion.div
               key={t.id}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
               style={{ background: "#0E0E0D", padding: "36px 32px" }}
             >
