@@ -11,7 +11,6 @@ import { Input, Textarea, Select } from "@/components/ui/input";
 import type { Category, Occasion } from "@prisma/client";
 
 const SANS  = "var(--font-manrope, sans-serif)";
-const SERIF = "var(--font-italiana, serif)";
 
 const productSchema = z.object({
   name:        z.string().min(2, "Mínimo 2 caracteres"),
@@ -44,7 +43,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   return (
     <div style={{ background: "#fff", border: "1px solid #E5E7EB", borderRadius: 8, overflow: "hidden" }}>
       <div style={{ padding: "12px 20px", borderBottom: "1px solid #F3F4F6", background: "#F9FAFB" }}>
-        <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6B7280", fontFamily: SANS }}>
+        <p style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#6B7280", fontFamily: SANS }}>
           {title}
         </p>
       </div>
@@ -127,10 +126,10 @@ export function ProductForm({ product, categories, occasions }: Props) {
       {/* Page header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 style={{ fontFamily: SERIF, fontSize: 22, color: "#111827", letterSpacing: "0.04em", lineHeight: 1 }}>
+          <h1 style={{ fontFamily: SANS, fontSize: 22, fontWeight: 600, color: "#111827", letterSpacing: "0.04em", lineHeight: 1 }}>
             {isEdit ? "Editar producto" : "Nuevo producto"}
           </h1>
-          <p style={{ fontSize: 12, color: "#6B7280", marginTop: 5 }}>
+          <p style={{ fontSize: 13, color: "#6B7280", marginTop: 5 }}>
             {isEdit ? `ID: ${product!.id}` : "Completa los campos requeridos *"}
           </p>
         </div>
@@ -198,7 +197,7 @@ export function ProductForm({ product, categories, occasions }: Props) {
                 <button
                   type="button"
                   onClick={() => removeImage(i)}
-                  style={{ padding: "0 10px", height: 36, fontSize: 11, color: "#EF4444", background: "none", border: "1px solid #FCA5A5", borderRadius: 4, cursor: "pointer", flexShrink: 0, marginBottom: 0 }}
+                  style={{ padding: "0 10px", height: 36, fontSize: 13, color: "#EF4444", background: "none", border: "1px solid #FCA5A5", borderRadius: 4, cursor: "pointer", flexShrink: 0, marginBottom: 0 }}
                 >
                   Eliminar
                 </button>
@@ -219,7 +218,7 @@ export function ProductForm({ product, categories, occasions }: Props) {
       <Section title="Etiquetas y ocasiones">
         <Input label="Etiquetas" {...register("tags")} hint="Separadas por coma: rosa, romantico, cumpleaños" />
         <div>
-          <p style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6B7280", marginBottom: 10 }}>
+          <p style={{ fontSize: 13, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#6B7280", marginBottom: 10 }}>
             Ocasiones
           </p>
           <div className="flex flex-wrap gap-2">
