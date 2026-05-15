@@ -76,7 +76,7 @@ export function PosClient({ products }: { products: PosProduct[] }) {
         <div className="inline-flex border border-forest/15 rounded-sm overflow-hidden">
           <button
             onClick={() => setMode("catalog")}
-            className={`px-4 py-1.5 text-[11px] uppercase tracking-[0.12em] font-sans font-medium transition-colors ${
+            className={`px-4 py-1.5 text-[13px] uppercase tracking-[0.12em] font-sans font-medium transition-colors ${
               mode === "catalog"
                 ? "bg-forest text-cream"
                 : "bg-cream text-forest/40 hover:text-forest/70"
@@ -86,7 +86,7 @@ export function PosClient({ products }: { products: PosProduct[] }) {
           </button>
           <button
             onClick={() => setMode("custom")}
-            className={`px-4 py-1.5 text-[11px] uppercase tracking-[0.12em] font-sans font-medium transition-colors border-l border-forest/15 ${
+            className={`px-4 py-1.5 text-[13px] uppercase tracking-[0.12em] font-sans font-medium transition-colors border-l border-forest/15 ${
               mode === "custom"
                 ? "bg-forest text-cream"
                 : "bg-cream text-forest/40 hover:text-forest/70"
@@ -210,7 +210,7 @@ function CatalogMode({ products }: { products: PosProduct[] }) {
                   <div className="w-full h-full flex items-center justify-center text-forest/20 text-2xl">🌸</div>
                 )}
               </div>
-              <p className="text-xs font-sans font-medium text-forest line-clamp-2 mb-1">{p.name}</p>
+              <p className="text-[13px] font-sans font-medium text-forest line-clamp-2 mb-1">{p.name}</p>
               <p className="font-serif text-sm text-forest price">{formatCOP(p.basePrice)}</p>
             </button>
           ))}
@@ -230,7 +230,7 @@ function CatalogMode({ products }: { products: PosProduct[] }) {
         </div>
         <div className="flex-1 overflow-y-auto divide-y divide-forest/5">
           {cart.length === 0 ? (
-            <div className="p-6 text-center text-xs font-sans text-forest/30">
+            <div className="p-6 text-center text-[13px] font-sans text-forest/30">
               Toca un producto para agregar
             </div>
           ) : (
@@ -238,7 +238,7 @@ function CatalogMode({ products }: { products: PosProduct[] }) {
               <div key={item.id} className="flex items-center gap-2 px-4 py-2">
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-sans font-medium text-forest truncate">{item.name}</p>
-                  <p className="text-[11px] font-sans text-forest/50 price">{formatCOP(item.basePrice)}</p>
+                  <p className="text-[12px] font-sans text-forest/50 price">{formatCOP(item.basePrice)}</p>
                 </div>
                 <div className="flex items-center gap-1">
                   <button onClick={() => updateQty(item.id, -1)} className="w-5 h-5 rounded border border-forest/15 text-forest/50 text-xs hover:border-forest/40 transition-colors flex items-center justify-center">−</button>
@@ -269,7 +269,7 @@ function CatalogMode({ products }: { products: PosProduct[] }) {
             Registrar venta
           </Button>
           {cart.length > 0 && (
-            <button onClick={() => setCart([])} className="text-xs font-sans text-center text-forest/30 hover:text-burgundy transition-colors">
+            <button onClick={() => setCart([])} className="text-[12px] font-sans text-center text-forest/30 hover:text-burgundy transition-colors">
               Vaciar carrito
             </button>
           )}
@@ -349,7 +349,7 @@ function CustomMode() {
           Detalles del arreglo
         </p>
         <div>
-          <label className="text-[10px] uppercase tracking-brand font-sans font-medium text-forest/40 block mb-1.5">
+          <label className="text-[12px] uppercase tracking-brand font-sans font-medium text-forest/40 block mb-1.5">
             Descripción del arreglo
           </label>
           <textarea
@@ -434,7 +434,7 @@ function PaymentSelector({
   ];
   return (
     <div>
-      <p className="text-[10px] uppercase tracking-brand font-sans font-medium text-forest/40 mb-1.5">
+      <p className="text-[12px] uppercase tracking-brand font-sans font-medium text-forest/40 mb-1.5">
         Método de pago
       </p>
       <div className="grid grid-cols-3 gap-1.5">
@@ -442,7 +442,7 @@ function PaymentSelector({
           <button
             key={m.v}
             onClick={() => onChange(m.v)}
-            className={`py-1.5 text-[11px] font-sans rounded-sm border transition-colors ${
+            className={`py-1.5 text-[13px] font-sans font-medium rounded-sm border transition-colors ${
               value === m.v
                 ? "bg-forest text-cream border-forest"
                 : "bg-white text-forest/50 border-forest/15 hover:border-forest/40"
